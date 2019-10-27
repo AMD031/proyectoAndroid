@@ -9,19 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".views.FormJavaActivity"
-            android:label="@string/title_activity_form_java"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".views.ListadoActivity"
-            android:label="@string/title_activity_listado"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".AniCRUD" android:theme="@android:style/Theme.Black.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".views.FormJavaActivity"
+            android:label="@string/title_activity_form_java"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".views.ListadoActivity"
+            android:label="@string/title_activity_listado"
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
     </application>
 

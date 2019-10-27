@@ -34,6 +34,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             public void onClick(View view) {
                 Log.d(TAG, "Pulsando boton flotante");
                 presenter.onClickAdd();
+
             }
         });
     }
@@ -44,4 +45,16 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                 FormJavaActivity.class);
         startActivity(intent);
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
