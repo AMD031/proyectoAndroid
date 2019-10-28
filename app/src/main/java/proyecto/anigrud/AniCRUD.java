@@ -10,7 +10,6 @@ import android.util.Log;
 
 import proyecto.anigrud.views.*;
 
-
 public class AniCRUD extends Activity {
     String TAG = "aniGRUD/MainActivitiy";
 
