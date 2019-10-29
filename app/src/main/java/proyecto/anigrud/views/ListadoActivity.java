@@ -17,7 +17,7 @@ import proyecto.anigrud.presenters.ListadoPresenter;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View {
 
-    String TAG = "aniCRUD/ListadoActividado";
+    String TAG = "aniCRUD/Listado";
     private ListadoInterface.Presenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,31 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG,"entrado en el onStart");
+    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG,"entrado en el onresume");
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG,"entrado en el stop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG,"entrado en el stop");
+    }
 
 
 

@@ -12,8 +12,4 @@ public interface ListadoInterface {
         void onClickAdd();
     }
 
-
-
-
-
 }

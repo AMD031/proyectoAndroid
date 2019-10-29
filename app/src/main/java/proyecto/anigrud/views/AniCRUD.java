@@ -1,6 +1,4 @@
-package proyecto.anigrud;
-
-import androidx.appcompat.app.AppCompatActivity;
+package proyecto.anigrud.views;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,10 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import proyecto.anigrud.views.*;
+import proyecto.anigrud.R;
 
 public class AniCRUD extends Activity {
-    String TAG = "aniGRUD/MainActivitiy";
+    String TAG = "aniGRUD/AniCRUD";
 
 
     @Override
@@ -20,6 +18,7 @@ public class AniCRUD extends Activity {
         super.onCreate(savedInstanceState);
         Log.i(TAG,"entrado en el oncreate");
         setContentView(R.layout.activity_ani_crud);
+
 
         new Handler().postDelayed(
                 new Runnable() {

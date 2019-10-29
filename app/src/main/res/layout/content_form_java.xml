@@ -30,7 +30,8 @@
                 android:editable="false"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Datos del animal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="25dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,44 +51,45 @@
                         android:id="@+id/editText3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_action_name"
                         android:ems="10"
                         android:gravity="center_horizontal|center_vertical"
                         android:hint="Nombre  del animal"
                         android:inputType="text"
-                        android:paddingTop="11dp"
-                        android:maxLines="1"/>
+                        android:maxLines="1"
+                        android:paddingTop="11dp" />
+
                     <EditText
                         android:id="@+id/editText4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_action_especie"
                         android:ems="10"
                         android:gravity="center_horizontal|center_vertical"
                         android:hint="Especie"
                         android:inputType="text"
-                        android:paddingTop="11dp"
-                        android:maxLines="1"/>
-
+                        android:maxLines="1"
+                        android:paddingTop="11dp" />
 
 
                     <EditText
                         android:id="@+id/editText5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_action_lugar"
                         android:ems="10"
                         android:gravity="center_horizontal|center_vertical"
                         android:hint="Lugar foto"
                         android:inputType="text"
-                        android:paddingTop="11dp"
-                        android:maxLines="1"/>
-
-
-
+                        android:maxLines="1"
+                        android:paddingTop="11dp" />
 
 
                     <EditText
                         android:id="@+id/editText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_action_fecha"
                         android:ems="10"
                         android:gravity="center_horizontal|center_vertical"
                         android:hint="Fecha de la foto"
@@ -139,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="2dp"
-                        android:text="Animal favorito"
+                        android:text="Tipo:"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
                 </LinearLayout>
 
@@ -156,6 +158,24 @@
                         android:paddingLeft="50dp" />
                 </LinearLayout>
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingTop="11dp">
+
+            <EditText
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_action_add"
+                android:hint="Agregar elemento  a tipo"
+                android:inputType="text"
+                android:maxLines="1" />
+        </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -174,7 +194,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:text="Foto animal" />
+                        android:text="Foto animal:" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -186,8 +206,8 @@
                         android:id="@+id/imageView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        app:srcCompat="@android:drawable/ic_menu_report_image" />
+                        android:paddingLeft="20dp"
+                        app:srcCompat="@mipmap/ic_launcher" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -207,6 +227,7 @@
                         android:id="@+id/button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_action_save"
                         android:text="Guardar" />
                 </LinearLayout>
 
