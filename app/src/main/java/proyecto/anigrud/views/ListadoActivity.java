@@ -26,6 +26,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         presenter = new ListadoPresenter(this);
 
         FloatingActionButton fab = findViewById(R.id.listadofab);
