@@ -1,5 +1,6 @@
 package proyecto.anigrud.views;
 
+import android.app.slice.SliceItem;
 import android.os.Bundle;
 
 
@@ -8,11 +9,19 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import proyecto.anigrud.R;
+import proyecto.anigrud.interfaces.FormInterface;
+import proyecto.anigrud.interfaces.ListadoInterface;
+import proyecto.anigrud.presenters.FormPresenter;
+import proyecto.anigrud.presenters.ListadoPresenter;
 
-public class FormJavaActivity extends AppCompatActivity {
+public class FormJavaActivity extends AppCompatActivity implements FormInterface.View {
     String TAG = "aniGRUD/Formulario";
+    private FormInterface.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +33,26 @@ public class FormJavaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
+        presenter = new FormPresenter(this);
+
+        Button ba = findViewById(R.id.botonGuardar);
+        ba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "Pulsando boton  guardar");
+                presenter.onClickSave();
+            }
+        });
+
+
     }
+
+    @Override
+    public void lanzarGuardado(){
+        finish();
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {

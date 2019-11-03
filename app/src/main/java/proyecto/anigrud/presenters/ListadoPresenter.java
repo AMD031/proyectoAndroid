@@ -4,7 +4,7 @@ import proyecto.anigrud.interfaces.ListadoInterface;
 
 public class ListadoPresenter implements ListadoInterface.Presenter{
 
-  private ListadoInterface.View view;
+    private ListadoInterface.View view;
 
  public ListadoPresenter(ListadoInterface.View view){
      this.view = view;
