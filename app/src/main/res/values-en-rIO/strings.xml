@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AniGRUD</string>
+    <string name="title_activity_listado">List</string>
+    <string name="title_activity_form_java">Form</string>
+    <string name="Version">version</string>
+</resources>

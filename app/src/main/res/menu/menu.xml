@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/buscar"
+        app:showAsAction="always"/>
+
+
+    <item android:id="@+id/ordenar"
+        android:title="@string/Ordenar"
+        android:orderInCategory="101"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/Configuracion"
+        android:title="@string/Configuracion"
+        android:orderInCategory="101"
+        app:showAsAction="never" >
+        <menu />
+    </item>
+
+
+    <item android:id="@+id/aniGRUD"
+        android:title="@string/aniGRUD"
+        android:orderInCategory="101"
+        app:showAsAction="never" >
+        <menu />
+    </item>
+
+
+</menu>

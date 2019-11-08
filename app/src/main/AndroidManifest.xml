@@ -11,7 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.AniCRUD" android:theme="@android:style/Theme.Black.NoTitleBar">
+        <activity
+            android:name=".presenters.Sobre"
+            android:label="@string/title_activity_sobre"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".presenters.Buscar"
+            android:label="@string/title_activity_buscar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".views.AniCRUD"
+            android:theme="@android:style/Theme.Black.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +35,7 @@
         <activity
             android:name=".views.ListadoActivity"
             android:label="Listado"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

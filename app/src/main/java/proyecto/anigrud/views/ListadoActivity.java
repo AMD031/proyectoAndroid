@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 
 import proyecto.anigrud.R;
@@ -39,6 +40,18 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             }
         });
     }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
+
+
+
 
     @Override
     public void lanzarFormulario() {
