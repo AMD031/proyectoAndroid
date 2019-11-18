@@ -13,6 +13,7 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
  public void onClickAdd(){
     view.lanzarFormulario();
  }
+ public void onClickAbout(){ view.lanzarSobre();};
 
 
 

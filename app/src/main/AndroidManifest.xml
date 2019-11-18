@@ -12,11 +12,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".presenters.Sobre"
+            android:name=".views.SobreActivity"
             android:label="@string/title_activity_sobre"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".presenters.Buscar"
+            android:name=".views.BuscarActivity"
             android:label="@string/title_activity_buscar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

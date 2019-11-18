@@ -1,4 +1,4 @@
-package proyecto.anigrud.presenters;
+package proyecto.anigrud.views;
 
 import android.os.Bundle;
 
@@ -12,20 +12,15 @@ import android.view.View;
 
 import proyecto.anigrud.R;
 
-public class Buscar extends AppCompatActivity {
+public class SobreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buscar);
+        setContentView(R.layout.activity_sobre);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
-
-
-
 
 
 

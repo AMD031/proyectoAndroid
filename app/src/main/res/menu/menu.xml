@@ -2,13 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/buscar"
-        app:showAsAction="always"/>
-
-
+        app:showAsAction="always" />
     <item android:id="@+id/ordenar"
         android:title="@string/Ordenar"
         android:orderInCategory="101"
@@ -21,12 +20,15 @@
         <menu />
     </item>
 
-
     <item android:id="@+id/aniGRUD"
         android:title="@string/aniGRUD"
         android:orderInCategory="101"
         app:showAsAction="never" >
-        <menu />
+        <menu >
+            <item
+                android:id="@+id/sobreAplicacion"
+                android:title="@string/sobre" />
+        </menu>
     </item>
 
 

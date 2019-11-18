@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,7 +36,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
 
         presenter = new FormPresenter(this);
-
         Button ba = findViewById(R.id.botonGuardar);
         ba.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +44,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
                 presenter.onClickSave();
             }
         });
-
 
     }
 

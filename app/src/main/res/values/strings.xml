@@ -1,14 +1,20 @@
 <resources>
     <string name="app_name" translatable="false">AniGRUD</string>
-    <string name="action_settings" translatable="false">Settings</string>
     <string name="title_activity_listado">Listado</string>
     <string name="title_activity_form_java">Formulario</string>
     <string name="Info" translatable="false">Info</string>
     <string name="Version">version</string>
-    <string name="aniGRUD">anigrud</string>
+    <string name="aniGRUD">aniGRUD</string>
     <string name="Configuracion">configuracion</string>
     <string name="Ordenar">ordenar</string>
     <string name="buscar">buscar</string>
     <string name="title_activity_buscar">Buscar</string>
     <string name="title_activity_sobre">Sobre</string>
+    <string name="nombreApp">aniGRUD</string>
+    <string name="action_settings">Configuracion</string>
+    <string name="desarrolador">Desarrolador</string>
+    <string name="nombreDesarrolador">Antonio Martinez Diaz</string>
+    <string name="ccontacto">contacto</string>
+    <string name="contactoValor" translatable="false">contactoValor</string>
+    <string name="sobre">Sobre..</string>
 </resources>

@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import proyecto.anigrud.R;
@@ -41,16 +44,39 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         });
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_search:
+
+                return true;
+            case R.id.ordenar:
+               //showHelp();
+                return true;
+            case R.id.Configuracion:
+
+                return  true;
+
+            case R.id.sobreAplicacion:
+
+                presenter.onClickAbout();
+                return  true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
+        // add this
+        menu.add(Menu.NONE, 0, Menu.NONE, "custom")
+                .setActionView(R.layout.activity_listado)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
         return true;
     }
-
-
-
-
 
 
     @Override
@@ -60,6 +86,12 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         startActivity(intent);
     }
 
+    @Override
+    public void lanzarSobre() {
+        Intent intent = new Intent(ListadoActivity.this,
+                SobreActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onStart() {
