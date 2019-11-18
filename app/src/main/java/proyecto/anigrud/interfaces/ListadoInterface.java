@@ -5,6 +5,7 @@ public interface ListadoInterface {
 
       void lanzarFormulario();
       void lanzarSobre();
+      void lanzarBuscar();
 
     }
 
@@ -12,6 +13,7 @@ public interface ListadoInterface {
     {
         void onClickAbout();
         void onClickAdd();
+        void onClicckSearch();
     }
 
 }

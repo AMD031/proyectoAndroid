@@ -16,4 +16,8 @@
     <string name="desarrolador">Developer</string>
     <string name="nombreDesarrolador" translatable="false">Antonio Martinez Diaz</string>
     <string name="ccontacto">Contact</string>
+    <string name="sobre">about</string>
+    <string name="contactoValor" translatable="false">contact</string>
+    <string name="Guardar">save</string>
+    <string name="parametro">parametre</string>
 </resources>

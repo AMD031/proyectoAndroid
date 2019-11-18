@@ -48,7 +48,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_search:
-
+                presenter.onClicckSearch();
                 return true;
             case R.id.ordenar:
                //showHelp();
@@ -91,6 +91,14 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         Intent intent = new Intent(ListadoActivity.this,
                 SobreActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void lanzarBuscar() {
+        Intent intent = new Intent(ListadoActivity.this,
+                BuscarActivity.class);
+        startActivity(intent);
+
     }
 
     @Override

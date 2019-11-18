@@ -23,7 +23,7 @@ import proyecto.anigrud.R;
 public class BuscarActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageButton btnFecha;
     private EditText etFecha;
-    private int dia, mes, agno, hora, minutos;
+    private int dia, mes, agno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +32,13 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       btnFecha = (ImageButton) findViewById(R.id.btnFecha);
-       etFecha = (EditText) findViewById(R.id.etFecha);
-       etFecha.setOnClickListener(this);
-
+       btnFecha = findViewById(R.id.btnFecha);
+       etFecha =  findViewById(R.id.etFecha);
+       etFecha.setEnabled(false);
+       btnFecha.setOnClickListener(this);
     }
+
+
 
 
     @Override
@@ -50,9 +52,9 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        etFecha.setText(dayOfMonth+""+month+""+year);
+                        etFecha.setText(dayOfMonth+"/"+month+"/"+year);
                 }
-            },dia,mes,agno);
+            },agno,mes,dia);
             datePickerDialog.show();
         }
     }

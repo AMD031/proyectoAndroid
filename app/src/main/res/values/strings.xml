@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">AniGRUD</string>
     <string name="title_activity_listado">Listado</string>
     <string name="title_activity_form_java">Formulario</string>
-    <string name="Info" translatable="false">Info</string>
+    <string name="Info">Info</string>
     <string name="Version">version</string>
     <string name="aniGRUD">aniGRUD</string>
     <string name="Configuracion">configuracion</string>
@@ -17,4 +17,6 @@
     <string name="ccontacto">contacto</string>
     <string name="contactoValor" translatable="false">contactoValor</string>
     <string name="sobre">Sobre..</string>
+    <string name="Guardar">guardar</string>
+    <string name="parametro">parametro</string>
 </resources>

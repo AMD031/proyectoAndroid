@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".views.BuscarActivity"
     tools:showIn="@layout/activity_buscar">
@@ -19,20 +20,31 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="hint" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/parametro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/parametro"
+                        android:maxLines="1"
+                        android:paddingLeft="40dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
 
                 <Spinner
                     android:id="@+id/spinner"
@@ -44,7 +56,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -55,8 +68,10 @@
                         android:id="@+id/etFecha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:editable="false"
                         android:ems="10"
-                        android:inputType="date" />
+                        android:inputType="date"
+                        android:maxLines="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -75,7 +90,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="40dp"
+                android:paddingTop="30dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -83,10 +100,9 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="40dp"
                         android:text="@string/Guardar" />
                 </LinearLayout>
             </LinearLayout>
