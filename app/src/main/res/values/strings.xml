@@ -3,20 +3,24 @@
     <string name="title_activity_listado">Listado</string>
     <string name="title_activity_form_java">Formulario</string>
     <string name="Info">Info</string>
-    <string name="Version">version</string>
+    <string name="Version">Version</string>
     <string name="aniGRUD">aniGRUD</string>
-    <string name="Configuracion">configuracion</string>
-    <string name="Ordenar">ordenar</string>
-    <string name="buscar">buscar</string>
+    <string name="Configuracion">Configuracion</string>
+    <string name="Ordenar">Ordenar</string>
     <string name="title_activity_buscar">Buscar</string>
     <string name="title_activity_sobre">Sobre</string>
     <string name="nombreApp">aniGRUD</string>
     <string name="action_settings">Configuracion</string>
-    <string name="desarrolador">Desarrolador</string>
+    <string name="desarrolador">Desarrolador:</string>
     <string name="nombreDesarrolador">Antonio Martinez Diaz</string>
-    <string name="ccontacto">contacto</string>
-    <string name="contactoValor" translatable="false">contactoValor</string>
-    <string name="sobre">Sobre..</string>
+    <string name="ccontacto">Contacto:</string>
+    <string name="contactoValor" translatable="false">AntonioMD@gmail.com</string>
+    <string name="sobre">Sobre</string>
     <string name="Guardar">guardar</string>
     <string name="parametro">parametro</string>
+    <string name="filtro">Filtro</string>
+    <string name="buscar">Buscar</string>
+    <string name="LugarFoto">Lugar de la foto</string>
+    <string name="especie">Especie</string>
+    <string name="NombreAnimal">Nombr eanimal</string>
 </resources>

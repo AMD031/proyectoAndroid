@@ -51,54 +51,83 @@
                         android:paddingTop="10dp" />
 
 
-                    <EditText
-                        android:id="@+id/editText3"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_action_name"
-                        android:ems="10"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:hint="Nombre  del animal"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:paddingTop="11dp" />
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/editText4"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_action_name"
+                            android:hint="@string/NombreAnimal"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_action_especie"
-                        android:ems="10"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:hint="Especie"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:paddingTop="11dp" />
+                        android:layout_height="wrap_content"/>
 
 
-                    <EditText
-                        android:id="@+id/editText5"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_action_lugar"
-                        android:ems="10"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:hint="Lugar foto"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:paddingTop="11dp" />
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_action_especie"
+                            android:hint="@string/especie"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <EditText
-                        android:id="@+id/editText"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_action_fecha"
-                        android:ems="10"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:hint="Fecha de la foto"
-                        android:inputType="date"
-                        android:paddingTop="11dp" />
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_action_lugar"
+                            android:hint="@string/LugarFoto"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/btnFechaF"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/ic_action_fecha" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/etFechaF"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:hint="Fecha de la foto"
+                                android:inputType="date"
+                                android:maxLines="1"
+                                android:paddingTop="11dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

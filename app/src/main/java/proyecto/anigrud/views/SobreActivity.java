@@ -20,6 +20,16 @@ public class SobreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sobre);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        setSupportActionBar(toolbar);
+    }
+
+
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
 

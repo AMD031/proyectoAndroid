@@ -11,18 +11,26 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import proyecto.anigrud.R;
+import proyecto.anigrud.Utilidades.Calendario;
 import proyecto.anigrud.interfaces.FormInterface;
 import proyecto.anigrud.interfaces.ListadoInterface;
 import proyecto.anigrud.presenters.FormPresenter;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
-public class FormJavaActivity extends AppCompatActivity implements FormInterface.View {
+public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener{
     String TAG = "aniGRUD/Formulario";
     private FormInterface.Presenter presenter;
+    Button btnGuardar;
+    ImageButton btnFecha;
+    EditText etFecha;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +42,14 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
         presenter = new FormPresenter(this);
-        Button ba = findViewById(R.id.botonGuardar);
-        ba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "Pulsando boton  guardar");
-                presenter.onClickSave();
-            }
-        });
+        btnGuardar = findViewById(R.id.botonGuardar);
+        btnFecha = findViewById(R.id.btnFechaF);
+        etFecha = findViewById(R.id.etFechaF);
+        btnGuardar.setOnClickListener(this);
+        btnFecha.setOnClickListener(this);
+
+
 
     }
 
@@ -86,5 +92,19 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if(v== btnGuardar){
+            presenter.onClickSave();
+        }
 
+        if(v== btnFecha){
+            Calendario.CreaCalendario( etFecha ,this);
+        }
+
+
+
+
+
+    }
 }
