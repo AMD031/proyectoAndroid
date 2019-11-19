@@ -19,11 +19,14 @@ import android.widget.ImageButton;
 import java.util.Calendar;
 
 import proyecto.anigrud.R;
+import proyecto.anigrud.interfaces.BuscarInterface;
+import proyecto.anigrud.presenters.BuscarPresenter;
 
-public class BuscarActivity extends AppCompatActivity implements View.OnClickListener {
+public class BuscarActivity extends AppCompatActivity implements View.OnClickListener, BuscarInterface.View {
     private ImageButton btnFecha;
     private EditText etFecha;
     private int dia, mes, agno;
+    private BuscarInterface.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_buscar);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        presenter = new BuscarPresenter(this);
 
        btnFecha = findViewById(R.id.btnFecha);
        etFecha =  findViewById(R.id.etFecha);
@@ -57,5 +62,10 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
             },agno,mes,dia);
             datePickerDialog.show();
         }
+    }
+
+    @Override
+    public void lanzarGuardado( ) {
+        finish();
     }
 }
