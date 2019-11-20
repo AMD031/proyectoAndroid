@@ -8,9 +8,20 @@
     tools:context=".views.SobreActivity"
     tools:showIn="@layout/activity_sobre">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,7 +38,7 @@
                 android:orientation="vertical"
                 android:paddingLeft="20dp">
 
-                <TextView
+                <TextView style="@style/Negrita"
                     android:id="@+id/textView14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -60,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <TextView style="@style/Negrita"
                     android:id="@+id/textView15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,7 +84,7 @@
                 android:orientation="vertical"
                 android:paddingLeft="10dp">
 
-                <TextView
+                <TextView style="@style/Normal"
                     android:id="@+id/textView16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,7 +104,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <TextView style="@style/Negrita"
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,7 +117,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <TextView style="@style/Normal"
                     android:id="@+id/textView18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

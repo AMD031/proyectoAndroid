@@ -1,24 +1,15 @@
 package proyecto.anigrud.views;
 
-import android.app.DatePickerDialog;
+
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
-
-import java.util.Calendar;
-
 import proyecto.anigrud.R;
 import proyecto.anigrud.Utilidades.Calendario;
 import proyecto.anigrud.interfaces.BuscarInterface;
@@ -38,12 +29,7 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-
-
         presenter = new BuscarPresenter(this);
-
        btnFecha = findViewById(R.id.btnFecha);
        etFecha =  findViewById(R.id.etFecha);
        btnGuardar = findViewById(R.id.btnGuardar);

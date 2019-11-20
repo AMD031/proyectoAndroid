@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <TextView style="@style/Titulo1"
 
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText style="@style/Normal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_action_name"
@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText style="@style/Normal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_action_especie"
@@ -85,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText style="@style/Normal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_action_lugar"
@@ -115,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <EditText
+                            <EditText style="@style/Normal"
                                 android:id="@+id/etFechaF"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <Switch
+                    <Switch style="@style/Negrita"
                         android:id="@+id/switch3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <TextView style="@style/Negrita"
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -224,6 +224,7 @@
 
                     <TextView
                         android:id="@+id/textView3"
+                        style="@style/Negrita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
@@ -256,7 +257,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <Button
+                    <Button style="@style/Negrita"
                         android:id="@+id/botonGuardar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

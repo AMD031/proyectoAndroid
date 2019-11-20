@@ -24,7 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingLeft="10dp">
+                android:paddingLeft="10dp"
+                android:paddingTop="40dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -44,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingLeft="10dp">
+                android:paddingLeft="10dp"
+                android:paddingTop="40dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -113,8 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingLeft="40dp"
-                android:paddingTop="30dp">
+                android:paddingLeft="10dp"
+                android:paddingTop="40dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
