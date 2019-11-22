@@ -10,14 +10,19 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import proyecto.anigrud.R;
 import proyecto.anigrud.Utilidades.Calendario;
+import proyecto.anigrud.Utilidades.ListaSpinner;
 import proyecto.anigrud.interfaces.FormInterface;
 import proyecto.anigrud.interfaces.ListadoInterface;
 import proyecto.anigrud.presenters.FormPresenter;
@@ -29,6 +34,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     Button btnGuardar;
     ImageButton btnFecha;
     EditText etFecha;
+    Spinner  spinnerTipos;
 
 
 
@@ -48,6 +54,24 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         etFecha = findViewById(R.id.etFechaF);
         btnGuardar.setOnClickListener(this);
         btnFecha.setOnClickListener(this);
+
+
+        spinnerTipos = (Spinner) findViewById(R.id.spinner2);
+        spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
+
+        spinnerTipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id)
+            {
+                Toast.makeText(adapterView.getContext(),
+                        (String) adapterView.getItemAtPosition(pos), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {    }
+        });
 
 
 

@@ -33,8 +33,6 @@
                 android:text="Datos del animal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="25dp"
-
-
                 />
 
             <LinearLayout

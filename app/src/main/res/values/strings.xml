@@ -16,11 +16,12 @@
     <string name="ccontacto">Contacto:</string>
     <string name="contactoValor" translatable="false">AntonioMD@gmail.com</string>
     <string name="sobre">Sobre</string>
-    <string name="Guardar">guardar</string>
+    <string name="Guardar">Guardar</string>
     <string name="parametro">parametro</string>
     <string name="filtro">Filtro</string>
     <string name="buscar">Buscar</string>
     <string name="LugarFoto">Lugar de la foto</string>
     <string name="especie">Especie</string>
     <string name="NombreAnimal">Nombr eanimal</string>
+    <string name="datosBuscqueda">Datos de la búsqueda:</string>
 </resources>

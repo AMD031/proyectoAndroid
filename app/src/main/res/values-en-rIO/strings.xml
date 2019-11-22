@@ -7,9 +7,9 @@
     <string name="title_activity_sobre">About</string>
     <string name="title_activity_buscar">Search</string>
     <string name="nombreApp">aniGRUD</string>
-    <string name="buscar">search</string>
+    <string name="buscar">Search</string>
     <string name="Info" translatable="false">Info</string>
-    <string name="Configuracion">setting</string>
+    <string name="Configuracion">Setting</string>
     <string name="Ordenar">Order</string>
     <string name="action_settings" translatable="false">Setting</string>
     <string name="aniGRUD">aniGRUD</string>
@@ -18,10 +18,11 @@
     <string name="ccontacto">Contact:</string>
     <string name="sobre">about</string>
     <string name="contactoValor" translatable="false">AntonioMD@gmail.com</string>
-    <string name="Guardar">save</string>
+    <string name="Guardar">Save</string>
     <string name="parametro">parametre</string>
     <string name="filtro">Filter</string>
-    <string name="LugarFoto">"photo place "</string>
+    <string name="LugarFoto">"Photo place "</string>
     <string name="NombreAnimal">Animal name</string>
     <string name="especie">Species</string>
+    <string name="datosBuscqueda">Search Data:</string>
 </resources>
