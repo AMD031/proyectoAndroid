@@ -30,7 +30,7 @@
                 android:autoText="false"
                 android:capitalize="none"
                 android:editable="false"
-                android:text="Datos del animal"
+                android:text="@string/datosAnimal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="25dp" />
 
@@ -125,13 +125,14 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <EditText style="@style/Normal"
+                            <EditText
                                 android:id="@+id/etFechaF"
+                                style="@style/Normal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
                                 android:gravity="center_horizontal|center_vertical"
-                                android:hint="Fecha de la foto"
+                                android:hint="@string/fechaFoto"
                                 android:inputType="date"
                                 android:maxLines="1"
                                 android:paddingTop="11dp" />
@@ -158,12 +159,13 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <Switch style="@style/Negrita"
+                    <Switch
                         android:id="@+id/switch3"
+                        style="@style/Negrita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Adorable"
+                        android:text="@string/Adorable"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
                 </LinearLayout>
 
@@ -188,7 +190,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="2dp"
-                        android:text="Tipo:"
+                        android:text="@string/tipo"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
                 </LinearLayout>
 
@@ -252,7 +254,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:text="Foto animal:" />
+                        android:text="@string/fotoAnimal" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -287,7 +289,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_action_save"
-                        android:text="Guardar" />
+                        android:text="@string/Guardar" />
                 </LinearLayout>
 
             </LinearLayout>

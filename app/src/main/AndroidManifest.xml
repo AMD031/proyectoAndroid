@@ -30,11 +30,11 @@
         </activity>
         <activity
             android:name=".views.FormJavaActivity"
-            android:label="Formulario"
+            android:label="@string/Formulario"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.ListadoActivity"
-            android:label="Listado"
+            android:label="@string/listado"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

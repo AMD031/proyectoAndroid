@@ -11,7 +11,7 @@
     <string name="ccontacto">Contacto:</string>
     <string name="contactoValor" translatable="false">AntonioMD@gmail.com</string>
     <string name="sobre">Sobre</string>
-    <string name="parametro">parametro</string>
+    <string name="parametro">Parametro</string>
     <string name="filtro">Filtro</string>
     <string name="buscar">Buscar</string>
     <string name="LugarFoto">Lugar de la foto</string>
@@ -24,4 +24,18 @@
     <string name="borrarTipo">¿Qué quieres borrar?</string>
     <string name="si">si</string>
     <string name="cancelar">Cancelar</string>
+    <string name="datosAnimal">Datos del animal:</string>
+    <string name="fechaFoto">Fecha de la foto</string>
+    <string name="fotoAnimal">Foto animal:</string>
+    <string name="tipo">Tipo:</string>
+    <string name="Guardar">Guardar</string>
+    <string name="listado">Listado</string>
+    <string name="Formulario">Formulario</string>
+    <string name="ave">Ave</string>
+    <string name="mamifero">Mamífero</string>
+    <string name="reptil">Reptil</string>
+    <string name="anfibio">Anfibio</string>
+    <string name="agnato">Agnato</string>
+    <string name="Adorable">Adorable</string>
+    <string name="agregar">Agregar</string>
 </resources>

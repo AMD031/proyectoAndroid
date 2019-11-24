@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import proyecto.anigrud.R;
+import proyecto.anigrud.Utilidades.ListaSpinner;
 
 public class AniCRUD extends Activity {
     String TAG = "aniGRUD/AniCRUD";
@@ -38,6 +39,10 @@ public class AniCRUD extends Activity {
     protected void onStart() {
         super.onStart();
         Log.i(TAG,"entrado en el onStart");
+
+
+
+
     }
 
 

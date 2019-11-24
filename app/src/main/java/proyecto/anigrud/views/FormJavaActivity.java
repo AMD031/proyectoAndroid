@@ -244,7 +244,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         
        if(v == btnAgregar){
            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-           builder.setTitle("Agregar");
+           builder.setTitle(R.string.agregar);
 
 
            final EditText input = new EditText(this);

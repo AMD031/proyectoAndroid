@@ -11,9 +11,9 @@
     <string name="desarrolador">Developer:</string>
     <string name="nombreDesarrolador" translatable="false">Antonio Martinez Diaz</string>
     <string name="ccontacto">Contact:</string>
-    <string name="sobre">about</string>
+    <string name="sobre">About</string>
     <string name="contactoValor" translatable="false">AntonioMD@gmail.com</string>
-    <string name="parametro">parametre</string>
+    <string name="parametro">Parametre</string>
     <string name="filtro">Filter</string>
     <string name="LugarFoto">"Photo place "</string>
     <string name="NombreAnimal">Animal name</string>
@@ -21,7 +21,22 @@
     <string name="datosBuscqueda">Search Data:</string>
     <string name="ntroduceFecha">Enter date</string>
     <string name="errorFecha">Error en el formato</string>
-    <string name="borrarTipo">Do you want delete?</string>
+    <string name="borrarTipo">What do you want delete?</string>
     <string name="cancelar">Cancel</string>
     <string name="errorCampo">Error empty field</string>
+    <string name="si">yes</string>
+    <string name="datosAnimal">Animal data:</string>
+    <string name="fechaFoto">Photo date:</string>
+    <string name="fotoAnimal">Animal picture:</string>
+    <string name="tipo">Type:</string>
+    <string name="Guardar">Save</string>
+    <string name="Formulario">Form</string>
+    <string name="listado">List</string>
+    <string name="anfibio">Amphibious</string>
+    <string name="agnato">Agnato</string>
+    <string name="ave">Ave</string>
+    <string name="reptil">Reptile</string>
+    <string name="mamifero">Mammal</string>
+    <string name="Adorable">Adorable</string>
+    <string name="agregar">Add</string>
 </resources>

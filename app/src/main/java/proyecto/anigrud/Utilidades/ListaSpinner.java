@@ -1,23 +1,22 @@
 package proyecto.anigrud.Utilidades;
 
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Spinner;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class ListaSpinner{
+public class ListaSpinner extends AppCompatActivity {
+
  private static ArrayList<String> datos;
-
    private static void cargaDatos(){
-
         datos = new ArrayList<>();
+
         datos.add("Mamífero");
         datos.add("Ave");
         datos.add("Reptil");
-        datos.add("Anfibio");
         datos.add("Agnato");
+        datos.add("Anfibio");
+
+
 
     }
 
@@ -37,7 +36,4 @@ public class ListaSpinner{
     public static void borrarDato(int i){
        datos.remove(i);
     }
-
-
-
 }

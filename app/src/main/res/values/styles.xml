@@ -38,7 +38,7 @@
 
     <style name="Error">
         <item name="android:textColor">#FF0000</item>
-
+        <item name="android:paddingLeft">30dp</item>
     </style>
 
 

@@ -50,6 +50,7 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
        etFecha.setOnFocusChangeListener(this);
 
 
+
         spinnerTipos = (Spinner) findViewById(R.id.spinner);
         spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
 
