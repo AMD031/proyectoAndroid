@@ -1,12 +1,18 @@
 package proyecto.anigrud.views;
 
+import android.app.AlertDialog;
 import android.app.slice.SliceItem;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -16,9 +22,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 import proyecto.anigrud.R;
 import proyecto.anigrud.Utilidades.Calendario;
@@ -28,12 +37,21 @@ import proyecto.anigrud.interfaces.ListadoInterface;
 import proyecto.anigrud.presenters.FormPresenter;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
-public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener{
+public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener,View.OnFocusChangeListener{
     String TAG = "aniGRUD/Formulario";
     private FormInterface.Presenter presenter;
     Button btnGuardar;
     ImageButton btnFecha;
+    ImageButton btnEliminar;
+    ImageButton btnAgregar;
     EditText etFecha;
+    EditText etLugar;
+    EditText etNombre;
+    EditText etEspecie;
+    TextView errorFecha;
+    TextView errorLugar;
+    TextView errorNombre;
+    TextView errorEspecie;
     Spinner  spinnerTipos;
 
 
@@ -50,15 +68,33 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
         presenter = new FormPresenter(this);
         btnGuardar = findViewById(R.id.botonGuardar);
+        btnEliminar = findViewById(R.id.btnEliminar);
+        btnAgregar = findViewById(R.id.btnAgregar);
         btnFecha = findViewById(R.id.btnFechaF);
         etFecha = findViewById(R.id.etFechaF);
-        btnGuardar.setOnClickListener(this);
-        btnFecha.setOnClickListener(this);
+        etNombre = findViewById(R.id.etNombeF);
+        etLugar = findViewById(R.id.etLugarF);
+        etEspecie =  findViewById(R.id.etEspecieF);
 
+
+        errorEspecie = findViewById(R.id.errorCampoEspecie);
+        errorFecha  =  findViewById(R.id.errorCampoFecha);
+        errorNombre = findViewById(R.id.errorCampoNombre);
+        errorLugar = findViewById(R.id.errorCampoLugar);
+
+        etFecha.setOnFocusChangeListener(this);
+        etEspecie.setOnFocusChangeListener(this);
+        etNombre.setOnFocusChangeListener(this);
+        etLugar.setOnFocusChangeListener(this);
+
+        btnGuardar.setOnClickListener(this);
+        btnEliminar.setOnClickListener(this);
+        btnAgregar.setOnClickListener(this);
+
+        btnFecha.setOnClickListener(this);
 
         spinnerTipos = (Spinner) findViewById(R.id.spinner2);
         spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
-
         spinnerTipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -74,12 +110,73 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         });
 
 
+        etFecha.addTextChangedListener(new TextWatcher() {
+
+           @Override
+           public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+           }
+
+           @Override
+           public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+           }
+
+           @Override
+           public void afterTextChanged(Editable editable) {
+               presenter.checkDate(etFecha.getText().toString(),errorFecha);
+           }
+       }
+
+
+        );
+
+
 
     }
 
     @Override
     public void lanzarGuardado(){
         finish();
+    }
+
+    @Override
+    public void errorFecha(boolean error, TextView tv) {
+        if(!error){
+            tv.setText(R.string.errorFecha);
+        }else{
+            tv.setText("");
+        }
+    }
+
+    @Override
+    public void errorCampo(boolean correcto, TextView tv) {
+
+        if(tv == errorNombre){
+            if(!correcto){
+                tv.setText(R.string.errorCampo);
+            }else{
+                tv.setText("");
+            }
+        }
+
+        if(tv == errorEspecie){
+            if(!correcto){
+                tv.setText(R.string.errorCampo);
+            }else{
+                tv.setText("");
+            }
+        }
+
+
+
+        if(tv == errorLugar){
+            if(!correcto){
+                tv.setText(R.string.errorCampo);
+            }else{
+                tv.setText("");
+            }
+        }
     }
 
 
@@ -126,9 +223,111 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             Calendario.CreaCalendario( etFecha ,this);
         }
 
+        if(v == btnEliminar){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.borrarTipo);
+            String tipos[] = new String[ListaSpinner.getDatos().size()];
+            ListaSpinner.getDatos().toArray(tipos);
+            builder.setItems(tipos, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                            okCancel(which);
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 
 
+        
+       if(v == btnAgregar){
+           AlertDialog.Builder builder = new AlertDialog.Builder(this);
+           builder.setTitle("Agregar");
+
+
+           final EditText input = new EditText(this);
+
+           input.setInputType(InputType.TYPE_CLASS_TEXT );
+           builder.setView(input);
+
+
+           builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialog, int which) {
+                   String m_Text = input.getText().toString();
+                   ListaSpinner.agregarDato(m_Text);
+
+               }
+           });
+           builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialog, int which) {
+                   dialog.cancel();
+               }
+           });
+
+           builder.show();
+           
+           
+       }
+        
+        
+        
 
 
     }
+
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        if(view == etFecha && !b) {
+            presenter.checkDate(etFecha.getText().toString(),errorFecha);
+        }
+
+        if(view == etNombre && !b){
+            presenter.checkField(etNombre ,errorNombre);
+        }
+
+        if(view == etEspecie && !b){
+            presenter.checkField(etEspecie ,errorEspecie);
+        }
+
+        if(view == etLugar && !b){
+            presenter.checkField(etLugar ,errorLugar);
+        }
+
+
+     }
+
+        public void okCancel(final int indice){
+
+
+            AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+            //myAlertDialog.setTitle("--- Title ---");
+            myAlertDialog.setMessage(R.string.borrarTipo);
+            myAlertDialog.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface arg0, int arg1) {
+                    ListaSpinner.borrarDato(indice);
+                    finish();
+                }});
+            myAlertDialog.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface arg0, int arg1) {
+                    // do something when the Cancel button is clicked
+                }});
+            myAlertDialog.show();
+
+
+        }
+
+
+
+
+
+
+
+
 }

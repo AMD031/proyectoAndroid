@@ -1,22 +1,16 @@
 <resources>
     <string name="app_name" translatable="false">AniGRUD</string>
-    <string name="title_activity_listado">Listado</string>
-    <string name="title_activity_form_java">Formulario</string>
-    <string name="Info">Info</string>
-    <string name="Version">Version</string>
     <string name="aniGRUD">aniGRUD</string>
     <string name="Configuracion">Configuracion</string>
     <string name="Ordenar">Ordenar</string>
     <string name="title_activity_buscar">Buscar</string>
     <string name="title_activity_sobre">Sobre</string>
     <string name="nombreApp">aniGRUD</string>
-    <string name="action_settings">Configuracion</string>
     <string name="desarrolador">Desarrolador:</string>
     <string name="nombreDesarrolador">Antonio Martinez Diaz</string>
     <string name="ccontacto">Contacto:</string>
     <string name="contactoValor" translatable="false">AntonioMD@gmail.com</string>
     <string name="sobre">Sobre</string>
-    <string name="Guardar">Guardar</string>
     <string name="parametro">parametro</string>
     <string name="filtro">Filtro</string>
     <string name="buscar">Buscar</string>
@@ -24,4 +18,10 @@
     <string name="especie">Especie</string>
     <string name="NombreAnimal">Nombr eanimal</string>
     <string name="datosBuscqueda">Datos de la búsqueda:</string>
+    <string name="ntroduceFecha">Inroduce fecha</string>
+    <string name="errorFecha">Error en el formato</string>
+    <string name="errorCampo">Error campo vacío</string>
+    <string name="borrarTipo">¿Qué quieres borrar?</string>
+    <string name="si">si</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

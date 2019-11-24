@@ -1,5 +1,8 @@
 package proyecto.anigrud.presenters;
 
+import android.widget.TextView;
+
+import proyecto.anigrud.Utilidades.Validar;
 import proyecto.anigrud.interfaces.BuscarInterface;
 
 public class BuscarPresenter implements BuscarInterface.Presenter {
@@ -15,4 +18,13 @@ public class BuscarPresenter implements BuscarInterface.Presenter {
     public void onClickSave() {
         view.lanzarGuardado();
     }
+
+    @Override
+    public void checkDate(String fecha, TextView tv) {
+       view.errorFecha(Validar.validarFecha(fecha),tv);
+    }
+
+
+
+
 }

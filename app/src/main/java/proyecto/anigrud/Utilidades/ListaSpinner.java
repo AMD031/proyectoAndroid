@@ -32,7 +32,10 @@ public class ListaSpinner{
        if(s!=null){
            datos.add(s);
        }
+    }
 
+    public static void borrarDato(int i){
+       datos.remove(i);
     }
 
 

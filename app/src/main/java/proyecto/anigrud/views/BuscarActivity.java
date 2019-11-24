@@ -1,6 +1,7 @@
 package proyecto.anigrud.views;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -22,13 +24,13 @@ import proyecto.anigrud.Utilidades.ListaSpinner;
 import proyecto.anigrud.interfaces.BuscarInterface;
 import proyecto.anigrud.presenters.BuscarPresenter;
 
-public class BuscarActivity extends AppCompatActivity implements View.OnClickListener, BuscarInterface.View {
+public class BuscarActivity extends AppCompatActivity implements View.OnClickListener, BuscarInterface.View,  View.OnFocusChangeListener{
     private ImageButton btnFecha;
     private EditText etFecha;
     private Button btnGuardar;
     private BuscarInterface.Presenter presenter;
     private Spinner spinnerTipos;
-
+    String TAG = "aniGRUD/Buscar";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +45,15 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
         btnFecha = findViewById(R.id.btnFecha);
        etFecha =  findViewById(R.id.etFecha);
        btnGuardar = findViewById(R.id.btnGuardar);
-       etFecha.setEnabled(false);
        btnFecha.setOnClickListener(this);
        btnGuardar.setOnClickListener(this);
+       etFecha.setOnFocusChangeListener(this);
 
 
         spinnerTipos = (Spinner) findViewById(R.id.spinner);
         spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
 
         spinnerTipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id)
             {
@@ -64,9 +65,6 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
             public void onNothingSelected(AdapterView<?> parent)
             {    }
         });
-
-
-
     }
 
     @Override
@@ -88,11 +86,30 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    public void errorFecha(boolean error, TextView tv) {
+        if(!error){
+            tv.setTextColor(Color.RED);
+            tv.setText(R.string.errorFecha);
+        }else{
+            tv.setText("");
+        }
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
 
 
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        TextView tvef =findViewById(R.id.errorFecha);
+       if(view == etFecha && !b) {
+           presenter.checkDate(etFecha.getText().toString(),tvef);
+       }
 
+
+
+    }
 }

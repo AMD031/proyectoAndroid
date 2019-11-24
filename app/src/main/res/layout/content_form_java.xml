@@ -20,20 +20,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView style="@style/Titulo1"
-
+            <TextView
                 android:id="@+id/textView6"
+
+                style="@style/Titulo1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:autoText="false"
                 android:capitalize="none"
                 android:editable="false"
-                android:gravity="center_horizontal|center_vertical"
                 android:text="Datos del animal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="25dp"
-                />
+                android:textSize="25dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,51 +49,59 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"><![CDATA[
                         android:paddingTop="10dp" />
 
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    ]]>
+
+                    <TextView style="@style/Error"
+                        android:id="@+id/errorCampoNombre"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content" />
 
-                        <com.google.android.material.textfield.TextInputEditText style="@style/Normal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_action_name"
-                            android:hint="@string/NombreAnimal"
-                            android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNombeF"
+                        style="@style/Normal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_action_name"
+                        android:hint="@string/NombreAnimal"
+                        android:maxLines="1" />
 
-
-                    <com.google.android.material.textfield.TextInputLayout
+                    <TextView style="@style/Error"
+                        android:id="@+id/errorCampoEspecie"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content" />
 
-                        <com.google.android.material.textfield.TextInputEditText style="@style/Normal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_action_especie"
-                            android:hint="@string/especie"
-                            android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEspecieF"
+                        style="@style/Normal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_action_especie"
+                        android:hint="@string/especie"
+                        android:maxLines="1" />
 
-                        <com.google.android.material.textfield.TextInputEditText style="@style/Normal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_action_lugar"
-                            android:hint="@string/LugarFoto"
-                            android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <TextView style="@style/Error"
+                        android:id="@+id/errorCampoLugar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLugarF"
+                        style="@style/Normal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_action_lugar"
+                        android:hint="@string/LugarFoto"
+                        android:maxLines="1" />
+
+
+                    <TextView style="@style/Error"
+                        android:id="@+id/errorCampoFecha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -131,6 +143,8 @@
 
             </LinearLayout>
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -157,18 +171,20 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
                 android:paddingTop="11dp">
 
+
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView style="@style/Negrita"
+                    <TextView
                         android:id="@+id/textView2"
+                        style="@style/Negrita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="2dp"
@@ -178,34 +194,44 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <Spinner
                         android:id="@+id/spinner2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/favorito"
                         android:paddingLeft="50dp" />
                 </LinearLayout>
-            </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingTop="11dp">
 
-            <EditText
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_action_add"
-                android:hint="Agregar elemento  a tipo"
-                android:inputType="text"
-                android:maxLines="1" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/btnAgregar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        app:srcCompat="@drawable/ic_agregar" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/btnEliminar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        app:srcCompat="@drawable/ic_quitar" />
+                </LinearLayout>
+
+
+            </LinearLayout>
 
 
             <LinearLayout
@@ -251,12 +277,13 @@
                 android:paddingTop="50dp">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <Button style="@style/Negrita"
+                    <Button
                         android:id="@+id/botonGuardar"
+                        style="@style/Negrita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_action_save"
