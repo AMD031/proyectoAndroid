@@ -1,14 +1,18 @@
 package proyecto.anigrud.views;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.slice.SliceItem;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
 import android.text.Editable;
 import android.text.InputType;
@@ -21,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +43,7 @@ import proyecto.anigrud.presenters.FormPresenter;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
 public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener,View.OnFocusChangeListener{
+    final private int CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 123;
     String TAG = "aniGRUD/Formulario";
     private FormInterface.Presenter presenter;
     Button btnGuardar;
@@ -53,7 +59,8 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     TextView errorNombre;
     TextView errorEspecie;
     Spinner  spinnerTipos;
-
+    ImageView foto;
+    Context myContext;
 
 
     @Override
@@ -75,7 +82,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         etNombre = findViewById(R.id.etNombeF);
         etLugar = findViewById(R.id.etLugarF);
         etEspecie =  findViewById(R.id.etEspecieF);
-
+        foto = findViewById(R.id.fotoAnimal);
 
         errorEspecie = findViewById(R.id.errorCampoEspecie);
         errorFecha  =  findViewById(R.id.errorCampoFecha);
@@ -93,6 +100,12 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
         btnFecha.setOnClickListener(this);
 
+        foto.setOnClickListener(
+                this
+        );
+
+
+
         spinnerTipos = (Spinner) findViewById(R.id.spinner2);
         spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
         spinnerTipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -107,6 +120,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             @Override
             public void onNothingSelected(AdapterView<?> parent)
             {    }
+
         });
 
 
@@ -130,9 +144,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
 
         );
-
-
-
+      myContext = this;
     }
 
     @Override
@@ -176,6 +188,25 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             }else{
                 tv.setText("");
             }
+        }
+    }
+
+    @Override
+    public void requestPermission() {
+        ActivityCompat.requestPermissions(FormJavaActivity.this, new String[]
+                {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case CODE_WRITE_EXTERNAL_STORAGE_PERMISSION:
+                presenter.resultPermission(grantResults[0]);
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
@@ -269,11 +300,13 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
            });
 
            builder.show();
-           
+
            
        }
         
-        
+        if(v == foto){
+            presenter.onclickImagen(myContext);
+        }
         
 
 
@@ -319,10 +352,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
                     // do something when the Cancel button is clicked
                 }});
             myAlertDialog.show();
-
-
         }
-
 
 
 

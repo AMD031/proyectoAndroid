@@ -7,6 +7,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.ContextMenu;
@@ -14,22 +16,30 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import proyecto.anigrud.R;
 import proyecto.anigrud.interfaces.ListadoInterface;
+import proyecto.anigrud.models.Animal;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View {
-
+    private ArrayList<Animal> items;
     String TAG = "aniCRUD/Listado";
     private ListadoInterface.Presenter presenter;
+    private RecyclerView listadoRecyclerView;
+    private AnimalAdapter adaptador;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         presenter = new ListadoPresenter(this);
 
@@ -38,7 +48,41 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "Pulsando boton flotante");
-                presenter.onClickAdd();
+                presenter.onClickRecyclerView(-1);
+
+            }
+        });
+
+        // Inicializa el RecyclerView
+        /*final RecyclerView*/ listadoRecyclerView= (RecyclerView) findViewById(R.id.listadoRecyclesView);
+
+        // Crea el Adaptador con los datos de la lista anterior
+         items = presenter.getAllAnimal();
+         adaptador = new AnimalAdapter(items);
+
+        // Asocia el elemento de la lista con una acción al ser pulsado
+        adaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acción al pulsar el elemento
+
+                int position = listadoRecyclerView.getChildAdapterPosition(v);
+
+            }
+        });
+
+        // Asocia el Adaptador al RecyclerView
+        listadoRecyclerView.setAdapter(adaptador);
+
+        // Muestra el RecyclerView en vertical
+        listadoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Accion al pulsar el elemento
+                int position = listadoRecyclerView.getChildAdapterPosition(v);
+                Log.d(TAG, "Clic : " + items.get(position).getId());
+                presenter.onClickRecyclerView(items.get(position).getId());
 
             }
         });
@@ -80,10 +124,33 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
 
     @Override
-    public void lanzarFormulario() {
-        Intent intent = new Intent(ListadoActivity.this,
-                FormJavaActivity.class);
-        startActivity(intent);
+    public void lanzarFormulario(int id) {
+        if(id == -1) {
+            // esto es launchForm() basicamente
+            Intent intent = new Intent(ListadoActivity.this, FormJavaActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(ListadoActivity.this, FormJavaActivity.class);
+            //bundle
+            //TODO bundle para encapsular el id y pasarselo al activity
+            //TODO es un paquete en el que metemos variables cadena->valor
+           // cadena->valor
+            //TODO empaquetamos el id y luego en el formulario activity en el oncreate
+           // recuperamos el id. Al final del oncreate mejor
+
+            if(items.get(id-1)!=null){
+                Log.d(TAG,items.get(id-1).getNombreAnimal());
+                Log.d(TAG,items.get(id-1).getEspecie());
+
+             intent.putExtra("nombreAnimal",items.get(id-1).getNombreAnimal());
+             intent.putExtra("nombreEspecie",items.get(id-1).getEspecie());
+            }
+
+           startActivity(intent);
+
+        }
+
     }
 
     @Override
@@ -126,13 +193,4 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         super.onDestroy();
         Log.i(TAG,"entrado en el stop");
     }
-
-
-
-
-
-
-
-
-
 }
