@@ -41,17 +41,18 @@ public class AnimalAdapter
             super(itemView);
             TextView_id = (TextView) itemView.findViewById(R.id.textView1);
             TextView_nombre = (TextView) itemView.findViewById(R.id.textView4);
-            Imagen_view = (ImageView) itemView.findViewById(R.id.fotoAnimal);
+            Imagen_view = (ImageView) itemView.findViewById(R.id.imageView1);
         }
 
         public void AcontecimientoBind(Animal item) {
             TextView_id.setText(String.valueOf(item.getId()));
             TextView_nombre.setText(item.getNombreAnimal());
 
-            //byte[] mBase64string = item.getImagen().getBytes();
-            //byte[] decodedString = Base64.decode(mBase64string, Base64.DEFAULT);
-            //Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            //Imagen_view.setImageBitmap(decodedByte);
+            byte[] mBase64string = item.getImagen().getBytes();
+            byte[] decodedString = Base64.decode(mBase64string, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+            Imagen_view.setImageBitmap(decodedByte);
 
         }
     }
