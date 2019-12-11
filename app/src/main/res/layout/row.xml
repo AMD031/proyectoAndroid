@@ -6,6 +6,11 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
+  <ImageView
+      android:id="@+id/imageView1"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      tools:src="@tools:sample/avatars" />
 
   <TextView style="@style/Negrita"
       android:id="@+id/textView1"
@@ -15,12 +20,6 @@
       android:padding="5dp"
       tools:text="@tools:sample/lorem"
       android:inputType="number"/>
-
-  <ImageView
-      android:id="@+id/imageView1"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      tools:src="@tools:sample/avatars" />
 
   <TextView style="@style/Normal"
     android:id="@+id/textView4"

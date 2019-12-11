@@ -1,6 +1,7 @@
 package proyecto.anigrud.interfaces;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public interface FormInterface {
         void errorCampo(boolean correcto, TextView tv);
         void requestPermission();
         void lanzarSnackbar();
-
+        void abrirGaleria();
     }
 
     public interface Presenter
@@ -26,6 +27,7 @@ public interface FormInterface {
         void checkField(TextView campoFormulario, TextView campoError);
         void onclickImagen(Context myContext);
         void resultPermission(int result);
+
      }
 
 

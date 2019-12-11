@@ -1,12 +1,17 @@
 package proyecto.anigrud.views;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.slice.SliceItem;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
 
@@ -33,6 +38,11 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import proyecto.anigrud.R;
@@ -45,6 +55,7 @@ import proyecto.anigrud.presenters.ListadoPresenter;
 
 public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener,View.OnFocusChangeListener{
     final private int CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 123;
+    private static final int SELECT_FILE = 1;
     String TAG = "aniGRUD/Formulario";
     private FormInterface.Presenter presenter;
     private Button btnGuardar;
@@ -225,6 +236,16 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     }
 
 
+    public void abrirGaleria(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(intent, "Seleccione una imagen"),
+                SELECT_FILE);
+    }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -332,6 +353,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         
         if(v == foto){
             presenter.onclickImagen(myContext);
+
         }
         
 
@@ -382,7 +404,55 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
 
 
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        Uri selectedImageUri = null;
+        Uri selectedImage;
 
+        String filePath = null;
+        switch (requestCode) {
+            case SELECT_FILE:
+                if (resultCode == Activity.RESULT_OK) {
+                    selectedImage = imageReturnedIntent.getData();
+                    String selectedPath=selectedImage.getPath();
+                    if (requestCode == SELECT_FILE) {
+
+                        if (selectedPath != null) {
+                            InputStream imageStream = null;
+                            try {
+                                imageStream = getContentResolver().openInputStream(
+                                        selectedImage);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+
+                            // Transformamos la URI de la imagen a inputStream y este a un Bitmap
+                            Bitmap bmp = BitmapFactory.decodeStream(imageStream);
+
+
+                            //compresion
+                            //Bitmap imageScaled = Bitmap.createScaledBitmap(bmp, (int)(bmp.getWidth()*0.25), (int)(bmp.getHeight()*0.25), false);
+
+
+                            ByteArrayOutputStream out = new ByteArrayOutputStream(); bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
+                            Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray())); Log.e("Original dimensions", bmp.getWidth()+" "+bmp.getHeight());
+                            Log.e("Compressed dimensions", decoded.getWidth()+" "+decoded.getHeight());
+
+
+
+
+
+                            // Ponemos nuestro bitmap en un ImageView que tengamos en la vista
+                            ImageView mImg = (ImageView) findViewById(R.id.fotoAnimal);
+                            mImg.setImageBitmap(decoded);
+
+                        }
+                    }
+                }
+                break;
+        }
+    }
 
 
 

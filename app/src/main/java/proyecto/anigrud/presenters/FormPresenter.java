@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -37,10 +38,11 @@ public class FormPresenter implements FormInterface.Presenter {
         if (ReadPermission != PackageManager.PERMISSION_GRANTED) {
             Log.d("permiso","NO TENGO PERMISOS");
             view.requestPermission();
-            view.lanzarSnackbar();
+
 
         } else {
             Log.d("permiso","SI TENGO PERMISOS");
+            view.abrirGaleria();
         }
 
     }
@@ -48,10 +50,15 @@ public class FormPresenter implements FormInterface.Presenter {
     @Override
     public void resultPermission(int result) {
 
+
+
         if (result == PackageManager.PERMISSION_GRANTED) {
             Log.d("aniGRUD","permiso aceptado");
+
+            view.abrirGaleria( );
         } else {
             Log.d("aniGRUD","permiso rechazado");
+            view.lanzarSnackbar();
         }
 
     }
