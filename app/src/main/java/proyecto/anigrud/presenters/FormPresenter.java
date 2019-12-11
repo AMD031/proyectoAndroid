@@ -35,10 +35,12 @@ public class FormPresenter implements FormInterface.Presenter {
 
 
         if (ReadPermission != PackageManager.PERMISSION_GRANTED) {
-            Log.d("aniGRUD","NO TENGO PERMISOS");
+            Log.d("permiso","NO TENGO PERMISOS");
             view.requestPermission();
+            view.lanzarSnackbar();
+
         } else {
-            Log.d("aniGRUD","SI TENGO PERMISOS");
+            Log.d("permiso","SI TENGO PERMISOS");
         }
 
     }

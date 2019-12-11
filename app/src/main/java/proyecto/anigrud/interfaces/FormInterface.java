@@ -15,6 +15,7 @@ public interface FormInterface {
         void errorFecha(boolean correto, TextView tv);
         void errorCampo(boolean correcto, TextView tv);
         void requestPermission();
+        void lanzarSnackbar();
 
     }
 

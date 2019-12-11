@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,8 +35,10 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -86,6 +89,10 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
             }
         });
+
+
+
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -140,15 +147,11 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
            // recuperamos el id. Al final del oncreate mejor
 
             if(items.get(id-1)!=null){
-                Log.d(TAG,items.get(id-1).getNombreAnimal());
-                Log.d(TAG,items.get(id-1).getEspecie());
 
-             intent.putExtra("nombreAnimal",items.get(id-1).getNombreAnimal());
-             intent.putExtra("nombreEspecie",items.get(id-1).getEspecie());
+             intent.putExtra("idanimal",items.get(id-1).getId());
+
             }
-
            startActivity(intent);
-
         }
 
     }

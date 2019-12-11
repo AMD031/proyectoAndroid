@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -46,22 +47,23 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     final private int CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 123;
     String TAG = "aniGRUD/Formulario";
     private FormInterface.Presenter presenter;
-    Button btnGuardar;
-    ImageButton btnFecha;
-    ImageButton btnEliminar;
-    ImageButton btnAgregar;
-    EditText etFecha;
-    EditText etLugar;
-    EditText etNombre;
-    EditText etEspecie;
-    TextView errorFecha;
-    TextView errorLugar;
-    TextView errorNombre;
-    TextView errorEspecie;
-    Spinner  spinnerTipos;
-    ImageView foto;
-    Context myContext;
-
+    private Button btnGuardar;
+    private ImageButton btnFecha;
+    private ImageButton btnEliminar;
+    private ImageButton btnAgregar;
+    private  EditText etFecha;
+    private EditText etLugar;
+    private EditText etNombre;
+    private EditText etEspecie;
+    private TextView errorFecha;
+    private TextView errorLugar;
+    private TextView errorNombre;
+    private TextView errorEspecie;
+    private Spinner  spinnerTipos;
+    private ImageView foto;
+    private Context myContext;
+    String idAnimal ="";
+    private TextView textViewPaquete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        textViewPaquete= findViewById(R.id.paquete);
         presenter = new FormPresenter(this);
         btnGuardar = findViewById(R.id.botonGuardar);
         btnEliminar = findViewById(R.id.btnEliminar);
@@ -100,9 +102,8 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
         btnFecha.setOnClickListener(this);
 
-        foto.setOnClickListener(
-                this
-        );
+        foto.setOnClickListener(this);
+
 
 
 
@@ -144,7 +145,19 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
 
         );
+
+
       myContext = this;
+
+
+
+        int id = getIntent().getIntExtra("idanimal",0);
+        textViewPaquete.setText("El id del anima es: "+ id);
+
+
+
+
+
     }
 
     @Override
@@ -193,9 +206,22 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
     @Override
     public void requestPermission() {
+
         ActivityCompat.requestPermissions(FormJavaActivity.this, new String[]
                 {Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
+
+
+
+
+
+    }
+
+    @Override
+    public void lanzarSnackbar() {
+        Snackbar snackbar = Snackbar
+                .make(foto, "No tienes permisos", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
 

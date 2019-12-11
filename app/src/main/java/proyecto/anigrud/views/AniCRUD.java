@@ -39,10 +39,6 @@ public class AniCRUD extends Activity {
     protected void onStart() {
         super.onStart();
         Log.i(TAG,"entrado en el onStart");
-
-
-
-
     }
 
 

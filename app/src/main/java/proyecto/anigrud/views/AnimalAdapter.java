@@ -35,6 +35,7 @@ public class AnimalAdapter
 
         private TextView TextView_id;
         private TextView TextView_nombre;
+        private TextView tvEspecie;
         private ImageView Imagen_view;
 
         public AcontecimientoViewHolder(View itemView) {
@@ -42,11 +43,13 @@ public class AnimalAdapter
             TextView_id = (TextView) itemView.findViewById(R.id.textView1);
             TextView_nombre = (TextView) itemView.findViewById(R.id.textView4);
             Imagen_view = (ImageView) itemView.findViewById(R.id.imageView1);
+            tvEspecie = (TextView) itemView.findViewById(R.id.especieLista);
         }
 
         public void AcontecimientoBind(Animal item) {
             TextView_id.setText(String.valueOf(item.getId()));
             TextView_nombre.setText(item.getNombreAnimal());
+            tvEspecie.setText(item.getEspecie());
 
             byte[] mBase64string = item.getImagen().getBytes();
             byte[] decodedString = Base64.decode(mBase64string, Base64.DEFAULT);
