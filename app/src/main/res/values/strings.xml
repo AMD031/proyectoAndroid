@@ -38,4 +38,8 @@
     <string name="agnato">Agnato</string>
     <string name="Adorable">Adorable</string>
     <string name="agregar">Agregar</string>
+    <string name="dialogBorrar">¿Quieres borrar?</string>
+    <string name="borrar">Borrar</string>
+    <string name="ElementoBorrado">El elemento ha sido borrado</string>
+    <string name="ElementoNoBorrado">El elemento no se borrará</string>
 </resources>

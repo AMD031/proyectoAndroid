@@ -39,4 +39,8 @@
     <string name="mamifero">Mammal</string>
     <string name="Adorable">Adorable</string>
     <string name="agregar">Add</string>
+    <string name="dialogBorrar">Do you want to delete?</string>
+    <string name="borrar">Delete</string>
+    <string name="ElementoBorrado">The item has been deleted</string>
+    <string name="ElementoNoBorrado">The item will not be deleted</string>
 </resources>

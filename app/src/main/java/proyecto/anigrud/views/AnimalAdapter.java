@@ -101,4 +101,12 @@ public class AnimalAdapter
         if(listener != null)
             listener.onClick(view);
     }
+
+
+    public void deleteItem(int position) {
+         ListadoActivity.getPresenter().swipeBorrado(position, items, this);
+
+
+    }
+
 }

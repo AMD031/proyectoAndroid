@@ -307,6 +307,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             builder.setTitle(R.string.borrarTipo);
             String tipos[] = new String[ListaSpinner.getDatos().size()];
             ListaSpinner.getDatos().toArray(tipos);
+
             builder.setItems(tipos, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -433,7 +434,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
                             //compresion
                             //Bitmap imageScaled = Bitmap.createScaledBitmap(bmp, (int)(bmp.getWidth()*0.25), (int)(bmp.getHeight()*0.25), false);
-
 
                             ByteArrayOutputStream out = new ByteArrayOutputStream(); bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
                             Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray())); Log.e("Original dimensions", bmp.getWidth()+" "+bmp.getHeight());

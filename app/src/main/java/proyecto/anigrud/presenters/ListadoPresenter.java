@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import proyecto.anigrud.interfaces.ListadoInterface;
 import proyecto.anigrud.models.Animal;
 import proyecto.anigrud.models.AnimalModelo;
+import proyecto.anigrud.views.AnimalAdapter;
 
 public class ListadoPresenter implements ListadoInterface.Presenter{
 
@@ -17,7 +18,20 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
      this.animal = new AnimalModelo();
  }
 
- public void onClickAdd(){
+    @Override
+    public void ejecutarBorrado(int position, ArrayList<Animal> items,AnimalAdapter animalAdapter) {
+         Animal mRecentlyDeletedItem = items.get(position);
+         int mRecentlyDeletedItemPosition = position;
+         items.remove(position);
+         animalAdapter.notifyItemRemoved(position);
+
+    }
+
+    public void swipeBorrado(int position, ArrayList<Animal> items, AnimalAdapter animalAdapter) {
+        view.lanzarDialog(position,items,animalAdapter);
+    }
+
+    public void onClickAdd(){
 
  }
 
@@ -41,6 +55,11 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
 
     public ArrayList<Animal>getAllAnimal(){
         return  animal.getAllanimal();
+    }
+
+    @Override
+    public void repintarRecycler(AnimalAdapter animalAdapter) {
+        animalAdapter.notifyDataSetChanged();
     }
 
 }

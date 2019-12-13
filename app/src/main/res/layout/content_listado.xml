@@ -8,6 +8,24 @@
     tools:context=".views.ListadoActivity"
     tools:showIn="@layout/activity_listado">
 
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity" >
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+        </ListView>
+
+    </RelativeLayout>
+
+
     <TextView style="@style/Negrita"
         android:id="@+id/contadorTextView"
         android:layout_width="wrap_content"

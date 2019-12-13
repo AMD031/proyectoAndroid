@@ -1,5 +1,8 @@
 package proyecto.anigrud.views;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,6 +10,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +20,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,9 +35,11 @@ import proyecto.anigrud.presenters.ListadoPresenter;
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View {
     private ArrayList<Animal> items;
     String TAG = "aniCRUD/Listado";
-    private ListadoInterface.Presenter presenter;
+    private static ListadoInterface.Presenter presenter;
     private RecyclerView listadoRecyclerView;
     private AnimalAdapter adaptador;
+    private androidx.recyclerview.widget.RecyclerView recyclerView;
+    private static Context lcontext;
 
 
 
@@ -43,6 +51,9 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         setContentView(R.layout.activity_listado);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        recyclerView = (RecyclerView) findViewById(R.id.listadoRecyclesView);
+
+        lcontext = this;
 
         presenter = new ListadoPresenter(this);
 
@@ -90,9 +101,16 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             }
         });
 
+        setUpRecyclerView();
+    }
 
-
-
+    private void setUpRecyclerView() {
+        AnimalAdapter mAdapter = new AnimalAdapter(items);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new SwipeToDeleteCallback(mAdapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -130,6 +148,11 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     }
 
 
+
+   static ListadoInterface.Presenter getPresenter() {
+        return presenter;
+    }
+
     @Override
     public void lanzarFormulario(int id) {
         if(id == -1) {
@@ -156,6 +179,16 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
     }
 
+
+
+
+
+
+
+
+
+
+
     @Override
     public void lanzarSobre() {
         Intent intent = new Intent(ListadoActivity.this,
@@ -169,6 +202,33 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                 BuscarActivity.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void lanzarDialog(final int position, final ArrayList<Animal> items, final AnimalAdapter animalAdapter) {
+        AlertDialog.Builder dialog=new AlertDialog.Builder(lcontext);
+        dialog.setMessage(R.string.dialogBorrar);
+        dialog.setTitle(R.string.borrar);
+        dialog.setPositiveButton(R.string.si,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+
+                        presenter.ejecutarBorrado(position,items,animalAdapter);
+                        Toast.makeText(getApplicationContext(),
+                                R.string.ElementoBorrado, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        dialog.setNegativeButton(R.string.cancelar,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               presenter.repintarRecycler(animalAdapter);
+                Toast.makeText(getApplicationContext(),
+                        R.string.ElementoNoBorrado, Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog alertDialog=dialog.create();
+        alertDialog.show();
     }
 
     @Override
