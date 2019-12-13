@@ -1,5 +1,7 @@
 package proyecto.anigrud.presenters;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import proyecto.anigrud.interfaces.ListadoInterface;
@@ -23,8 +25,8 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
          Animal mRecentlyDeletedItem = items.get(position);
          int mRecentlyDeletedItemPosition = position;
          items.remove(position);
+         Log.i("tam",String.valueOf(items.size()));
          animalAdapter.notifyItemRemoved(position);
-
     }
 
     public void swipeBorrado(int position, ArrayList<Animal> items, AnimalAdapter animalAdapter) {
@@ -47,11 +49,6 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
 
 
     public void onClickAbout(){ view.lanzarSobre();}
-
-
-
-
-
 
     public ArrayList<Animal>getAllAnimal(){
         return  animal.getAllanimal();

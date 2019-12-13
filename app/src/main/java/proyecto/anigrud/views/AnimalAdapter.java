@@ -44,6 +44,7 @@ public class AnimalAdapter
             TextView_nombre = (TextView) itemView.findViewById(R.id.textView4);
             Imagen_view = (ImageView) itemView.findViewById(R.id.imageView1);
             tvEspecie = (TextView) itemView.findViewById(R.id.especieLista);
+
         }
 
         public void AcontecimientoBind(Animal item) {
@@ -83,6 +84,7 @@ public class AnimalAdapter
     public void onBindViewHolder(AcontecimientoViewHolder viewHolder, int position) {
         Animal item = items.get(position);
         viewHolder.AcontecimientoBind(item);
+
     }
 
     // Indica el número de elementos de la colección de datos.
@@ -105,8 +107,6 @@ public class AnimalAdapter
 
     public void deleteItem(int position) {
          ListadoActivity.getPresenter().swipeBorrado(position, items, this);
-
-
     }
 
 }

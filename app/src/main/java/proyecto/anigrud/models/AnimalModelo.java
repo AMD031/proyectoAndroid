@@ -8,13 +8,10 @@ import java.util.ArrayList;
 public class AnimalModelo {
 
 
-    public ArrayList<Animal> getAllanimal(){
+    public static  ArrayList<Animal> getAllanimal(){
         ArrayList<Animal> list = new ArrayList<>();
 
         //Integer id, String nombreAnimal, String imagen, String especie
-
-
-
 
         Animal a1 = new Animal(1,"gato",null,"felino");
         Animal a2 = new Animal(2,"perro",Foto.fotoperro,"canido");
@@ -50,6 +47,7 @@ public class AnimalModelo {
 
         return list;
     }
+
 
 
 

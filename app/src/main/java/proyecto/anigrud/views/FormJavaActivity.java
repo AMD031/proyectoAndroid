@@ -156,19 +156,9 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
 
         );
-
-
-      myContext = this;
-
-
-
+        myContext = this;
         int id = getIntent().getIntExtra("idanimal",0);
         textViewPaquete.setText("El id del anima es: "+ id);
-
-
-
-
-
     }
 
     @Override
@@ -221,11 +211,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         ActivityCompat.requestPermissions(FormJavaActivity.this, new String[]
                 {Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
-
-
-
-
-
     }
 
     @Override
@@ -319,8 +304,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             dialog.show();
         }
 
-
-        
        if(v == btnAgregar){
            AlertDialog.Builder builder = new AlertDialog.Builder(this);
            builder.setTitle(R.string.agregar);
@@ -384,7 +367,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
      }
 
         public void okCancel(final int indice){
-
 
             AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
             //myAlertDialog.setTitle("--- Title ---");

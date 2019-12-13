@@ -80,6 +80,16 @@ public class Animal {
 
     }
 
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id=" + id +
+                ", nombreAnimal='" + nombreAnimal + '\'' +
+
+
+                '}';
+    }
+
     public String getEspecie() {
         return especie;
     }

@@ -95,17 +95,20 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             public void onClick(View v) {
                 // Accion al pulsar el elemento
                 int position = listadoRecyclerView.getChildAdapterPosition(v);
-                Log.d(TAG, "Clic : " + items.get(position).getId());
-                presenter.onClickRecyclerView(items.get(position).getId());
+                Log.d("Error1", "Clic : " + items.get(position).getId());
+
+                if(items.get(position)!=null){
+                    presenter.onClickRecyclerView(items.get(position).getId());
+                }
+
 
             }
         });
 
-        setUpRecyclerView();
+        setUpRecyclerView(adaptador);
     }
 
-    private void setUpRecyclerView() {
-        AnimalAdapter mAdapter = new AnimalAdapter(items);
+    private void setUpRecyclerView(AnimalAdapter mAdapter) {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ItemTouchHelper itemTouchHelper = new
@@ -148,6 +151,10 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     }
 
 
+    public Animal item( Animal  a){
+        return a;
+    }
+
 
    static ListadoInterface.Presenter getPresenter() {
         return presenter;
@@ -169,24 +176,16 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             //TODO empaquetamos el id y luego en el formulario activity en el oncreate
            // recuperamos el id. Al final del oncreate mejor
 
-            if(items.get(id-1)!=null){
 
-             intent.putExtra("idanimal",items.get(id-1).getId());
+             Log.i("intent",String.valueOf(id));
+             intent.putExtra("idanimal",id);
 
-            }
+
+
            startActivity(intent);
         }
 
     }
-
-
-
-
-
-
-
-
-
 
 
     @Override
