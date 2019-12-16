@@ -429,11 +429,11 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
 
                             //compresion
-                            //Bitmap imageScaled = Bitmap.createScaledBitmap(bmp, (int)(bmp.getWidth()*0.25), (int)(bmp.getHeight()*0.25), false);
+                            Bitmap imageScaled = Bitmap.createScaledBitmap(bmp, 100, 100, false);
 
-                            ByteArrayOutputStream out = new ByteArrayOutputStream(); bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
-                            Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray())); Log.e("Original dimensions", bmp.getWidth()+" "+bmp.getHeight());
-                            Log.e("Compressed dimensions", decoded.getWidth()+" "+decoded.getHeight());
+                           // ByteArrayOutputStream out = new ByteArrayOutputStream(); bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
+                           // Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray())); Log.e("Original dimensions", bmp.getWidth()+" "+bmp.getHeight());
+                           // Log.e("Compressed dimensions", decoded.getWidth()+" "+decoded.getHeight());
 
 
 
@@ -441,7 +441,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
                             // Ponemos nuestro bitmap en un ImageView que tengamos en la vista
                             ImageView mImg = (ImageView) findViewById(R.id.fotoAnimal);
-                            mImg.setImageBitmap(decoded);
+                            mImg.setImageBitmap(imageScaled);
 
                         }
                     }
