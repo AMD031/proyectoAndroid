@@ -50,6 +50,7 @@ import proyecto.anigrud.Utilidades.Calendario;
 import proyecto.anigrud.Utilidades.ListaSpinner;
 import proyecto.anigrud.interfaces.FormInterface;
 import proyecto.anigrud.interfaces.ListadoInterface;
+import proyecto.anigrud.models.Animal;
 import proyecto.anigrud.presenters.FormPresenter;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
@@ -75,6 +76,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     private Context myContext;
     String idAnimal ="";
     private TextView textViewPaquete;
+    private  Animal animalDatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +116,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         btnFecha.setOnClickListener(this);
 
         foto.setOnClickListener(this);
-
+        animalDatos = new Animal();
 
 
 
@@ -159,10 +161,20 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         myContext = this;
         int id = getIntent().getIntExtra("idanimal",0);
         textViewPaquete.setText("El id del anima es: "+ id);
+
+
+
+
+
     }
 
     @Override
-    public void lanzarGuardado(){
+    public void lanzarGuardado(Animal animal){
+
+
+
+
+
         finish();
     }
 
@@ -279,7 +291,9 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     @Override
     public void onClick(View v) {
         if(v== btnGuardar){
-            presenter.onClickSave();
+            animalDatos.setEspecie(String.valueOf(etEspecie.getText()));
+            animalDatos.setNombreAnimal(String.valueOf(etNombre.getText()));
+            presenter.onClickSave(animalDatos);
         }
 
         if(v== btnFecha){

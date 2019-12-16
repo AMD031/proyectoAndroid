@@ -1,11 +1,37 @@
 package proyecto.anigrud.models;
 
 import android.app.Person;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-public class AnimalModelo {
+import proyecto.anigrud.views.MyApplication;
+
+public class AnimalModelo extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "AnimalDB";
+    private static final int DATABASE_VERSION = 1;
+
+    private static AnimalModelo sInstance;
+
+    private AnimalModelo (Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static synchronized AnimalModelo getInstance() {
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (sInstance == null) {
+            sInstance = new AnimalModelo(MyApplication.getContext());
+        }
+        return sInstance;
+    }
+
 
 
     public static  ArrayList<Animal> getAllanimal(){
@@ -45,10 +71,58 @@ public class AnimalModelo {
 
 
 
+
         return list;
     }
 
 
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String CREATE_TABLE_ANIMAL ="CREATE TABLE Person ("+
+                "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                "nombreAnimal TEXT,"+
+                "especie TEXT" +
+                 ")";
+
+        db.execSQL(CREATE_TABLE_ANIMAL);
+        db.execSQL(CREATE_TABLE_ANIMAL);
 
 
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    @Override
+    public void onConfigure(SQLiteDatabase db) {
+        super.onConfigure(db);
+        db.setForeignKeyConstraintsEnabled(true);
+    }
+
+    public boolean addNewAnimal(Animal animal) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            // The user might already exist in the database (i.e. the same user created multiple posts).
+            ContentValues values = new ContentValues();
+            values.put("name", animal.getNombreAnimal());
+            values.put("especie", animal.getEspecie());
+
+            // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
+            db.insertOrThrow("AnimalDB", null, values);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            Log.d("AnimalDB", "Error while trying to add post to database");
+            return  false;
+        } finally {
+            db.endTransaction();
+            db.close();
+            return true;
+        }
+
+
+    }
 }

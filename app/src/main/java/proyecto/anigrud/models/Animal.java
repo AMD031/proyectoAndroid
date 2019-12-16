@@ -6,6 +6,7 @@ public class Animal {
     private String nombreAnimal = null;
     private String imagen = null;
     private String especie = null;
+
    private final static String imagenDefecto = "iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABHNCSV" +
             "QICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAACCRJREFUeJztnWmMFEUUx3+" +
             "z7Cwr16IiKyACq4sKijdqRKMQE03UaIzGRCRG45F4JHh98IxHYlQ0xOsDxiPxPr5goqAi" +

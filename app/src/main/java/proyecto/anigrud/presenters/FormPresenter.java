@@ -11,18 +11,28 @@ import androidx.core.content.ContextCompat;
 
 import proyecto.anigrud.Utilidades.Validar;
 import proyecto.anigrud.interfaces.FormInterface;
+import proyecto.anigrud.models.Animal;
+import proyecto.anigrud.models.AnimalModelo;
+import proyecto.anigrud.views.FormJavaActivity;
 
 public class FormPresenter implements FormInterface.Presenter {
 
     private FormInterface.View view;
+    private AnimalModelo model;
+
 
     public FormPresenter(FormInterface.View view){
         this.view = view;
+        model = AnimalModelo.getInstance();
     }
 
     @Override
-    public void onClickSave(){
-        view.lanzarGuardado();
+    public void onClickSave(Animal animal){
+       if( model.addNewAnimal(animal) ==true ){
+           //cerrar formulario
+       }else{
+            // mostar error
+       }
     }
 
     @Override

@@ -12,7 +12,7 @@ public interface FormInterface {
 
 
     public interface View{
-        void lanzarGuardado();
+        void lanzarGuardado(Animal animal);
         void errorFecha(boolean correto, TextView tv);
         void errorCampo(boolean correcto, TextView tv);
         void requestPermission();
@@ -22,7 +22,7 @@ public interface FormInterface {
 
     public interface Presenter
      {
-        void onClickSave();
+        void onClickSave(Animal animal);
         void checkDate(String fecha, TextView tv);
         void checkField(TextView campoFormulario, TextView campoError);
         void onclickImagen(Context myContext);

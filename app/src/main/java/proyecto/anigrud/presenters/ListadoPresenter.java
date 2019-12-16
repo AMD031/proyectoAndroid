@@ -17,7 +17,7 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
 
  public ListadoPresenter(ListadoInterface.View view){
      this.view = view;
-     this.animal = new AnimalModelo();
+     this.animal =  AnimalModelo.getInstance();
  }
 
     @Override
