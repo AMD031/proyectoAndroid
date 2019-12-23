@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import proyecto.anigrud.R;
 import proyecto.anigrud.interfaces.ListadoInterface;
 import proyecto.anigrud.models.Animal;
+import proyecto.anigrud.models.AnimalModelo;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View {
@@ -40,6 +41,8 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     private AnimalAdapter adaptador;
     private androidx.recyclerview.widget.RecyclerView recyclerView;
     private static Context lcontext;
+
+    MyApplication my = new MyApplication();
 
 
 
@@ -66,6 +69,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
             }
         });
+
 
         // Inicializa el RecyclerView
         /*final RecyclerView*/ listadoRecyclerView= (RecyclerView) findViewById(R.id.listadoRecyclesView);

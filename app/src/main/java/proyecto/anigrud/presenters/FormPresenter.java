@@ -28,7 +28,7 @@ public class FormPresenter implements FormInterface.Presenter {
 
     @Override
     public void onClickSave(Animal animal){
-       if( model.addNewAnimal(animal) ==true ){
+        if( model.addNewAnimal(animal) ==true ){
            //cerrar formulario
        }else{
             // mostar error
@@ -71,6 +71,16 @@ public class FormPresenter implements FormInterface.Presenter {
             view.lanzarSnackbar();
         }
 
+    }
+
+    @Override
+    public void mostarOkCancelT() {
+        view.okCancelT();
+    }
+
+    @Override
+    public void clicSiElimnar() {
+        view.lanzarEliminado();
     }
 
 

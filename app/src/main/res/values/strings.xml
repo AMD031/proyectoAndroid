@@ -42,4 +42,6 @@
     <string name="borrar">Borrar</string>
     <string name="ElementoBorrado">El elemento ha sido borrado</string>
     <string name="ElementoNoBorrado">El elemento no se borrará</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="borrarRegistro">¿Estás seguro que quieres borrar?</string>
 </resources>

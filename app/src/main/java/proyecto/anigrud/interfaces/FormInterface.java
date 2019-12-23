@@ -18,6 +18,8 @@ public interface FormInterface {
         void requestPermission();
         void lanzarSnackbar();
         void abrirGaleria();
+        void okCancelT();
+        void lanzarEliminado();
     }
 
     public interface Presenter
@@ -27,6 +29,8 @@ public interface FormInterface {
         void checkField(TextView campoFormulario, TextView campoError);
         void onclickImagen(Context myContext);
         void resultPermission(int result);
+        void mostarOkCancelT();
+        void clicSiElimnar();
 
      }
 

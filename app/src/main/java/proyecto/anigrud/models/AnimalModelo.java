@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -27,6 +28,12 @@ public class AnimalModelo extends SQLiteOpenHelper {
         // don't accidentally leak an Activity's context.
         // See this article for more information: http://bit.ly/6LRzfx
         if (sInstance == null) {
+            if(MyApplication.getContext()== null){
+                Log.d("contexto","contexto nulo");
+            }else{
+                Log.d("contexto","contexto no nulo");
+            }
+
             sInstance = new AnimalModelo(MyApplication.getContext());
         }
         return sInstance;
@@ -75,14 +82,15 @@ public class AnimalModelo extends SQLiteOpenHelper {
         return list;
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE_ANIMAL ="CREATE TABLE Person ("+
+       String CREATE_TABLE_ANIMAL ="CREATE TABLE animal ("+
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "nombreAnimal TEXT,"+
                 "especie TEXT" +
                  ")";
+
+
 
         db.execSQL(CREATE_TABLE_ANIMAL);
         db.execSQL(CREATE_TABLE_ANIMAL);
@@ -102,13 +110,21 @@ public class AnimalModelo extends SQLiteOpenHelper {
         db.setForeignKeyConstraintsEnabled(true);
     }
 
+
+
+
+
+
+
     public boolean addNewAnimal(Animal animal) {
-        SQLiteDatabase db = getWritableDatabase();
+
+        Log.d("ani",animal.toString());
+     SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
-        try {
+     try {
             // The user might already exist in the database (i.e. the same user created multiple posts).
             ContentValues values = new ContentValues();
-            values.put("name", animal.getNombreAnimal());
+            values.put("nombreAnimal", animal.getNombreAnimal());
             values.put("especie", animal.getEspecie());
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
@@ -122,7 +138,6 @@ public class AnimalModelo extends SQLiteOpenHelper {
             db.close();
             return true;
         }
-
 
     }
 }

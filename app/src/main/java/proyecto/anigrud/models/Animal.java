@@ -6,8 +6,23 @@ public class Animal {
     private String nombreAnimal = null;
     private String imagen = null;
     private String especie = null;
+    private String LugarFoto = null;
+    private String fechaFoto = null;
+    private String tipo = null;
 
-   private final static String imagenDefecto = "iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABHNCSV" +
+    public void setFechaFoto(String fechaFoto) {
+        this.fechaFoto = fechaFoto;
+    }
+
+    public String getLugarFoto() {
+        return LugarFoto;
+    }
+
+    public void setLugarFoto(String lugarFoto) {
+        LugarFoto = lugarFoto;
+    }
+
+    private final static String imagenDefecto = "iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABHNCSV" +
             "QICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAACCRJREFUeJztnWmMFEUUx3+" +
             "z7Cwr16IiKyACq4sKijdqRKMQE03UaIzGRCRG45F4JHh98IxHYlQ0xOsDxiPxPr5goqAi" +
             "XvFCgzfxgF3xYlFYV11wD2bGD/8dd7btnunqY7qnt39JBWa2uqu6XlV11av33kBKSkpKSkpKS" +
@@ -80,6 +95,14 @@ public class Animal {
         }
 
     }
+    
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
 
     @Override
     public String toString() {
@@ -91,11 +114,9 @@ public class Animal {
                 '}';
     }
 
-    public String getEspecie() {
-        return especie;
-    }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
-    }
+
+
+
+
 }

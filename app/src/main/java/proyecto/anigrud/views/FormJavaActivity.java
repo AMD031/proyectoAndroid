@@ -54,7 +54,8 @@ import proyecto.anigrud.models.Animal;
 import proyecto.anigrud.presenters.FormPresenter;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
-public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener,View.OnFocusChangeListener{
+public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener,View.OnFocusChangeListener
+{
     final private int CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 123;
     private static final int SELECT_FILE = 1;
     String TAG = "aniGRUD/Formulario";
@@ -77,6 +78,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     String idAnimal ="";
     private TextView textViewPaquete;
     private  Animal animalDatos;
+    private Button btnEliminarT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         errorFecha  =  findViewById(R.id.errorCampoFecha);
         errorNombre = findViewById(R.id.errorCampoNombre);
         errorLugar = findViewById(R.id.errorCampoLugar);
+        btnEliminarT = findViewById(R.id.btnEliminarT);
 
         etFecha.setOnFocusChangeListener(this);
         etEspecie.setOnFocusChangeListener(this);
@@ -116,7 +119,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         btnFecha.setOnClickListener(this);
 
         foto.setOnClickListener(this);
-        animalDatos = new Animal();
+        btnEliminarT.setOnClickListener(this);
 
 
 
@@ -170,11 +173,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
     @Override
     public void lanzarGuardado(Animal animal){
-
-
-
-
-
         finish();
     }
 
@@ -291,9 +289,13 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     @Override
     public void onClick(View v) {
         if(v== btnGuardar){
-            animalDatos.setEspecie(String.valueOf(etEspecie.getText()));
-            animalDatos.setNombreAnimal(String.valueOf(etNombre.getText()));
+            animalDatos = new Animal();
+            animalDatos.setId(11);
+            animalDatos.setEspecie((etEspecie.getText().toString()));
+            animalDatos.setNombreAnimal(etNombre.getText().toString());
             presenter.onClickSave(animalDatos);
+
+
         }
 
         if(v== btnFecha){
@@ -345,18 +347,20 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
            });
 
            builder.show();
-
-           
        }
         
         if(v == foto){
             presenter.onclickImagen(myContext);
+        }
+
+        if(v == btnEliminarT){
+            presenter.mostarOkCancelT();
 
         }
-        
-
 
     }
+
+
 
 
     @Override
@@ -380,7 +384,34 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
      }
 
-        public void okCancel(final int indice){
+        public void okCancelT(){
+
+            AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+            //myAlertDialog.setTitle("--- Title ---");
+            myAlertDialog.setMessage(R.string.borrarRegistro);
+            myAlertDialog.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface arg0, int arg1) {
+                    presenter.clicSiElimnar();
+                }});
+            myAlertDialog.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface arg0, int arg1) {
+                    // do something when the Cancel button is clicked
+                }});
+            myAlertDialog.show();
+
+
+        }
+
+    @Override
+    public void lanzarEliminado() {
+
+        finish();
+    }
+
+
+    public void okCancel(final int indice){
 
             AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
             //myAlertDialog.setTitle("--- Title ---");
