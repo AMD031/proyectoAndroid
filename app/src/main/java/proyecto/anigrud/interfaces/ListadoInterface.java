@@ -12,7 +12,7 @@ public interface ListadoInterface {
       void lanzarSobre();
       void lanzarBuscar();
       void lanzarDialog(int position, ArrayList<Animal> items, AnimalAdapter animalAdapter);
-
+      void actualizaContador();
 
 
     }

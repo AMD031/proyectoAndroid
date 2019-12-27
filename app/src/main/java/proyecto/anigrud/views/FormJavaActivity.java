@@ -3,14 +3,11 @@ package proyecto.anigrud.views;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.slice.SliceItem;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -22,39 +19,36 @@ import androidx.core.app.ActivityCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.widget.ToggleButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 import proyecto.anigrud.R;
 import proyecto.anigrud.Utilidades.Calendario;
+import proyecto.anigrud.Utilidades.Image;
 import proyecto.anigrud.Utilidades.ListaSpinner;
 import proyecto.anigrud.interfaces.FormInterface;
-import proyecto.anigrud.interfaces.ListadoInterface;
 import proyecto.anigrud.models.Animal;
 import proyecto.anigrud.presenters.FormPresenter;
-import proyecto.anigrud.presenters.ListadoPresenter;
 
 public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener,View.OnFocusChangeListener
+    , CompoundButton.OnCheckedChangeListener
 {
     final private int CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 123;
     private static final int SELECT_FILE = 1;
@@ -68,6 +62,13 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     private EditText etLugar;
     private EditText etNombre;
     private EditText etEspecie;
+    private Switch tAdorable;
+    private Integer valorSwitch;
+    private String valorSpinner = "Mamífero";
+
+
+
+
     private TextView errorFecha;
     private TextView errorLugar;
     private TextView errorNombre;
@@ -100,6 +101,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         etLugar = findViewById(R.id.etLugarF);
         etEspecie =  findViewById(R.id.etEspecieF);
         foto = findViewById(R.id.fotoAnimal);
+        tAdorable = findViewById(R.id.tAdorable);
 
         errorEspecie = findViewById(R.id.errorCampoEspecie);
         errorFecha  =  findViewById(R.id.errorCampoFecha);
@@ -120,10 +122,10 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
         foto.setOnClickListener(this);
         btnEliminarT.setOnClickListener(this);
+        tAdorable.setOnCheckedChangeListener(this);
+        valorSwitch =0;
 
-
-
-        spinnerTipos = (Spinner) findViewById(R.id.spinner2);
+        spinnerTipos = (Spinner) findViewById(R.id.sTipo);
         spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
         spinnerTipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -132,6 +134,9 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             {
                 Toast.makeText(adapterView.getContext(),
                         (String) adapterView.getItemAtPosition(pos), Toast.LENGTH_SHORT).show();
+
+                valorSpinner = (String) adapterView.getItemAtPosition(pos);
+
             }
 
             @Override
@@ -172,7 +177,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     }
 
     @Override
-    public void lanzarGuardado(Animal animal){
+    public void finalizaViewAnimal(){
         finish();
     }
 
@@ -290,10 +295,15 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     public void onClick(View v) {
         if(v== btnGuardar){
             animalDatos = new Animal();
-            animalDatos.setId(11);
-            animalDatos.setEspecie((etEspecie.getText().toString()));
             animalDatos.setNombreAnimal(etNombre.getText().toString());
+            animalDatos.setEspecie((etEspecie.getText().toString()));
+            animalDatos.setLugarFoto(etLugar.getText().toString());
+            animalDatos.setFechaFoto(etFecha.getText().toString());
+            animalDatos.setAdorable(valorSwitch);
+            animalDatos.setTipo(valorSpinner);
+            animalDatos.setImagen(Image.base64(foto));
             presenter.onClickSave(animalDatos);
+
 
 
         }
@@ -410,6 +420,16 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         finish();
     }
 
+    @Override
+    public void errorGuardado() {
+        Toast.makeText(myContext, R.string.errorGuardado, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void existoGuardado() {
+        Toast.makeText(myContext, R.string.existoGuardado, Toast.LENGTH_SHORT).show();
+    }
+
 
     public void okCancel(final int indice){
 
@@ -467,9 +487,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
                            // Log.e("Compressed dimensions", decoded.getWidth()+" "+decoded.getHeight());
 
 
-
-
-
                             // Ponemos nuestro bitmap en un ImageView que tengamos en la vista
                             ImageView mImg = (ImageView) findViewById(R.id.fotoAnimal);
                             mImg.setImageBitmap(imageScaled);
@@ -482,5 +499,12 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     }
 
 
-
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        if(b) {
+            valorSwitch =1;
+        } else {
+            valorSwitch =0;
+        }
+    }
 }

@@ -27,6 +27,8 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
          items.remove(position);
          Log.i("tam",String.valueOf(items.size()));
          animalAdapter.notifyItemRemoved(position);
+         view.actualizaContador();
+
     }
 
     public void swipeBorrado(int position, ArrayList<Animal> items, AnimalAdapter animalAdapter) {
@@ -45,6 +47,7 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     @Override
     public void onClickRecyclerView(int id) {
         view.lanzarFormulario(id);
+
     }
 
 

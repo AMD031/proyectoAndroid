@@ -74,20 +74,20 @@ public class AnimalModelo extends SQLiteOpenHelper {
         list.add(a9);
         list.add(a10);
 
-
-
-
-
-
         return list;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-       String CREATE_TABLE_ANIMAL ="CREATE TABLE animal ("+
+       String CREATE_TABLE_ANIMAL ="CREATE TABLE IF NOT EXISTS animal ("+
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "nombreAnimal TEXT,"+
-                "especie TEXT" +
+                "especie TEXT," +
+                "lugarfoto TEXT,"+
+                "fechafoto TEXT,"+
+                "adorable INTEGER,"+
+                "tipo TEXT,"+
+                "foto TEXT"+
                  ")";
 
 
@@ -126,9 +126,15 @@ public class AnimalModelo extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put("nombreAnimal", animal.getNombreAnimal());
             values.put("especie", animal.getEspecie());
+            values.put("lugarfoto", animal.getLugarFoto());
+            values.put("fechafoto", animal.getFechaFoto());
+            values.put("adorable",animal.getAdorable() );
+            values.put("tipo", animal.getTipo());
+            values.put("foto", animal.getImagen());
+
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
-            db.insertOrThrow("AnimalDB", null, values);
+            db.insertOrThrow("animal", null, values);
             db.setTransactionSuccessful();
         } catch (Exception e) {
             Log.d("AnimalDB", "Error while trying to add post to database");

@@ -12,7 +12,7 @@ public interface FormInterface {
 
 
     public interface View{
-        void lanzarGuardado(Animal animal);
+        void finalizaViewAnimal();
         void errorFecha(boolean correto, TextView tv);
         void errorCampo(boolean correcto, TextView tv);
         void requestPermission();
@@ -20,6 +20,8 @@ public interface FormInterface {
         void abrirGaleria();
         void okCancelT();
         void lanzarEliminado();
+        void errorGuardado();
+        void existoGuardado();
     }
 
     public interface Presenter

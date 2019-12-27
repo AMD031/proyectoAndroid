@@ -44,4 +44,7 @@
     <string name="ElementoNoBorrado">El elemento no se borrará</string>
     <string name="Eliminar">Eliminar</string>
     <string name="borrarRegistro">¿Estás seguro que quieres borrar?</string>
+    <string name="errorGuardado">Fallo al guardar.</string>
+    <string name="existoGuardado">El animal se ha guardado con existo.</string>
+    <string name="resultadosEncontrados">Resultados encontrados</string>
 </resources>

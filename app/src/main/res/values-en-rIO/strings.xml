@@ -43,4 +43,9 @@
     <string name="borrar">Delete</string>
     <string name="ElementoBorrado">The item has been deleted</string>
     <string name="ElementoNoBorrado">The item will not be deleted</string>
+    <string name="Eliminar">Delete</string>
+    <string name="borrarRegistro">Are you sure you want to delete?</string>
+    <string name="errorGuardado">Save failed.</string>
+    <string name="existoGuardado">The animal has been saved successfully.</string>
+    <string name="resultadosEncontrados">Results found</string>
 </resources>

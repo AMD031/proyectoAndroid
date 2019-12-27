@@ -9,6 +9,29 @@ public class Animal {
     private String LugarFoto = null;
     private String fechaFoto = null;
     private String tipo = null;
+    private Integer adorable =null;
+
+    public Integer getAdorable() {
+        return adorable;
+    }
+
+    public void setAdorable(Integer adorable) {
+        this.adorable = adorable;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getFechaFoto() {
+        return fechaFoto;
+    }
+
+
 
     public void setFechaFoto(String fechaFoto) {
         this.fechaFoto = fechaFoto;
@@ -102,6 +125,7 @@ public class Animal {
 
     public void setEspecie(String especie) {
         this.especie = especie;
+
     }
 
     @Override

@@ -13,7 +13,6 @@ import proyecto.anigrud.Utilidades.Validar;
 import proyecto.anigrud.interfaces.FormInterface;
 import proyecto.anigrud.models.Animal;
 import proyecto.anigrud.models.AnimalModelo;
-import proyecto.anigrud.views.FormJavaActivity;
 
 public class FormPresenter implements FormInterface.Presenter {
 
@@ -29,9 +28,10 @@ public class FormPresenter implements FormInterface.Presenter {
     @Override
     public void onClickSave(Animal animal){
         if( model.addNewAnimal(animal) ==true ){
-           //cerrar formulario
+         view.existoGuardado();
+         view.finalizaViewAnimal();
        }else{
-            // mostar error
+         view.errorGuardado();
        }
     }
 

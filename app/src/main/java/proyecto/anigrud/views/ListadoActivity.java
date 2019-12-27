@@ -41,6 +41,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     private AnimalAdapter adaptador;
     private androidx.recyclerview.widget.RecyclerView recyclerView;
     private static Context lcontext;
+    private TextView contadorTextView;
 
     MyApplication my = new MyApplication();
 
@@ -54,6 +55,10 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         setContentView(R.layout.activity_listado);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        contadorTextView = findViewById(R.id.contadorTextView);
+
+
+
         recyclerView = (RecyclerView) findViewById(R.id.listadoRecyclesView);
 
         lcontext = this;
@@ -104,12 +109,17 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                 if(items.get(position)!=null){
                     presenter.onClickRecyclerView(items.get(position).getId());
                 }
-
-
             }
         });
 
+        actualizaContador();
         setUpRecyclerView(adaptador);
+
+    }
+
+
+    public void actualizaContador(){
+        contadorTextView.setText( adaptador.getItemCount()+" "+getResources().getString(R.string.resultadosEncontrados));
     }
 
     private void setUpRecyclerView(AnimalAdapter mAdapter) {
@@ -180,13 +190,11 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             //TODO empaquetamos el id y luego en el formulario activity en el oncreate
            // recuperamos el id. Al final del oncreate mejor
 
-
              Log.i("intent",String.valueOf(id));
              intent.putExtra("idanimal",id);
 
-
-
            startActivity(intent);
+           actualizaContador();
         }
 
     }
@@ -218,6 +226,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                                         int which) {
 
                         presenter.ejecutarBorrado(position,items,animalAdapter);
+
                         Toast.makeText(getApplicationContext(),
                                 R.string.ElementoBorrado, Toast.LENGTH_SHORT).show();
                     }

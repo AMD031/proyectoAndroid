@@ -177,7 +177,7 @@
                     android:orientation="vertical">
 
                     <Switch
-                        android:id="@+id/switch3"
+                        android:id="@+id/tAdorable"
                         style="@style/Negrita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -217,7 +217,7 @@
                     android:orientation="vertical">
 
                     <Spinner
-                        android:id="@+id/spinner2"
+                        android:id="@+id/sTipo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="50dp" />
