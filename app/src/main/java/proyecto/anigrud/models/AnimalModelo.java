@@ -11,6 +11,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import proyecto.anigrud.views.AniCRUD;
 import proyecto.anigrud.views.MyApplication;
 
 public class AnimalModelo extends SQLiteOpenHelper {
@@ -30,12 +31,6 @@ public class AnimalModelo extends SQLiteOpenHelper {
         // don't accidentally leak an Activity's context.
         // See this article for more information: http://bit.ly/6LRzfx
         if (sInstance == null) {
-            if(MyApplication.getContext()== null){
-                Log.d("contexto","contexto nulo");
-            }else{
-                Log.d("contexto","contexto no nulo");
-            }
-
             sInstance = new AnimalModelo(MyApplication.getContext());
         }
         return sInstance;
@@ -43,7 +38,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
      private Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_NAME,null);
+        Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME,null);
         return  res;
     }
 
@@ -53,8 +48,28 @@ public class AnimalModelo extends SQLiteOpenHelper {
     public ArrayList<Animal> getAllanimal(){
         ArrayList<Animal> list = new ArrayList<>();
 
+        Cursor res = getAllData();
 
-      Animal a1 = new Animal(1,"gato",null,"felino",null,null,null,null);
+          if(res.getCount()>0){
+         while (res.moveToNext()){
+            Animal dato = new Animal();
+            dato.setId(res.getInt(0));
+            dato.setNombreAnimal(res.getString(1));
+            dato.setEspecie(res.getString(2));
+            dato.setLugarFoto(res.getString(3));
+           // dato.setFechaFoto(res.getString(4));
+            dato.setAdorable(res.getInt(5));
+            dato.setTipo(res.getString(6));
+            dato.setImagen(res.getString(7));
+            list.add(dato);
+          }
+      }
+
+
+
+
+
+      /*Animal a1 = new Animal(1,"gato",null,"felino",null,null,null,null);
         Animal a2 = new Animal(2,"perro",Foto.fotoperro,"canido",null,null,null,null);
         Animal a3 = new Animal(3,"elefante",null,"elefantido",null,null,null,null);
 
@@ -80,7 +95,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
         list.add(a7);
         list.add(a8);
         list.add(a9);
-        list.add(a10);
+        list.add(a10);*/
 
 
 
@@ -99,7 +114,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-       String CREATE_TABLE_ANIMAL ="CREATE TABLE IF NOT EXISTS TABLE_NAME ("+
+       String CREATE_TABLE_ANIMAL ="CREATE TABLE IF NOT EXISTS "+ TABLE_NAME +"("+
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "nombreAnimal TEXT,"+
                 "especie TEXT," +
@@ -110,10 +125,8 @@ public class AnimalModelo extends SQLiteOpenHelper {
                 "foto TEXT"+
                  ")";
 
-
-
         db.execSQL(CREATE_TABLE_ANIMAL);
-        db.execSQL(CREATE_TABLE_ANIMAL);
+
 
 
 
@@ -154,7 +167,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
-            db.insertOrThrow("animal", null, values);
+            db.insertOrThrow(TABLE_NAME, null, values);
             db.setTransactionSuccessful();
         } catch (Exception e) {
             Log.d("AnimalDB", "Error while trying to add post to database");

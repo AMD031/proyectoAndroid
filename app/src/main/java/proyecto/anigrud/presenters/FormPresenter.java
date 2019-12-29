@@ -29,9 +29,6 @@ public class FormPresenter implements FormInterface.Presenter  {
     @Override
     public void onClickSave(Animal animal,boolean valido){
         if( model.addNewAnimal(animal) == valido ){
-         if(animal.getImagen() ==   Animal.getImagenDefecto()){
-             animal.setImagen(null);
-         }
          view.existoGuardado();
          view.finalizaViewAnimal();
        }else{

@@ -253,7 +253,25 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     @Override
     protected void onResume() {
         super.onResume();
+
         Log.i(TAG,"entrado en el onresume");
+
+        items = presenter.getAllAnimal();
+        adaptador = new AnimalAdapter(items);
+        adaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Accion al pulsar el elemento
+                int position = listadoRecyclerView.getChildAdapterPosition(v);
+                Log.d("Error1", "Clic : " + items.get(position).getId());
+
+                if(items.get(position)!=null){
+                    presenter.onClickRecyclerView(items.get(position).getId(),true);
+                }
+            }
+        });
+        listadoRecyclerView.setAdapter(adaptador);
+        actualizaContador();
     }
 
     @Override

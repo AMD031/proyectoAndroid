@@ -65,10 +65,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     private Switch tAdorable;
     private Integer valorSwitch;
     private String valorSpinner = "Mamífero";
-
-
-
-
+    private boolean fotoDefecto = true;
     private TextView errorFecha;
     private TextView errorLugar;
     private TextView errorNombre;
@@ -118,7 +115,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         btnAgregar.setOnClickListener(this);
 
         btnFecha.setOnClickListener(this);
-
         foto.setOnClickListener(this);
         btnEliminarT.setOnClickListener(this);
         tAdorable.setOnCheckedChangeListener(this);
@@ -256,9 +252,13 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
+
+
         startActivityForResult(
-                Intent.createChooser(intent, "Seleccione una imagen"),
+                Intent.createChooser(intent, getResources().getResourceName(R.string.imagenSelecion)),
                 SELECT_FILE);
+
+
     }
 
 
@@ -320,8 +320,9 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             boolean fechafoto =animalDatos.setFechaFoto(etFecha.getText().toString());
             boolean adorable =  animalDatos.setAdorable(valorSwitch);
             boolean tipo =  animalDatos.setTipo(valorSpinner);
+            animalDatos.setImagen(Image.base64(foto));
             if(nombre && especie && lugarfoto && fechafoto && adorable && tipo){
-                animalDatos.setImagen(Image.base64(foto));
+
                 valido = true;
             }
 

@@ -47,4 +47,5 @@
     <string name="errorGuardado">Fallo al guardar.</string>
     <string name="existoGuardado">El animal se ha guardado con existo.</string>
     <string name="resultadosEncontrados">Resultados encontrados</string>
+    <string name="imagenSelecion">Seleccione una imagen</string>
 </resources>
