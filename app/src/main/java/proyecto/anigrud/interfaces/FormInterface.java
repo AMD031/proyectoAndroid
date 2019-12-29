@@ -22,6 +22,8 @@ public interface FormInterface {
         void lanzarEliminado();
         void errorGuardado();
         void existoGuardado();
+        void ocultarMostarbtnEliminar(boolean mostar);
+        void recuperDatosAnimal(Animal animal);
     }
 
     public interface Presenter
@@ -35,6 +37,9 @@ public interface FormInterface {
         void clicSiElimnar();
         void errorSegundaVerificacion(boolean correcto, TextView tv);
 
+         void ocultarMostarbtnEliminar(boolean mostarbtnEliminar);
+
+         void recuperarDatos(int id);
      }
 
 

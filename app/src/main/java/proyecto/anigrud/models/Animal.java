@@ -56,7 +56,7 @@ public class Animal {
         this.nombreAnimal = nombreAnimal;
         this.setImagen(imagen);
         this.especie = especie;
-        LugarFoto = lugarFoto;
+        this.LugarFoto = lugarFoto;
         this.fechaFoto = fechaFoto;
         this.tipo = tipo;
         this.adorable = adorable;
@@ -67,8 +67,6 @@ public class Animal {
        if(Validar.comprobarString(nombreAnimal)){
            this.nombreAnimal = nombreAnimal;
            valido = true;
-       }else {
-
        }
         return  valido;
     }
@@ -150,7 +148,7 @@ public class Animal {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return "Animal{" +
                 "id=" + id +
                 ", nombreAnimal='" + nombreAnimal + '\'' +

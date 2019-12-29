@@ -108,6 +108,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
                 if(items.get(position)!=null){
                     presenter.onClickRecyclerView(items.get(position).getId(),true);
+
                 }
             }
         });
@@ -117,6 +118,15 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+      presenter.Actulizarlista(items,adaptador);
+
+
+
+    }
 
     public void actualizaContador(){
         contadorTextView.setText( adaptador.getItemCount()+" "+getResources().getString(R.string.resultadosEncontrados));
@@ -227,6 +237,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                     public void onClick(DialogInterface dialog,
                                         int which) {
                         presenter.ejecutarBorrado(position,items,animalAdapter);
+                        presenter.repintarRecycler(animalAdapter);
                         Toast.makeText(getApplicationContext(),
                                 R.string.ElementoBorrado, Toast.LENGTH_SHORT).show();
                     }
@@ -250,29 +261,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        Log.i(TAG,"entrado en el onresume");
-
-        items = presenter.getAllAnimal();
-        adaptador = new AnimalAdapter(items);
-        adaptador.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Accion al pulsar el elemento
-                int position = listadoRecyclerView.getChildAdapterPosition(v);
-                Log.d("Error1", "Clic : " + items.get(position).getId());
-
-                if(items.get(position)!=null){
-                    presenter.onClickRecyclerView(items.get(position).getId(),true);
-                }
-            }
-        });
-        listadoRecyclerView.setAdapter(adaptador);
-        actualizaContador();
-    }
 
     @Override
     protected void onStop() {

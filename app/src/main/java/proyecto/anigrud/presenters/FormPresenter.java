@@ -28,9 +28,10 @@ public class FormPresenter implements FormInterface.Presenter  {
 
     @Override
     public void onClickSave(Animal animal,boolean valido){
-        if( model.addNewAnimal(animal) == valido ){
-         view.existoGuardado();
-         view.finalizaViewAnimal();
+        if( valido ){
+            model.addNewAnimal(animal);
+            view.existoGuardado();
+            view.finalizaViewAnimal();
        }else{
          view.errorGuardado();
        }
@@ -83,8 +84,18 @@ public class FormPresenter implements FormInterface.Presenter  {
 
     @Override
     public void errorSegundaVerificacion(boolean correcto, TextView tv) {
-        view.errorCampo(correcto, tv);
+        view.errorCampo(correcto,tv);
         view.errorFecha(correcto,tv);
+    }
+
+    @Override
+    public void ocultarMostarbtnEliminar(boolean mostarbtnEliminar) {
+         view.ocultarMostarbtnEliminar(mostarbtnEliminar);
+    }
+
+    @Override
+    public void recuperarDatos(int id) {
+        view.recuperDatosAnimal(model.obtenerAnimal(id));
     }
 
 

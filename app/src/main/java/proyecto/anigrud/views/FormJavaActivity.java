@@ -76,6 +76,9 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     String idAnimal ="";
     private  Animal animalDatos;
     private Button btnEliminarT;
+    private int id;
+    private boolean mostarbtnEliminar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,13 +165,34 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
         );
         myContext = this;
-        int id = getIntent().getIntExtra("idanimal",0);
-        boolean mostarbtnEliminar = getIntent().getBooleanExtra("btnEliminar",true);
+        id = getIntent().getIntExtra("idanimal",0);
+         mostarbtnEliminar = getIntent().getBooleanExtra("btnEliminar",true);
+
+        this.presenter.ocultarMostarbtnEliminar(mostarbtnEliminar);
+        if(mostarbtnEliminar){
+
+            presenter.recuperarDatos(id);
+        }
+
+    }
+
+    public void recuperDatosAnimal(Animal animal){
+        if(animal !=null){
+            this.etNombre.setText(animal.getNombreAnimal());
+            this.etEspecie.setText(animal.getEspecie());
+            this.etLugar.setText(animal.getLugarFoto());
+            this.etFecha.setText(animal.getFechaFoto());
+            if(animal.getAdorable()==1){
+                this.tAdorable.setChecked(true);
+            }else if(animal.getAdorable() ==0){
+                this.tAdorable.setChecked(false);
+            }
+            this.foto.setImageBitmap(Image.bitmap( animal.getImagen()));
+            this.spinnerTipos.setSelection(ListaSpinner.getIndex(this.spinnerTipos,animal.getTipo())  );
 
 
-        this.ocultarMostarbtnEliminar(mostarbtnEliminar);
 
-
+        }
 
     }
 
@@ -312,37 +336,39 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     @Override
     public void onClick(View v) {
         if(v== btnGuardar){
-            boolean valido = false;
-            animalDatos = new Animal();
-            boolean nombre = animalDatos.setNombreAnimal(etNombre.getText().toString());
-            boolean especie = animalDatos.setEspecie((etEspecie.getText().toString()));
-            boolean lugarfoto = animalDatos.setLugarFoto(etLugar.getText().toString());
-            boolean fechafoto =animalDatos.setFechaFoto(etFecha.getText().toString());
-            boolean adorable =  animalDatos.setAdorable(valorSwitch);
-            boolean tipo =  animalDatos.setTipo(valorSpinner);
-            animalDatos.setImagen(Image.base64(foto));
-            if(nombre && especie && lugarfoto && fechafoto && adorable && tipo){
-
-                valido = true;
-            }
-
-            if(!nombre){
-                presenter.errorSegundaVerificacion(nombre,errorNombre);
-            }
-            if(!especie){
-                presenter.errorSegundaVerificacion(especie,errorEspecie);
-            }
-            if(!lugarfoto){
-                presenter.errorSegundaVerificacion(lugarfoto,errorLugar);
-            }
-            if(!fechafoto){
-                presenter.errorSegundaVerificacion(fechafoto,errorFecha);
-            }
 
 
+               boolean valido = false;
+               animalDatos = new Animal();
+               boolean nombre = animalDatos.setNombreAnimal(etNombre.getText().toString());
+               boolean especie = animalDatos.setEspecie((etEspecie.getText().toString()));
+               boolean lugarfoto = animalDatos.setLugarFoto(etLugar.getText().toString());
+               boolean fechafoto = animalDatos.setFechaFoto(etFecha.getText().toString());
+               boolean adorable = animalDatos.setAdorable(valorSwitch);
+               boolean tipo = animalDatos.setTipo(valorSpinner);
+               animalDatos.setImagen(Image.base64(foto));
+               if (nombre && especie && lugarfoto && fechafoto && adorable && tipo) {
+                   valido = true;
+               }
 
-           presenter.onClickSave(animalDatos,valido);
+               if (!nombre) {
+                   presenter.errorSegundaVerificacion(nombre, errorNombre);
+               }
+               if (!especie) {
+                   presenter.errorSegundaVerificacion(especie, errorEspecie);
+               }
+               if (!lugarfoto) {
+                   presenter.errorSegundaVerificacion(lugarfoto, errorLugar);
+               }
+               if (!fechafoto) {
+                   presenter.errorSegundaVerificacion(fechafoto, errorFecha);
+               }
 
+            if(!this.mostarbtnEliminar) {
+               presenter.onClickSave(animalDatos, valido);
+           }else {
+              // presenter.updateData(animalDatos,valido);
+           }
 
 
         }

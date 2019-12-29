@@ -23,12 +23,12 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     @Override
     public void ejecutarBorrado(int position, ArrayList<Animal> items,AnimalAdapter animalAdapter) {
          Animal mRecentlyDeletedItem = items.get(position);
-         int mRecentlyDeletedItemPosition = position;
+         //int mRecentlyDeletedItemPosition = position;
          items.remove(position);
-         Log.i("tam",String.valueOf(items.size()));
+         animal.eliminarAnimal(mRecentlyDeletedItem.getId());
+         Log.i("tam",mRecentlyDeletedItem.toString());
          animalAdapter.notifyItemRemoved(position);
          view.actualizaContador();
-
     }
 
     public void swipeBorrado(int position, ArrayList<Animal> items, AnimalAdapter animalAdapter) {
@@ -45,9 +45,8 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     }
 
     @Override
-    public void onClickRecyclerView(int id, boolean mostraElimanar) {
-        view.lanzarFormulario(id, mostraElimanar);
-
+    public void onClickRecyclerView(int id, boolean mostraEliminar) {
+        view.lanzarFormulario(id, mostraEliminar);
     }
 
     public void onClickAbout(){ view.lanzarSobre();}
@@ -59,6 +58,14 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     @Override
     public void repintarRecycler(AnimalAdapter animalAdapter) {
         animalAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador) {
+        items.clear();
+        items.addAll(getAllAnimal());
+        adaptador.notifyDataSetChanged();
+        view.actualizaContador();
     }
 
 }

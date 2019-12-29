@@ -47,17 +47,16 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
     public ArrayList<Animal> getAllanimal(){
         ArrayList<Animal> list = new ArrayList<>();
-
         Cursor res = getAllData();
 
-          if(res.getCount()>0){
+        if(res.getCount()>0){
          while (res.moveToNext()){
             Animal dato = new Animal();
             dato.setId(res.getInt(0));
             dato.setNombreAnimal(res.getString(1));
             dato.setEspecie(res.getString(2));
             dato.setLugarFoto(res.getString(3));
-           // dato.setFechaFoto(res.getString(4));
+            dato.setFechaFoto(res.getString(4));
             dato.setAdorable(res.getInt(5));
             dato.setTipo(res.getString(6));
             dato.setImagen(res.getString(7));
@@ -97,18 +96,37 @@ public class AnimalModelo extends SQLiteOpenHelper {
         list.add(a9);
         list.add(a10);*/
 
-
-
-
-
-
         return list;
     }
 
 
+    public int eliminarAnimal(Integer id) {
+        SQLiteDatabase baseDeDatos = this.getWritableDatabase();
+        String[] argumentos = {String.valueOf(id)};
+        return baseDeDatos.delete(TABLE_NAME, "id = ?", argumentos);
+    }
 
 
+    public Animal obtenerAnimal(Integer id) {
+        Animal animal = new Animal();
+        SQLiteDatabase db= this.getWritableDatabase();
+        String[] argumentos = {String.valueOf(id)};
+        Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME +" WHERE id = ?",argumentos);
+        if(res.getCount()>0) {
+            while (res.moveToNext()) {
 
+                animal.setId(res.getInt(0));
+                animal.setNombreAnimal(res.getString(1));
+                animal.setEspecie(res.getString(2));
+                animal.setLugarFoto(res.getString(3));
+                animal.setFechaFoto(res.getString(4));
+                animal.setAdorable(res.getInt(5));
+                animal.setTipo(res.getString(6));
+                animal.setImagen(res.getString(7));
+            }
+        }
+        return animal;
+    }
 
 
     @Override

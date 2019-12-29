@@ -1,5 +1,7 @@
 package proyecto.anigrud.Utilidades;
 
+import android.widget.Spinner;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -36,4 +38,20 @@ public class ListaSpinner extends AppCompatActivity {
     public static void borrarDato(int i){
        datos.remove(i);
     }
+
+
+   public static int getIndex(Spinner spinner, String myString){
+        int index = 0;
+        boolean encontrado = false;
+        for (int i=0;i<spinner.getCount() && !encontrado;i++){
+            if (spinner.getItemAtPosition(i).equals(myString)){
+                index = i;
+                encontrado = true;
+
+            }
+        }
+        return index;
+    }
+
+
 }
