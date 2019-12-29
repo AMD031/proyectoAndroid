@@ -77,7 +77,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     private ImageView foto;
     private Context myContext;
     String idAnimal ="";
-    private TextView textViewPaquete;
     private  Animal animalDatos;
     private Button btnEliminarT;
 
@@ -90,7 +89,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        textViewPaquete= findViewById(R.id.paquete);
+
         presenter = new FormPresenter(this);
         btnGuardar = findViewById(R.id.botonGuardar);
         btnEliminar = findViewById(R.id.btnEliminar);
@@ -162,19 +161,33 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
            public void afterTextChanged(Editable editable) {
                presenter.checkDate(etFecha.getText().toString(),errorFecha);
            }
-       }
+         }
 
 
         );
         myContext = this;
         int id = getIntent().getIntExtra("idanimal",0);
-        textViewPaquete.setText("El id del anima es: "+ id);
+        boolean mostarbtnEliminar = getIntent().getBooleanExtra("btnEliminar",true);
 
 
+        this.ocultarMostarbtnEliminar(mostarbtnEliminar);
 
 
 
     }
+
+
+
+    public void ocultarMostarbtnEliminar(boolean mostar){
+        Log.d("btne",String.valueOf(mostar));
+        if(mostar){
+            btnEliminarT.setVisibility(View.VISIBLE);
+        }else{
+            btnEliminarT.setVisibility(View.INVISIBLE);
+        }
+
+    }
+
 
     @Override
     public void finalizaViewAnimal(){
@@ -183,11 +196,14 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
     @Override
     public void errorFecha(boolean error, TextView tv) {
-        if(!error){
-            tv.setText(R.string.errorFecha);
-        }else{
-            tv.setText("");
-        }
+       if(tv== errorFecha){
+           if(!error){
+               tv.setText(R.string.errorFecha);
+           }else{
+               tv.setText("");
+           }
+       }
+
     }
 
     @Override
@@ -291,18 +307,40 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     }
 
 
+
+
     @Override
     public void onClick(View v) {
         if(v== btnGuardar){
+            boolean valido = false;
             animalDatos = new Animal();
-            animalDatos.setNombreAnimal(etNombre.getText().toString());
-            animalDatos.setEspecie((etEspecie.getText().toString()));
-            animalDatos.setLugarFoto(etLugar.getText().toString());
-            animalDatos.setFechaFoto(etFecha.getText().toString());
-            animalDatos.setAdorable(valorSwitch);
-            animalDatos.setTipo(valorSpinner);
-            animalDatos.setImagen(Image.base64(foto));
-            presenter.onClickSave(animalDatos);
+            boolean nombre = animalDatos.setNombreAnimal(etNombre.getText().toString());
+            boolean especie = animalDatos.setEspecie((etEspecie.getText().toString()));
+            boolean lugarfoto = animalDatos.setLugarFoto(etLugar.getText().toString());
+            boolean fechafoto =animalDatos.setFechaFoto(etFecha.getText().toString());
+            boolean adorable =  animalDatos.setAdorable(valorSwitch);
+            boolean tipo =  animalDatos.setTipo(valorSpinner);
+            if(nombre && especie && lugarfoto && fechafoto && adorable && tipo){
+                animalDatos.setImagen(Image.base64(foto));
+                valido = true;
+            }
+
+            if(!nombre){
+                presenter.errorSegundaVerificacion(nombre,errorNombre);
+            }
+            if(!especie){
+                presenter.errorSegundaVerificacion(especie,errorEspecie);
+            }
+            if(!lugarfoto){
+                presenter.errorSegundaVerificacion(lugarfoto,errorLugar);
+            }
+            if(!fechafoto){
+                presenter.errorSegundaVerificacion(fechafoto,errorFecha);
+            }
+
+
+
+           presenter.onClickSave(animalDatos,valido);
 
 
 

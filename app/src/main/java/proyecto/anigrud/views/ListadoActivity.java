@@ -70,7 +70,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "Pulsando boton flotante");
-                presenter.onClickRecyclerView(-1);
+                presenter.onClickRecyclerView(-1,false);
 
             }
         });
@@ -107,7 +107,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                 Log.d("Error1", "Clic : " + items.get(position).getId());
 
                 if(items.get(position)!=null){
-                    presenter.onClickRecyclerView(items.get(position).getId());
+                    presenter.onClickRecyclerView(items.get(position).getId(),true);
                 }
             }
         });
@@ -175,10 +175,11 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     }
 
     @Override
-    public void lanzarFormulario(int id) {
+    public void lanzarFormulario(int id,boolean mostraElimanar) {
         if(id == -1) {
             // esto es launchForm() basicamente
             Intent intent = new Intent(ListadoActivity.this, FormJavaActivity.class);
+            intent.putExtra("btnEliminar",mostraElimanar);
             startActivity(intent);
         }
         else {
@@ -192,6 +193,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
              Log.i("intent",String.valueOf(id));
              intent.putExtra("idanimal",id);
+             intent.putExtra("btnEliminar",mostraElimanar);
 
            startActivity(intent);
            actualizaContador();
@@ -224,9 +226,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int which) {
-
                         presenter.ejecutarBorrado(position,items,animalAdapter);
-
                         Toast.makeText(getApplicationContext(),
                                 R.string.ElementoBorrado, Toast.LENGTH_SHORT).show();
                     }
@@ -255,7 +255,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         super.onResume();
         Log.i(TAG,"entrado en el onresume");
     }
-
 
     @Override
     protected void onStop() {

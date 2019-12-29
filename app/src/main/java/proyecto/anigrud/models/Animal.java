@@ -1,5 +1,7 @@
 package proyecto.anigrud.models;
 
+import proyecto.anigrud.Utilidades.Validar;
+
 public class Animal {
 
     private Integer id = null;
@@ -11,39 +13,8 @@ public class Animal {
     private String tipo = null;
     private Integer adorable =null;
 
-    public Integer getAdorable() {
-        return adorable;
-    }
-
-    public void setAdorable(Integer adorable) {
-        this.adorable = adorable;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getFechaFoto() {
-        return fechaFoto;
-    }
 
 
-
-    public void setFechaFoto(String fechaFoto) {
-        this.fechaFoto = fechaFoto;
-    }
-
-    public String getLugarFoto() {
-        return LugarFoto;
-    }
-
-    public void setLugarFoto(String lugarFoto) {
-        LugarFoto = lugarFoto;
-    }
 
     private final static String imagenDefecto = "iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABHNCSV" +
             "QICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAACCRJREFUeJztnWmMFEUUx3+" +
@@ -80,52 +51,102 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(Integer id, String nombreAnimal, String imagen, String especie) {
+    public Animal(Integer id, String nombreAnimal, String imagen, String especie, String lugarFoto, String fechaFoto, String tipo, Integer adorable) {
         this.id = id;
         this.nombreAnimal = nombreAnimal;
-       setImagen(imagen);
+        this.setImagen(imagen);
         this.especie = especie;
+        LugarFoto = lugarFoto;
+        this.fechaFoto = fechaFoto;
+        this.tipo = tipo;
+        this.adorable = adorable;
     }
 
+    public boolean setNombreAnimal(String nombreAnimal) {
+      boolean valido = false;
+       if(Validar.comprobarString(nombreAnimal)){
+           this.nombreAnimal = nombreAnimal;
+           valido = true;
+       }else {
 
-
-    public String getNombreAnimal() {
-        return nombreAnimal;
+       }
+        return  valido;
     }
-
-    public void setNombreAnimal(String nombreAnimal) {
-        this.nombreAnimal = nombreAnimal;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
     public void setImagen(String imagen) {
         if(imagen==null || imagen.isEmpty() || imagen.equals("") ){
-
             this.imagen = imagenDefecto;
         }else {
             this.imagen =imagen;
         }
 
     }
-    
+    public boolean setEspecie(String especie) {
+        boolean valido = false;
+      if( Validar.comprobarString(especie)){
+          this.especie = especie ;
+          valido = true;
+      }
+        return valido;
+    }
+    public boolean setLugarFoto(String lugarFoto) {
+        boolean valido = false;
+        if(Validar.comprobarString(lugarFoto)){
+            LugarFoto = lugarFoto;
+            valido = true;
+        }
+        return valido;
+    }
+    public boolean setAdorable(Integer adorable) {
+        boolean valido = false;
+        if(Validar.ceroUno(adorable)){
+            this.adorable = adorable;
+            valido = true;
+        }
+        return valido;
+    }
+    public boolean setTipo(String tipo) {
+        boolean valido = false;
+        if(Validar.comprobarString(tipo)){
+            this.tipo = tipo;
+            valido = true;
+        }
+        return valido;
+    }
+    public boolean setFechaFoto(String fechaFoto) {
+        boolean valido = false;
+        if(Validar.validarFecha(fechaFoto)){
+            this.fechaFoto = fechaFoto;
+            valido = true;
+        }
+        return  valido;
+    }
+
+    public String getNombreAnimal() {
+        return nombreAnimal;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getImagen() {
+        return imagen;
+    }
     public String getEspecie() {
         return especie;
     }
-
-    public void setEspecie(String especie) {
-        this.especie = especie;
-
+    public Integer getAdorable() {
+        return adorable;
+    }
+    public String getTipo() {
+        return tipo;
+    }
+    public String getFechaFoto() {
+        return fechaFoto;
+    }
+    public String getLugarFoto() {
+        return LugarFoto;
     }
 
     @Override
@@ -133,8 +154,6 @@ public class Animal {
         return "Animal{" +
                 "id=" + id +
                 ", nombreAnimal='" + nombreAnimal + '\'' +
-
-
                 '}';
     }
 

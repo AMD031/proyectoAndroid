@@ -3,6 +3,7 @@ package proyecto.anigrud.models;
 import android.app.Person;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -16,6 +17,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "AnimalDB";
     private static final int DATABASE_VERSION = 1;
+    private static final String TABLE_NAME = "animal";
 
     private static AnimalModelo sInstance;
 
@@ -39,16 +41,22 @@ public class AnimalModelo extends SQLiteOpenHelper {
         return sInstance;
     }
 
+     private Cursor getAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_NAME,null);
+        return  res;
+    }
 
 
-    public static  ArrayList<Animal> getAllanimal(){
+
+
+    public ArrayList<Animal> getAllanimal(){
         ArrayList<Animal> list = new ArrayList<>();
 
-        //Integer id, String nombreAnimal, String imagen, String especie
 
-        Animal a1 = new Animal(1,"gato",null,"felino");
-        Animal a2 = new Animal(2,"perro",Foto.fotoperro,"canido");
-        Animal a3 = new Animal(3,"elefante",null,"elefantido");
+      Animal a1 = new Animal(1,"gato",null,"felino",null,null,null,null);
+        Animal a2 = new Animal(2,"perro",Foto.fotoperro,"canido",null,null,null,null);
+        Animal a3 = new Animal(3,"elefante",null,"elefantido",null,null,null,null);
 
         Animal a4 = new Animal();
         a4.setEspecie("Felino");
@@ -56,12 +64,12 @@ public class AnimalModelo extends SQLiteOpenHelper {
         a4.setImagen(Foto.fotoTigre);
         a4.setNombreAnimal("tigre");
 
-         Animal a5 = new Animal(5,"caiman",null,"reptil");
-         Animal a6 = new Animal(6,"leon",Foto.fotoleon,"felino");
-         Animal a7 = new Animal(7,"leopardo",null,"felino");
-         Animal a8 = new Animal(8,"puma",null,"felino");
-         Animal a9 = new Animal(9,"lince",null,"felino");
-        Animal a10 = new Animal(10,"caracal",null,"felino");
+         Animal a5 = new Animal(5,"caiman",null,"reptil",null,null,null,null);
+         Animal a6 = new Animal(6,"leon",Foto.fotoleon,"felino",null,null,null,null);
+         Animal a7 = new Animal(7,"leopardo",null,"felino",null,null,null,null);
+         Animal a8 = new Animal(8,"puma",null,"felino",null,null,null,null);
+         Animal a9 = new Animal(9,"lince",null,"felino",null,null,null,null);
+        Animal a10 = new Animal(10,"caracal",null,"felino",null,null,null,null);
 
         list.add(a1);
         list.add(a2);
@@ -74,12 +82,24 @@ public class AnimalModelo extends SQLiteOpenHelper {
         list.add(a9);
         list.add(a10);
 
+
+
+
+
+
         return list;
     }
 
+
+
+
+
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-       String CREATE_TABLE_ANIMAL ="CREATE TABLE IF NOT EXISTS animal ("+
+
+       String CREATE_TABLE_ANIMAL ="CREATE TABLE IF NOT EXISTS TABLE_NAME ("+
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "nombreAnimal TEXT,"+
                 "especie TEXT," +

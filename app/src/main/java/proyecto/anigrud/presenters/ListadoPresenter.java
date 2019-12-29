@@ -45,11 +45,10 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     }
 
     @Override
-    public void onClickRecyclerView(int id) {
-        view.lanzarFormulario(id);
+    public void onClickRecyclerView(int id, boolean mostraElimanar) {
+        view.lanzarFormulario(id, mostraElimanar);
 
     }
-
 
     public void onClickAbout(){ view.lanzarSobre();}
 

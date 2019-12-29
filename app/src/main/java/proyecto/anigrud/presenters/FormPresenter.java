@@ -9,12 +9,13 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import proyecto.anigrud.Utilidades.Image;
 import proyecto.anigrud.Utilidades.Validar;
 import proyecto.anigrud.interfaces.FormInterface;
 import proyecto.anigrud.models.Animal;
 import proyecto.anigrud.models.AnimalModelo;
 
-public class FormPresenter implements FormInterface.Presenter {
+public class FormPresenter implements FormInterface.Presenter  {
 
     private FormInterface.View view;
     private AnimalModelo model;
@@ -26,8 +27,11 @@ public class FormPresenter implements FormInterface.Presenter {
     }
 
     @Override
-    public void onClickSave(Animal animal){
-        if( model.addNewAnimal(animal) ==true ){
+    public void onClickSave(Animal animal,boolean valido){
+        if( model.addNewAnimal(animal) == valido ){
+         if(animal.getImagen() ==   Animal.getImagenDefecto()){
+             animal.setImagen(null);
+         }
          view.existoGuardado();
          view.finalizaViewAnimal();
        }else{
@@ -59,9 +63,6 @@ public class FormPresenter implements FormInterface.Presenter {
 
     @Override
     public void resultPermission(int result) {
-
-
-
         if (result == PackageManager.PERMISSION_GRANTED) {
             Log.d("aniGRUD","permiso aceptado");
 
@@ -81,6 +82,12 @@ public class FormPresenter implements FormInterface.Presenter {
     @Override
     public void clicSiElimnar() {
         view.lanzarEliminado();
+    }
+
+    @Override
+    public void errorSegundaVerificacion(boolean correcto, TextView tv) {
+        view.errorCampo(correcto, tv);
+        view.errorFecha(correcto,tv);
     }
 
 

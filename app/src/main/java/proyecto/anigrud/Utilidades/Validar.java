@@ -19,6 +19,22 @@ public class Validar {
         return true;
     }
 
+    public static boolean ceroUno(Integer n){
+        boolean valido = false;
+        if(n ==0 || n ==1){
+            valido = true;
+        }
+        return  valido;
+    }
+
+    public static boolean comprobarString(String string){
+        boolean valido = false;
+        if(string !=null && !string.isEmpty() && !string.equals("") ){
+            valido =  true;
+        }
+        return valido;
+    }
+
 
     public static boolean compruebaCampo(TextView tv) {
        boolean correcto = false;

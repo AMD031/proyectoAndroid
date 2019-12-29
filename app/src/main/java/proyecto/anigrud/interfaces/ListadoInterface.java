@@ -8,7 +8,7 @@ import proyecto.anigrud.views.AnimalAdapter;
 public interface ListadoInterface {
     public interface View{
 
-      void lanzarFormulario(int id);
+      void lanzarFormulario(int id,boolean mostraElimanar);
       void lanzarSobre();
       void lanzarBuscar();
       void lanzarDialog(int position, ArrayList<Animal> items, AnimalAdapter animalAdapter);
@@ -24,7 +24,7 @@ public interface ListadoInterface {
         void onClickAbout();
         void onClickAdd();
         void onClicckSearch();
-        void onClickRecyclerView(int id);
+        void onClickRecyclerView(int id,boolean mostraElimanar);
         ArrayList<Animal> getAllAnimal();
         void repintarRecycler(AnimalAdapter animalAdapter);
     }
