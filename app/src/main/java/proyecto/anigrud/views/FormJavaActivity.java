@@ -126,15 +126,12 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         spinnerTipos = (Spinner) findViewById(R.id.sTipo);
         spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
         spinnerTipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id)
             {
                 Toast.makeText(adapterView.getContext(),
                         (String) adapterView.getItemAtPosition(pos), Toast.LENGTH_SHORT).show();
-
                 valorSpinner = (String) adapterView.getItemAtPosition(pos);
-
             }
 
             @Override
@@ -336,10 +333,9 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     @Override
     public void onClick(View v) {
         if(v== btnGuardar){
-
-
                boolean valido = false;
                animalDatos = new Animal();
+               animalDatos.setId(new Integer(id));
                boolean nombre = animalDatos.setNombreAnimal(etNombre.getText().toString());
                boolean especie = animalDatos.setEspecie((etEspecie.getText().toString()));
                boolean lugarfoto = animalDatos.setLugarFoto(etLugar.getText().toString());
@@ -367,7 +363,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             if(!this.mostarbtnEliminar) {
                presenter.onClickSave(animalDatos, valido);
            }else {
-              // presenter.updateData(animalDatos,valido);
+                presenter.updateAnimal(animalDatos,valido);
            }
 
 
@@ -430,9 +426,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
         if(v == btnEliminarT){
             presenter.mostarOkCancelT();
-
         }
-
     }
 
 
@@ -467,7 +461,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             myAlertDialog.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface arg0, int arg1) {
-                    presenter.clicSiElimnar();
+                    presenter.clicSiElimnar(id);
                 }});
             myAlertDialog.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
 

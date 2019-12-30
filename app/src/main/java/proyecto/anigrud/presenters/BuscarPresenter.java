@@ -4,6 +4,7 @@ import android.widget.TextView;
 
 import proyecto.anigrud.Utilidades.Validar;
 import proyecto.anigrud.interfaces.BuscarInterface;
+import proyecto.anigrud.models.AnimalModelo;
 
 public class BuscarPresenter implements BuscarInterface.Presenter {
 
@@ -12,7 +13,7 @@ public class BuscarPresenter implements BuscarInterface.Presenter {
 
     public BuscarPresenter(BuscarInterface.View view) {
         this.view = view;
-    }
+      }
 
     @Override
     public void onClickSave() {

@@ -11,7 +11,7 @@
     <string name="ccontacto">Contacto:</string>
     <string name="contactoValor" translatable="false">AntonioMD@gmail.com</string>
     <string name="sobre">Sobre</string>
-    <string name="parametro">Parametro</string>
+    <string name="parametro">Nombre del animal</string>
     <string name="filtro">Filtro</string>
     <string name="buscar">Buscar</string>
     <string name="LugarFoto">Lugar de la foto</string>
@@ -22,7 +22,7 @@
     <string name="errorFecha">Error en el formato</string>
     <string name="errorCampo">Error campo vacío</string>
     <string name="borrarTipo">¿Qué quieres borrar?</string>
-    <string name="si">si</string>
+    <string name="si">Sí</string>
     <string name="cancelar">Cancelar</string>
     <string name="datosAnimal">Datos del animal:</string>
     <string name="fechaFoto">Fecha de la foto</string>

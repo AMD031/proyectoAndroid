@@ -78,7 +78,8 @@ public class FormPresenter implements FormInterface.Presenter  {
     }
 
     @Override
-    public void clicSiElimnar() {
+    public void clicSiElimnar(Integer id) {
+        model.eliminarAnimal(id);
         view.lanzarEliminado();
     }
 
@@ -95,7 +96,20 @@ public class FormPresenter implements FormInterface.Presenter  {
 
     @Override
     public void recuperarDatos(int id) {
-        view.recuperDatosAnimal(model.obtenerAnimal(id));
+       Animal animal = model.obtenerAnimal(id);
+       view.recuperDatosAnimal(animal);
+    }
+
+    @Override
+    public void updateAnimal(Animal animalDatos, boolean valido) {
+        if( valido ){
+            model.guardarCambios(animalDatos);
+            view.existoGuardado();
+            view.finalizaViewAnimal();
+        }else {
+            view.errorGuardado();
+
+        }
     }
 
 

@@ -1,12 +1,14 @@
 package proyecto.anigrud.views;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +24,7 @@ import proyecto.anigrud.R;
 import proyecto.anigrud.Utilidades.Calendario;
 import proyecto.anigrud.Utilidades.ListaSpinner;
 import proyecto.anigrud.interfaces.BuscarInterface;
+import proyecto.anigrud.interfaces.ListadoInterface;
 import proyecto.anigrud.presenters.BuscarPresenter;
 
 public class BuscarActivity extends AppCompatActivity implements View.OnClickListener, BuscarInterface.View,  View.OnFocusChangeListener{
@@ -30,7 +33,9 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnGuardar;
     private BuscarInterface.Presenter presenter;
     private Spinner spinnerTipos;
+    private EditText parametro;
     String TAG = "aniGRUD/Buscar";
+    private String valorSpinner = "Mamífero";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,7 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         presenter = new BuscarPresenter(this);
-
+        parametro = findViewById(R.id.parametro);
         btnFecha = findViewById(R.id.btnFecha);
        etFecha =  findViewById(R.id.etFecha);
        btnGuardar = findViewById(R.id.btnGuardar);
@@ -60,6 +65,8 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
             {
                 Toast.makeText(adapterView.getContext(),
                         (String) adapterView.getItemAtPosition(pos), Toast.LENGTH_SHORT).show();
+
+                valorSpinner = (String) adapterView.getItemAtPosition(pos);
             }
 
             @Override
@@ -77,13 +84,17 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
         if(v== btnGuardar){
             this.presenter.onClickSave();
         }
-
-
     }
+
+
 
     @Override
     public void lanzarGuardado( ) {
-        finish();
+        Intent intent = new Intent(BuscarActivity.this, ListadoActivity.class);
+        intent.putExtra("nombreB",parametro.getText().toString());
+        intent.putExtra("tipoB",valorSpinner);
+        intent.putExtra("fechaB",etFecha.getText().toString());
+        startActivity(intent);
     }
 
     @Override

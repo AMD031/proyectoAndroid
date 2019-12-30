@@ -34,12 +34,11 @@ public interface FormInterface {
         void onclickImagen(Context myContext);
         void resultPermission(int result);
         void mostarOkCancelT();
-        void clicSiElimnar();
+        void clicSiElimnar(Integer id);
         void errorSegundaVerificacion(boolean correcto, TextView tv);
-
          void ocultarMostarbtnEliminar(boolean mostarbtnEliminar);
-
          void recuperarDatos(int id);
+         void updateAnimal(Animal animalDatos, boolean valido);
      }
 
 

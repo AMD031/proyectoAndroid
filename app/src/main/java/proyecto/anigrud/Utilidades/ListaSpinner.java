@@ -11,7 +11,7 @@ public class ListaSpinner extends AppCompatActivity {
  private static ArrayList<String> datos;
    private static void cargaDatos(){
         datos = new ArrayList<>();
-
+        datos.add("Desconocido");
         datos.add("Mamífero");
         datos.add("Ave");
         datos.add("Reptil");

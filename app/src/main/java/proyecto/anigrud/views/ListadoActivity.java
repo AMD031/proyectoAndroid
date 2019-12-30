@@ -108,7 +108,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
                 if(items.get(position)!=null){
                     presenter.onClickRecyclerView(items.get(position).getId(),true);
-
                 }
             }
         });
@@ -123,9 +122,28 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         super.onResume();
 
       presenter.Actulizarlista(items,adaptador);
+        Bundle datos = this.getIntent().getExtras();
+        if(datos!=null) {
 
 
 
+                 String nombreAnimal = datos.getString("nombreB", "");
+                 String tipo = datos.getString("tipoB", "");
+                 String fecha = datos.getString("fechaB", "");
+
+
+                ArrayList<String> argumentos = new ArrayList<>();
+                argumentos.add(nombreAnimal);
+                argumentos.add(tipo);
+                argumentos.add(fecha);
+
+                presenter.ActulizarlistaCriterios(items, adaptador, argumentos);
+                datos.putBoolean("eBuscqueda",false);
+
+
+
+        }
+        datos =null;
     }
 
     public void actualizaContador(){
@@ -139,11 +157,16 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                 ItemTouchHelper(new SwipeToDeleteCallback(mAdapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
+  @Override
+    public void finalizaLista(){
+        finish();
+    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_search:
+
                 presenter.onClicckSearch();
                 return true;
             case R.id.ordenar:

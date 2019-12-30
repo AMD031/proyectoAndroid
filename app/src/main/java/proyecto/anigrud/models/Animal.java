@@ -148,16 +148,17 @@ public class Animal {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Animal{" +
                 "id=" + id +
                 ", nombreAnimal='" + nombreAnimal + '\'' +
+                ", especie='" + especie + '\'' +
+                ", LugarFoto='" + LugarFoto + '\'' +
+                ", fechaFoto='" + fechaFoto + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", adorable=" + adorable +
                 '}';
     }
-
-
-
-
 
 
 }

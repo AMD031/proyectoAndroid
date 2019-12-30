@@ -13,6 +13,7 @@ public interface ListadoInterface {
       void lanzarBuscar();
       void lanzarDialog(int position, ArrayList<Animal> items, AnimalAdapter animalAdapter);
       void actualizaContador();
+      void finalizaLista();
 
 
     }
@@ -28,6 +29,8 @@ public interface ListadoInterface {
         ArrayList<Animal> getAllAnimal();
         void repintarRecycler(AnimalAdapter animalAdapter);
         void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador);
+
+        void ActulizarlistaCriterios(ArrayList<Animal> items, AnimalAdapter adaptador, ArrayList<String> argumentos);
     }
 
 }

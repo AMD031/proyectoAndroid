@@ -10,6 +10,7 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import proyecto.anigrud.views.AniCRUD;
 import proyecto.anigrud.views.MyApplication;
@@ -41,9 +42,6 @@ public class AnimalModelo extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME,null);
         return  res;
     }
-
-
-
 
     public ArrayList<Animal> getAllanimal(){
         ArrayList<Animal> list = new ArrayList<>();
@@ -111,10 +109,10 @@ public class AnimalModelo extends SQLiteOpenHelper {
         Animal animal = new Animal();
         SQLiteDatabase db= this.getWritableDatabase();
         String[] argumentos = {String.valueOf(id)};
-        Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME +" WHERE id = ?",argumentos);
+        Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME +" WHERE id = ?"
+                ,argumentos);
         if(res.getCount()>0) {
             while (res.moveToNext()) {
-
                 animal.setId(res.getInt(0));
                 animal.setNombreAnimal(res.getString(1));
                 animal.setEspecie(res.getString(2));
@@ -129,9 +127,36 @@ public class AnimalModelo extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<Animal> obtenerAnimalporCriterio(String nombreAnimal, String tipo,String fecha) {
+        ArrayList<Animal> list = new ArrayList<>();
+        SQLiteDatabase db= this.getWritableDatabase();
+        if(tipo.equals("Desconocido")){
+            tipo="";
+        }
+        String[] argumentos = {"%"+nombreAnimal+"%","%"+tipo+"%","%"+fecha+"%"};
+        Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME +" WHERE nombreAnimal LIKE ? "+
+                                      "AND tipo LIKE ? "+
+                                      "AND fechafoto LIKE ? "
+                ,argumentos);
+        if(res.getCount()>0) {
+            while (res.moveToNext()) {
+                Animal animal = new Animal();
+                animal.setId(res.getInt(0));
+                animal.setNombreAnimal(res.getString(1));
+                animal.setEspecie(res.getString(2));
+                animal.setLugarFoto(res.getString(3));
+                animal.setFechaFoto(res.getString(4));
+                animal.setAdorable(res.getInt(5));
+                animal.setTipo(res.getString(6));
+                animal.setImagen(res.getString(7));
+                list.add(animal);
+            }
+        }
+        return list;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-
        String CREATE_TABLE_ANIMAL ="CREATE TABLE IF NOT EXISTS "+ TABLE_NAME +"("+
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "nombreAnimal TEXT,"+
@@ -142,12 +167,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
                 "tipo TEXT,"+
                 "foto TEXT"+
                  ")";
-
         db.execSQL(CREATE_TABLE_ANIMAL);
-
-
-
-
     }
 
     @Override
@@ -161,11 +181,23 @@ public class AnimalModelo extends SQLiteOpenHelper {
         db.setForeignKeyConstraintsEnabled(true);
     }
 
+    public int guardarCambios(Animal animal) {
+        SQLiteDatabase baseDeDatos = this.getWritableDatabase();
 
-
-
-
-
+        ContentValues valoresParaActualizar = new ContentValues();
+        valoresParaActualizar.put("nombreAnimal", animal.getNombreAnimal());
+        valoresParaActualizar.put("especie", animal.getEspecie());
+        valoresParaActualizar.put("lugarfoto", animal.getLugarFoto());
+        valoresParaActualizar.put("fechafoto", animal.getFechaFoto());
+        valoresParaActualizar.put("adorable",animal.getAdorable() );
+        valoresParaActualizar.put("tipo", animal.getTipo());
+        valoresParaActualizar.put("foto", animal.getImagen());
+        // where id...
+        String campoParaActualizar = "id = ?";
+        // ... = idMascota
+        String[] argumentosParaActualizar = {String.valueOf(animal.getId())};
+        return baseDeDatos.update(TABLE_NAME, valoresParaActualizar, campoParaActualizar, argumentosParaActualizar);
+    }
 
     public boolean addNewAnimal(Animal animal) {
 

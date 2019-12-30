@@ -24,7 +24,7 @@
     <string name="borrarTipo">What do you want delete?</string>
     <string name="cancelar">Cancel</string>
     <string name="errorCampo">Error empty field</string>
-    <string name="si">yes</string>
+    <string name="si">Yes</string>
     <string name="datosAnimal">Animal data:</string>
     <string name="fechaFoto">Photo date:</string>
     <string name="fotoAnimal">Animal picture:</string>
@@ -48,4 +48,5 @@
     <string name="errorGuardado">Save failed.</string>
     <string name="existoGuardado">The animal has been saved successfully.</string>
     <string name="resultadosEncontrados">Results found</string>
+    <string name="imagenSelecion">Select an image</string>
 </resources>

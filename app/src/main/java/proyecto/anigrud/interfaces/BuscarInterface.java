@@ -11,6 +11,7 @@ public interface BuscarInterface {
 
     public interface Presenter
     { void onClickSave();
+
         void checkDate(String fecha, TextView tv);
     }
 

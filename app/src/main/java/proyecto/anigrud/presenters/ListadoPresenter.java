@@ -13,11 +13,11 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
 
     private ListadoInterface.View view;
 
-    private AnimalModelo animal;
+    private AnimalModelo modelo;
 
  public ListadoPresenter(ListadoInterface.View view){
      this.view = view;
-     this.animal =  AnimalModelo.getInstance();
+     this.modelo =  AnimalModelo.getInstance();
  }
 
     @Override
@@ -25,7 +25,7 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
          Animal mRecentlyDeletedItem = items.get(position);
          //int mRecentlyDeletedItemPosition = position;
          items.remove(position);
-         animal.eliminarAnimal(mRecentlyDeletedItem.getId());
+         modelo.eliminarAnimal(mRecentlyDeletedItem.getId());
          Log.i("tam",mRecentlyDeletedItem.toString());
          animalAdapter.notifyItemRemoved(position);
          view.actualizaContador();
@@ -52,7 +52,7 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     public void onClickAbout(){ view.lanzarSobre();}
 
     public ArrayList<Animal>getAllAnimal(){
-        return  animal.getAllanimal();
+        return  modelo.getAllanimal();
     }
 
     @Override
@@ -64,6 +64,14 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     public void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador) {
         items.clear();
         items.addAll(getAllAnimal());
+        adaptador.notifyDataSetChanged();
+        view.actualizaContador();
+    }
+
+    @Override
+    public void ActulizarlistaCriterios(ArrayList<Animal> items, AnimalAdapter adaptador, ArrayList<String> argumentos) {
+        items.clear();
+        items.addAll(modelo.obtenerAnimalporCriterio(argumentos.get(0),argumentos.get(1),argumentos.get(2)));
         adaptador.notifyDataSetChanged();
         view.actualizaContador();
     }
