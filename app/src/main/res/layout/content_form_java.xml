@@ -52,8 +52,6 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"><![CDATA[
                         android:paddingTop="10dp" />
-
-
                     ]]>
 
                     <TextView style="@style/Error"
@@ -68,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_action_name"
                         android:hint="@string/NombreAnimal"
-                        android:maxLines="1" />
+                        android:singleLine="true"/>
 
                     <TextView style="@style/Error"
                         android:id="@+id/errorCampoEspecie"
@@ -82,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_action_especie"
                         android:hint="@string/especie"
-                        android:maxLines="1" />
+                        android:singleLine="true" />
 
                     <TextView style="@style/Error"
                         android:id="@+id/errorCampoLugar"
@@ -96,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_action_lugar"
                         android:hint="@string/LugarFoto"
-                        android:maxLines="1" />
+                        android:singleLine="true" />
 
 
                     <TextView style="@style/Error"
@@ -118,7 +116,8 @@
                                 android:id="@+id/btnFechaF"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_action_fecha" />
+                                app:srcCompat="@drawable/ic_action_fecha"
+                                />
                         </LinearLayout>
 
                         <LinearLayout
@@ -135,7 +134,7 @@
                                 android:gravity="center_horizontal|center_vertical"
                                 android:hint="@string/fechaFoto"
                                 android:inputType="date"
-                                android:maxLines="1"
+                                android:singleLine="true"
                                 android:paddingTop="11dp" />
                         </LinearLayout>
 
@@ -277,7 +276,8 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingTop="50dp">
+                android:paddingTop="50dp"
+                android:paddingRight="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -297,7 +297,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:paddingLeft="150dp"></LinearLayout>
+                    android:paddingLeft="10dp"></LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -308,6 +308,7 @@
                         android:id="@+id/btnEliminarT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:drawableLeft="@drawable/ic_delete"
                         android:text="@string/Eliminar" />
                 </LinearLayout>

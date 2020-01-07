@@ -9,16 +9,23 @@ import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
 
 import proyecto.anigrud.R;
+import proyecto.anigrud.models.Animal;
+import proyecto.anigrud.models.AnimalModelo;
 
 public class Image {
 
     public static String base64 (ImageView imageView){
-        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageInByte = baos.toByteArray();
-        String foto = Base64.encodeToString(imageInByte, Base64.DEFAULT);
-        return  foto;
+        String foto;
+        try {
+            Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageInByte = baos.toByteArray();
+             foto = Base64.encodeToString(imageInByte, Base64.DEFAULT);
+        }catch(Exception e){
+           foto = null;
+        }
+       return foto;
     }
 
     public static Bitmap bitmap (String mBase64string){
@@ -26,9 +33,4 @@ public class Image {
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;
     }
-
-
-
-
-
 }

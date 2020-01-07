@@ -125,8 +125,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         Bundle datos = this.getIntent().getExtras();
         if(datos!=null) {
 
-
-
                  String nombreAnimal = datos.getString("nombreB", "");
                  String tipo = datos.getString("tipoB", "");
                  String fecha = datos.getString("fechaB", "");
