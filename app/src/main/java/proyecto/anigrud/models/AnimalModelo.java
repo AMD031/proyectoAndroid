@@ -201,8 +201,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
     public boolean addNewAnimal(Animal animal) {
 
-        Log.d("ani",animal.toString());
-     SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
      try {
             // The user might already exist in the database (i.e. the same user created multiple posts).
@@ -214,7 +213,6 @@ public class AnimalModelo extends SQLiteOpenHelper {
             values.put("adorable",animal.getAdorable() );
             values.put("tipo", animal.getTipo());
             values.put("foto", animal.getImagen());
-
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_NAME, null, values);

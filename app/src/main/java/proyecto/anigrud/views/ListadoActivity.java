@@ -46,8 +46,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     MyApplication my = new MyApplication();
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
