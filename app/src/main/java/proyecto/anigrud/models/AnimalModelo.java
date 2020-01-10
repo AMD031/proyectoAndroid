@@ -98,6 +98,22 @@ public class AnimalModelo extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<String> obtenerCategorias(){
+        ArrayList<String> tipos = new ArrayList<>();
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT DISTINCT tipo  FROM "+TABLE_NAME
+                ,null);
+
+        if(res.getCount()>0) {
+            while (res.moveToNext()) {
+                tipos.add( res.getString(6));
+            }
+        }
+
+        return tipos;
+    }
+
+
     public int eliminarAnimal(Integer id) {
         SQLiteDatabase baseDeDatos = this.getWritableDatabase();
         String[] argumentos = {String.valueOf(id)};

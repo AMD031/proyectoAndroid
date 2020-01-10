@@ -17,9 +17,6 @@ public class ListaSpinner extends AppCompatActivity {
         datos.add("Reptil");
         datos.add("Agnato");
         datos.add("Anfibio");
-
-
-
     }
 
     public static ArrayList<String> getDatos() {
