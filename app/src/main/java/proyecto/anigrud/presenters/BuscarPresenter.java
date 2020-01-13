@@ -2,6 +2,8 @@ package proyecto.anigrud.presenters;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import proyecto.anigrud.Utilidades.Validar;
 import proyecto.anigrud.interfaces.BuscarInterface;
 import proyecto.anigrud.models.AnimalModelo;
@@ -25,7 +27,11 @@ public class BuscarPresenter implements BuscarInterface.Presenter {
        view.errorFecha(Validar.validarFecha(fecha),tv);
     }
 
-
+    @Override
+    public ArrayList<String> ObtenerTipos() {
+        ArrayList <String> tipos = AnimalModelo.getInstance().getTipos();
+        return tipos;
+    }
 
 
 }

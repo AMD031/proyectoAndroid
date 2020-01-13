@@ -45,6 +45,7 @@ import proyecto.anigrud.Utilidades.Image;
 import proyecto.anigrud.Utilidades.ListaSpinner;
 import proyecto.anigrud.interfaces.FormInterface;
 import proyecto.anigrud.models.Animal;
+import proyecto.anigrud.models.AnimalModelo;
 import proyecto.anigrud.presenters.FormPresenter;
 
 public class FormJavaActivity extends AppCompatActivity implements FormInterface.View, View.OnClickListener,View.OnFocusChangeListener
@@ -123,8 +124,10 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         tAdorable.setOnCheckedChangeListener(this);
         valorSwitch =0;
 
+
+
         spinnerTipos = (Spinner) findViewById(R.id.sTipo);
-        spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
+        spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, presenter.ObtenerTipos()));
         spinnerTipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id)
@@ -139,6 +142,7 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             {    }
 
         });
+
 
 
         etFecha.addTextChangedListener(new TextWatcher() {
@@ -186,9 +190,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             }
             this.foto.setImageBitmap(Image.bitmap( animal.getImagen()));
             this.spinnerTipos.setSelection(ListaSpinner.getIndex(this.spinnerTipos,animal.getTipo())  );
-
-
-
         }
 
     }
@@ -255,7 +256,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
     @Override
     public void requestPermission() {
-
         ActivityCompat.requestPermissions(FormJavaActivity.this, new String[]
                 {Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
@@ -273,13 +273,9 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-
-
         startActivityForResult(
                 Intent.createChooser(intent, getResources().getResourceName(R.string.imagenSelecion)),
                 SELECT_FILE);
-
-
     }
 
 
@@ -324,7 +320,8 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG,"entrado en el stop");
+        Log.i(TAG,"entrado en el destroy");
+        presenter.borrarArrayTipos();
     }
 
 
@@ -377,8 +374,8 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.borrarTipo);
-            String tipos[] = new String[ListaSpinner.getDatos().size()];
-            ListaSpinner.getDatos().toArray(tipos);
+            String tipos[] = new String[presenter.ObtenerTipos().size()];
+            presenter.ObtenerTipos().toArray(tipos);
 
             builder.setItems(tipos, new DialogInterface.OnClickListener() {
                 @Override
@@ -406,7 +403,8 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
                @Override
                public void onClick(DialogInterface dialog, int which) {
                    String m_Text = input.getText().toString();
-                   ListaSpinner.agregarDato(m_Text);
+                   presenter.agregarTipo(m_Text);
+
 
                }
            });
@@ -450,7 +448,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             presenter.checkField(etLugar ,errorLugar);
         }
 
-
      }
 
         public void okCancelT(){
@@ -475,7 +472,6 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
 
     @Override
     public void lanzarEliminado() {
-
         finish();
     }
 
@@ -496,10 +492,8 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             //myAlertDialog.setTitle("--- Title ---");
             myAlertDialog.setMessage(R.string.borrarTipo);
             myAlertDialog.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
-
                 public void onClick(DialogInterface arg0, int arg1) {
-                    ListaSpinner.borrarDato(indice);
-                    finish();
+                    presenter.borrarTipo(indice);
                 }});
             myAlertDialog.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
 

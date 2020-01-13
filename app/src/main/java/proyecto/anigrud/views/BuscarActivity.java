@@ -25,6 +25,7 @@ import proyecto.anigrud.Utilidades.Calendario;
 import proyecto.anigrud.Utilidades.ListaSpinner;
 import proyecto.anigrud.interfaces.BuscarInterface;
 import proyecto.anigrud.interfaces.ListadoInterface;
+import proyecto.anigrud.models.AnimalModelo;
 import proyecto.anigrud.presenters.BuscarPresenter;
 
 public class BuscarActivity extends AppCompatActivity implements View.OnClickListener, BuscarInterface.View,  View.OnFocusChangeListener{
@@ -57,7 +58,7 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
 
 
         spinnerTipos = (Spinner) findViewById(R.id.spinner);
-        spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaSpinner.getDatos()));
+        spinnerTipos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,presenter.ObtenerTipos()));
 
         spinnerTipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

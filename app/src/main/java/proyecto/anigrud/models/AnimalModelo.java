@@ -12,6 +12,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import proyecto.anigrud.Utilidades.Util;
 import proyecto.anigrud.views.AniCRUD;
 import proyecto.anigrud.views.MyApplication;
 
@@ -20,6 +21,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "AnimalDB";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "animal";
+    private ArrayList<String>datos;
 
     private static AnimalModelo sInstance;
 
@@ -98,19 +100,35 @@ public class AnimalModelo extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<String> obtenerCategorias(){
-        ArrayList<String> tipos = new ArrayList<>();
+
+
+
+
+    public ArrayList<String> getTipos(){
+       if(datos ==null){
+           datos = new ArrayList<>();
+           datos.add("Desconocido");
+           datos.add("Mamífero");
+           datos.add("Ave");
+           datos.add("Reptil");
+           datos.add("Agnato");
+           datos.add("Anfibio");
+       }
+
         SQLiteDatabase db= this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT DISTINCT tipo  FROM "+TABLE_NAME
+        Cursor res = db.rawQuery("SELECT DISTINCT tipo FROM "+TABLE_NAME
                 ,null);
 
         if(res.getCount()>0) {
             while (res.moveToNext()) {
-                tipos.add( res.getString(6));
+             String resulatado =   res.getString(0);
+             if(!Util.comprobarSiExiste(datos, resulatado)){
+                 datos.add( resulatado );
+             }
             }
         }
 
-        return tipos;
+        return  datos;
     }
 
 
@@ -184,6 +202,35 @@ public class AnimalModelo extends SQLiteOpenHelper {
                 "foto TEXT"+
                  ")";
         db.execSQL(CREATE_TABLE_ANIMAL);
+        agregarPorDefecto(new Animal("leon",Foto.fotoleon,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("tigre",Foto.fotoTigre,"felino","india","8/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("perro",Foto.fotoperro,"canido","mi casa","10/01/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leon",Foto.fotoleon,"desconocido","africa","13/01/2020","Desconocido",0),db);
+        agregarPorDefecto(new Animal("caracal",null,"felino","europa","13/01/1980","",0),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
+
+
+    }
+
+
+    private void agregarPorDefecto(Animal animal,SQLiteDatabase db ){
+        ContentValues values = new ContentValues();
+        values.put("nombreAnimal", animal.getNombreAnimal());
+        values.put("especie", animal.getEspecie());
+        values.put("lugarfoto", animal.getLugarFoto());
+        values.put("fechafoto", animal.getFechaFoto());
+        values.put("adorable",animal.getAdorable() );
+        values.put("tipo", animal.getTipo());
+        values.put("foto", animal.getImagen());
+        db.insertOrThrow(TABLE_NAME, null, values);
     }
 
     @Override
@@ -242,5 +289,9 @@ public class AnimalModelo extends SQLiteOpenHelper {
             return true;
         }
 
+    }
+
+    public void borrarTipos() {
+        datos =null;
     }
 }

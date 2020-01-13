@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
+
 import proyecto.anigrud.Utilidades.Image;
 import proyecto.anigrud.Utilidades.Validar;
 import proyecto.anigrud.interfaces.FormInterface;
@@ -110,6 +112,27 @@ public class FormPresenter implements FormInterface.Presenter  {
             view.errorGuardado();
 
         }
+    }
+
+    @Override
+    public ArrayList<String> ObtenerTipos() {
+        ArrayList <String> tipos = AnimalModelo.getInstance().getTipos();
+        return tipos;
+    }
+
+    @Override
+    public void borrarTipo(int indice) {
+        model.getTipos().remove(indice);
+    }
+
+    @Override
+    public void agregarTipo(String m_text) {
+        model.getTipos().add(m_text);
+    }
+
+    @Override
+    public void borrarArrayTipos() {
+        model.borrarTipos();
     }
 
 

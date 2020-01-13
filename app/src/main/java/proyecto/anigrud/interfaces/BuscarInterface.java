@@ -2,6 +2,8 @@ package proyecto.anigrud.interfaces;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public interface BuscarInterface {
 
     public interface View{
@@ -13,6 +15,8 @@ public interface BuscarInterface {
     { void onClickSave();
 
         void checkDate(String fecha, TextView tv);
+
+        ArrayList <String> ObtenerTipos();
     }
 
 

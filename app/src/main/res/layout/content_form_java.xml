@@ -229,7 +229,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
-                        app:srcCompat="@drawable/ic_quitar" />
+                        app:srcCompat="@drawable/ic_quitar"
+                        android:visibility="gone"
+                        />
                 </LinearLayout>
 
 

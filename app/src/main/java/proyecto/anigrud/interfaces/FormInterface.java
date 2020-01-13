@@ -39,6 +39,10 @@ public interface FormInterface {
          void ocultarMostarbtnEliminar(boolean mostarbtnEliminar);
          void recuperarDatos(int id);
          void updateAnimal(Animal animalDatos, boolean valido);
+         ArrayList<String> ObtenerTipos();
+         void borrarTipo(int indice);
+         void agregarTipo(String m_text);
+         void borrarArrayTipos();
      }
 
 

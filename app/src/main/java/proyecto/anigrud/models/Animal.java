@@ -59,6 +59,17 @@ public class Animal {
         this.adorable = adorable;
     }
 
+
+    public Animal(String nombreAnimal, String imagen, String especie, String lugarFoto, String fechaFoto, String tipo, Integer adorable) {
+        this.nombreAnimal = nombreAnimal;
+        this.setImagen(imagen);
+        this.especie = especie;
+        LugarFoto = lugarFoto;
+        this.fechaFoto = fechaFoto;
+        this.tipo = tipo;
+        this.adorable = adorable;
+    }
+
     public boolean setNombreAnimal(String nombreAnimal) {
       boolean valido = false;
        if(Validar.comprobarString(nombreAnimal)){
