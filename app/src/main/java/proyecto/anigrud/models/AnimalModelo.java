@@ -50,69 +50,35 @@ public class AnimalModelo extends SQLiteOpenHelper {
         Cursor res = getAllData();
 
         if(res.getCount()>0){
-         while (res.moveToNext()){
-            Animal dato = new Animal();
-            dato.setId(res.getInt(0));
-            dato.setNombreAnimal(res.getString(1));
-            dato.setEspecie(res.getString(2));
-            dato.setLugarFoto(res.getString(3));
-            dato.setFechaFoto(res.getString(4));
-            dato.setAdorable(res.getInt(5));
-            dato.setTipo(res.getString(6));
-            dato.setImagen(res.getString(7));
-            list.add(dato);
-          }
+            if(res.moveToFirst()){
+                 while (res.moveToNext()){
+                    Animal animal = new Animal();
+                     animal.setId(res.getInt(res.getColumnIndex("id")));
+                     animal.setNombreAnimal(res.getString(res.getColumnIndex("nombreAnimal")));
+                     animal.setEspecie(res.getString(res.getColumnIndex("especie")));
+                     animal.setLugarFoto(res.getString(res.getColumnIndex("lugarfoto")));
+                     animal.setFechaFoto(res.getString(res.getColumnIndex("fechafoto")));
+                     animal.setAdorable(res.getInt(res.getColumnIndex("adorable")));
+                     animal.setTipo(res.getString(res.getColumnIndex("tipo")));
+                     animal.setImagen(res.getString(res.getColumnIndex("foto")));
+                    list.add(animal);
+                  }
+         }
+
       }
-
-
-
-
-
-      /*Animal a1 = new Animal(1,"gato",null,"felino",null,null,null,null);
-        Animal a2 = new Animal(2,"perro",Foto.fotoperro,"canido",null,null,null,null);
-        Animal a3 = new Animal(3,"elefante",null,"elefantido",null,null,null,null);
-
-        Animal a4 = new Animal();
-        a4.setEspecie("Felino");
-        a4.setId(4);
-        a4.setImagen(Foto.fotoTigre);
-        a4.setNombreAnimal("tigre");
-
-         Animal a5 = new Animal(5,"caiman",null,"reptil",null,null,null,null);
-         Animal a6 = new Animal(6,"leon",Foto.fotoleon,"felino",null,null,null,null);
-         Animal a7 = new Animal(7,"leopardo",null,"felino",null,null,null,null);
-         Animal a8 = new Animal(8,"puma",null,"felino",null,null,null,null);
-         Animal a9 = new Animal(9,"lince",null,"felino",null,null,null,null);
-        Animal a10 = new Animal(10,"caracal",null,"felino",null,null,null,null);
-
-        list.add(a1);
-        list.add(a2);
-        list.add(a3);
-        list.add(a4);
-        list.add(a5);
-        list.add(a6);
-        list.add(a7);
-        list.add(a8);
-        list.add(a9);
-        list.add(a10);*/
 
         return list;
     }
-
-
-
-
-
 
     public ArrayList<String> getTipos(){
        if(datos ==null){
            datos = new ArrayList<>();
            datos.add("Desconocido");
-           datos.add("Mamífero");
+          /* datos.add("Mamífero");
            datos.add("Ave");
            datos.add("Reptil");
            datos.add("Agnato");
-           datos.add("Anfibio");
+           datos.add("Anfibio");*/
        }
 
         SQLiteDatabase db= this.getWritableDatabase();
@@ -127,7 +93,6 @@ public class AnimalModelo extends SQLiteOpenHelper {
              }
             }
         }
-
         return  datos;
     }
 
@@ -147,19 +112,18 @@ public class AnimalModelo extends SQLiteOpenHelper {
                 ,argumentos);
         if(res.getCount()>0) {
             while (res.moveToNext()) {
-                animal.setId(res.getInt(0));
-                animal.setNombreAnimal(res.getString(1));
-                animal.setEspecie(res.getString(2));
-                animal.setLugarFoto(res.getString(3));
-                animal.setFechaFoto(res.getString(4));
-                animal.setAdorable(res.getInt(5));
-                animal.setTipo(res.getString(6));
-                animal.setImagen(res.getString(7));
+                animal.setId(res.getInt(res.getColumnIndex("id")));
+                animal.setNombreAnimal(res.getString(res.getColumnIndex("nombreAnimal")));
+                animal.setEspecie(res.getString(res.getColumnIndex("especie")));
+                animal.setLugarFoto(res.getString(res.getColumnIndex("lugarfoto")));
+                animal.setFechaFoto(res.getString(res.getColumnIndex("fechafoto")));
+                animal.setAdorable(res.getInt(res.getColumnIndex("adorable")));
+                animal.setTipo(res.getString(res.getColumnIndex("tipo")));
+                animal.setImagen(res.getString(res.getColumnIndex("foto")));
             }
         }
         return animal;
     }
-
 
     public ArrayList<Animal> obtenerAnimalporCriterio(String nombreAnimal, String tipo,String fecha) {
         ArrayList<Animal> list = new ArrayList<>();
@@ -175,14 +139,14 @@ public class AnimalModelo extends SQLiteOpenHelper {
         if(res.getCount()>0) {
             while (res.moveToNext()) {
                 Animal animal = new Animal();
-                animal.setId(res.getInt(0));
-                animal.setNombreAnimal(res.getString(1));
-                animal.setEspecie(res.getString(2));
-                animal.setLugarFoto(res.getString(3));
-                animal.setFechaFoto(res.getString(4));
-                animal.setAdorable(res.getInt(5));
-                animal.setTipo(res.getString(6));
-                animal.setImagen(res.getString(7));
+                animal.setId(res.getInt(res.getColumnIndex("id")));
+                animal.setNombreAnimal(res.getString(res.getColumnIndex("nombreAnimal")));
+                animal.setEspecie(res.getString(res.getColumnIndex("especie")));
+                animal.setLugarFoto(res.getString(res.getColumnIndex("lugarfoto")));
+                animal.setFechaFoto(res.getString(res.getColumnIndex("fechafoto")));
+                animal.setAdorable(res.getInt(res.getColumnIndex("adorable")));
+                animal.setTipo(res.getString(res.getColumnIndex("tipo")));
+                animal.setImagen(res.getString(res.getColumnIndex("foto")));
                 list.add(animal);
             }
         }
@@ -206,18 +170,16 @@ public class AnimalModelo extends SQLiteOpenHelper {
         agregarPorDefecto(new Animal("tigre",Foto.fotoTigre,"felino","india","8/01/2020","Mamífero",1),db);
         agregarPorDefecto(new Animal("perro",Foto.fotoperro,"canido","mi casa","10/01/2020","Mamífero",0),db);
         agregarPorDefecto(new Animal("leon",Foto.fotoleon,"desconocido","africa","13/01/2020","Desconocido",0),db);
-        agregarPorDefecto(new Animal("caracal",null,"felino","europa","13/01/1980","",0),db);
+        agregarPorDefecto(new Animal("caracal",null,"felino","europa","13/01/1980","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leopardo",null,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("puma",null,"felino","africa","13/01/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("elefante",null,"elefantido","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
         agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
         agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
         agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
         agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
-
-
     }
 
 
@@ -255,9 +217,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
         valoresParaActualizar.put("adorable",animal.getAdorable() );
         valoresParaActualizar.put("tipo", animal.getTipo());
         valoresParaActualizar.put("foto", animal.getImagen());
-        // where id...
         String campoParaActualizar = "id = ?";
-        // ... = idMascota
         String[] argumentosParaActualizar = {String.valueOf(animal.getId())};
         return baseDeDatos.update(TABLE_NAME, valoresParaActualizar, campoParaActualizar, argumentosParaActualizar);
     }
