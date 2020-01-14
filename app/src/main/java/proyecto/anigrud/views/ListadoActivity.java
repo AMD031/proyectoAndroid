@@ -42,7 +42,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     private androidx.recyclerview.widget.RecyclerView recyclerView;
     private static Context lcontext;
     private TextView contadorTextView;
-
     MyApplication my = new MyApplication();
 
 
@@ -139,7 +138,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
 
         }
-        datos =null;
     }
 
     public void actualizaContador(){

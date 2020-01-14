@@ -41,14 +41,13 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
      private Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME,null);
+        Cursor res = db.rawQuery("SELECT id,nombreAnimal,especie,foto FROM "+TABLE_NAME,null);
         return  res;
     }
 
     public ArrayList<Animal> getAllanimal(){
         ArrayList<Animal> list = new ArrayList<>();
         Cursor res = getAllData();
-
         if(res.getCount()>0){
             if(res.moveToFirst()){
                  while (res.moveToNext()){
@@ -56,15 +55,14 @@ public class AnimalModelo extends SQLiteOpenHelper {
                      animal.setId(res.getInt(res.getColumnIndex("id")));
                      animal.setNombreAnimal(res.getString(res.getColumnIndex("nombreAnimal")));
                      animal.setEspecie(res.getString(res.getColumnIndex("especie")));
-                     animal.setLugarFoto(res.getString(res.getColumnIndex("lugarfoto")));
-                     animal.setFechaFoto(res.getString(res.getColumnIndex("fechafoto")));
-                     animal.setAdorable(res.getInt(res.getColumnIndex("adorable")));
-                     animal.setTipo(res.getString(res.getColumnIndex("tipo")));
+                     // animal.setLugarFoto(res.getString(res.getColumnIndex("lugarfoto")));
+                     // animal.setFechaFoto(res.getString(res.getColumnIndex("fechafoto")));
+                     // animal.setAdorable(res.getInt(res.getColumnIndex("adorable")));
+                     // animal.setTipo(res.getString(res.getColumnIndex("tipo")));
                      animal.setImagen(res.getString(res.getColumnIndex("foto")));
                     list.add(animal);
                   }
-         }
-
+             }
       }
 
         return list;
