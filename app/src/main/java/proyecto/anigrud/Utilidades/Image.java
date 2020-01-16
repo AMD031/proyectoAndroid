@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -19,7 +20,7 @@ public class Image {
         try {
             Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
             byte[] imageInByte = baos.toByteArray();
              foto = Base64.encodeToString(imageInByte, Base64.DEFAULT);
         }catch(Exception e){
@@ -29,8 +30,8 @@ public class Image {
     }
 
     public static Bitmap bitmap (String mBase64string){
-        byte[] decodedString = Base64.decode(mBase64string, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        return decodedByte;
+            byte[] decodedString = Base64.decode(mBase64string, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            return decodedByte;
     }
 }
