@@ -34,6 +34,7 @@ import proyecto.anigrud.models.AnimalModelo;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View {
+    private final static int BUSCAR = 1000;
     private ArrayList<Animal> items;
     String TAG = "aniCRUD/Listado";
     private static ListadoInterface.Presenter presenter;
@@ -119,25 +120,23 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         super.onResume();
 
       presenter.Actulizarlista(items,adaptador);
-        Bundle datos = this.getIntent().getExtras();
-        if(datos!=null) {
-
-                 String nombreAnimal = datos.getString("nombreB", "");
+      /*  Bundle datos = this.getIntent().getExtras();
+        if(datos!=null) {*/
+                /* String nombreAnimal = datos.getString("nombreB", "");
                  String tipo = datos.getString("tipoB", "");
                  String fecha = datos.getString("fechaB", "");
-
-
                 ArrayList<String> argumentos = new ArrayList<>();
                 argumentos.add(nombreAnimal);
                 argumentos.add(tipo);
-                argumentos.add(fecha);
+                argumentos.add(fecha);*/
+                //presenter.ActulizarlistaCriterios(items, adaptador, argumentos);
+                //datos.putBoolean("eBuscqueda",false);
+       // }
 
-                presenter.ActulizarlistaCriterios(items, adaptador, argumentos);
-                datos.putBoolean("eBuscqueda",false);
 
 
 
-        }
+
     }
 
     public void actualizaContador(){
@@ -233,16 +232,10 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     public void lanzarSobre() {
         Intent intent = new Intent(ListadoActivity.this,
                 SobreActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, BUSCAR);
     }
 
-    @Override
-    public void lanzarBuscar() {
-        Intent intent = new Intent(ListadoActivity.this,
-                BuscarActivity.class);
-        startActivity(intent);
 
-    }
 
     @Override
     public void lanzarDialog(final int position, final ArrayList<Animal> items, final AnimalAdapter animalAdapter) {
@@ -291,4 +284,45 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         super.onDestroy();
         Log.i(TAG,"entrado en el stop");
     }
+
+
+    @Override
+    public void lanzarBuscar() {
+        Intent intent = new Intent(ListadoActivity.this,
+                BuscarActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
+        Log.d("llamado","entra");
+        if (resultCode == RESULT_CANCELED) {
+
+
+        } else {
+
+            // Y tratamos el resultado en función de si se lanzó para rellenar el
+            // nombre o el apellido.
+            switch (requestCode) {
+                case BUSCAR:
+                    ArrayList<String> argumentos = new ArrayList<>();
+                    String nombreAnimal = data.getExtras().getString("nombreB", "");
+                    String tipo = data.getExtras().getString("tipoB", "");
+                    String fecha = data.getExtras().getString("fechaB", "");
+                    argumentos.add(nombreAnimal);
+                    argumentos.add(tipo);
+                    argumentos.add(fecha);
+                    Log.d("nombre",nombreAnimal);
+                     presenter.ActulizarlistaCriterios(items,adaptador,argumentos);
+                    break;
+
+            }
+        }
+
+    }
+
+
+
 }

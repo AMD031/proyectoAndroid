@@ -163,6 +163,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
                 "tipo TEXT,"+
                 "foto TEXT"+
                  ")";
+
         db.execSQL(CREATE_TABLE_ANIMAL);
         agregarPorDefecto(new Animal("leon",Foto.fotoleon,"felino","africa","13/01/2020","Mamífero",1),db);
         agregarPorDefecto(new Animal("tigre",Foto.fotoTigre,"felino","india","8/01/2020","Mamífero",1),db);

@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
+
 import proyecto.anigrud.R;
 import proyecto.anigrud.Utilidades.Calendario;
 import proyecto.anigrud.Utilidades.ListaSpinner;
@@ -36,7 +38,7 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
     private Spinner spinnerTipos;
     private EditText parametro;
     String TAG = "aniGRUD/Buscar";
-    private String valorSpinner = "Mamífero";
+    private String valorSpinner = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +93,16 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void lanzarGuardado( ) {
-        Intent intent = new Intent(BuscarActivity.this, ListadoActivity.class);
+        Log.d("llamado","entra");
+        Intent intent = getIntent();
+
         intent.putExtra("nombreB",parametro.getText().toString());
         intent.putExtra("tipoB",valorSpinner);
         intent.putExtra("fechaB",etFecha.getText().toString());
-        startActivity(intent);
+        Log.d("llamado",intent.getExtras().getString("nombreB","sin valor"));
+        setResult(RESULT_OK, intent);
+        finish();
+
     }
 
     @Override
@@ -122,7 +129,8 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
            presenter.checkDate(etFecha.getText().toString(),tvef);
        }
 
-
-
     }
+
+
+
 }
