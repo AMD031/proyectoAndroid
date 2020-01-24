@@ -28,9 +28,9 @@ public interface ListadoInterface {
         void onClickRecyclerView(int id,boolean mostraElimanar);
         ArrayList<Animal> getAllAnimal();
         void repintarRecycler(AnimalAdapter animalAdapter);
-        void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador);
+        void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador,String nombreAnimal, String tipo,String fecha);
 
-        void ActulizarlistaCriterios(ArrayList<Animal> items, AnimalAdapter adaptador, ArrayList<String> argumentos);
+        //void ActulizarlistaCriterios(ArrayList<Animal> items, AnimalAdapter adaptador, ArrayList<String> argumentos);
     }
 
 }

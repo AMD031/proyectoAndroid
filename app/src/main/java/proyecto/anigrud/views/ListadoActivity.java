@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import proyecto.anigrud.R;
 import proyecto.anigrud.interfaces.ListadoInterface;
@@ -44,10 +45,13 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     private static Context lcontext;
     private TextView contadorTextView;
     MyApplication my = new MyApplication();
-
+    private String nombre ="";
+    private String tipo ="";
+    private String fecha="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado);
@@ -119,7 +123,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     protected void onResume() {
         super.onResume();
 
-      presenter.Actulizarlista(items,adaptador);
+      presenter.Actulizarlista(items,adaptador,this.nombre,this.tipo,this.fecha);
       /*  Bundle datos = this.getIntent().getExtras();
         if(datos!=null) {*/
                 /* String nombreAnimal = datos.getString("nombreB", "");
@@ -232,7 +236,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     public void lanzarSobre() {
         Intent intent = new Intent(ListadoActivity.this,
                 SobreActivity.class);
-        startActivityForResult(intent, BUSCAR);
+        startActivity(intent);
     }
 
 
@@ -290,14 +294,14 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     public void lanzarBuscar() {
         Intent intent = new Intent(ListadoActivity.this,
                 BuscarActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,BUSCAR);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
-        Log.d("llamado","entra");
+        Log.d("llamado","onActivityResul "+ requestCode);
         if (resultCode == RESULT_CANCELED) {
 
 
@@ -315,7 +319,9 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                     argumentos.add(tipo);
                     argumentos.add(fecha);
                     Log.d("nombre",nombreAnimal);
-                     presenter.ActulizarlistaCriterios(items,adaptador,argumentos);
+                     this.nombre = nombreAnimal;
+                     this.fecha = fecha;
+                     this.tipo = tipo;
                     break;
 
             }

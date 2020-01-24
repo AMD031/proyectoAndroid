@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import proyecto.anigrud.R;
 import proyecto.anigrud.Utilidades.Calendario;
@@ -40,8 +41,12 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
     String TAG = "aniGRUD/Buscar";
     private String valorSpinner = "";
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -93,13 +98,13 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void lanzarGuardado( ) {
-        Log.d("llamado","entra");
+        Log.d("llamado","lanzarGuardado");
         Intent intent = getIntent();
 
         intent.putExtra("nombreB",parametro.getText().toString());
         intent.putExtra("tipoB",valorSpinner);
         intent.putExtra("fechaB",etFecha.getText().toString());
-        Log.d("llamado",intent.getExtras().getString("nombreB","sin valor"));
+        Log.d("llamado",intent.getExtras().toString());
         setResult(RESULT_OK, intent);
         finish();
 

@@ -61,19 +61,23 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     }
 
     @Override
-    public void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador) {
+    public void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador,String nombreAnimal, String tipo,String fecha ) {
+
         items.clear();
-        items.addAll(getAllAnimal());
+        items.addAll(modelo.obtenerAnimalporCriterio(nombreAnimal,tipo,fecha));
         adaptador.notifyDataSetChanged();
         view.actualizaContador();
+
     }
 
-    @Override
+    /*@Override
     public void ActulizarlistaCriterios(ArrayList<Animal> items, AnimalAdapter adaptador, ArrayList<String> argumentos) {
         items.clear();
+        Log.d("actualizar",argumentos.get(0)+" "+argumentos.get(1)+" "+argumentos.get(2));
+
         items.addAll(modelo.obtenerAnimalporCriterio(argumentos.get(0),argumentos.get(1),argumentos.get(2)));
         adaptador.notifyDataSetChanged();
         view.actualizaContador();
-    }
+    }*/
 
 }
