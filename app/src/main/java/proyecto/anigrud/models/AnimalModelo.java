@@ -165,20 +165,20 @@ public class AnimalModelo extends SQLiteOpenHelper {
                  ")";
 
         db.execSQL(CREATE_TABLE_ANIMAL);
-        agregarPorDefecto(new Animal("leon",Foto.fotoleon,"felino","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("tigre",Foto.fotoTigre,"felino","india","8/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("perro",Foto.fotoperro,"canido","mi casa","10/01/2020","Mamífero",0),db);
-        agregarPorDefecto(new Animal("leon",Foto.fotoleon,"desconocido","africa","13/01/2020","Desconocido",0),db);
-        agregarPorDefecto(new Animal("caracal",null,"felino","europa","13/01/1980","Mamífero",0),db);
-        agregarPorDefecto(new Animal("leopardo",null,"felino","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("puma",null,"felino","africa","13/01/2020","Mamífero",0),db);
-        agregarPorDefecto(new Animal("elefante",null,"elefantido","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",0),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/01/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",Foto.fotoleon,"felino","africa","13/1/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("tigre",Foto.fotoTigre,"felino","india","8/1/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("perro",Foto.fotoperro,"canido","mi casa","10/1/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leon",Foto.fotoleon,"desconocido","africa","13/1/2020","Desconocido",0),db);
+        agregarPorDefecto(new Animal("caracal",null,"felino","europa","13/1/1980","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leopardo",null,"felino","africa","13/1/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("puma",null,"felino","africa","13/1/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("elefante",null,"elefantido","africa","13/1/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","20/1/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","14/1/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2018","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2020","Mamífero",0),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2020","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2015","Mamífero",1),db);
     }
 
 
