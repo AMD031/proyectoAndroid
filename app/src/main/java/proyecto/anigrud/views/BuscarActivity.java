@@ -98,9 +98,7 @@ public class BuscarActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void lanzarGuardado( ) {
-        Log.d("llamado","lanzarGuardado");
         Intent intent = getIntent();
-
         intent.putExtra("nombreB",parametro.getText().toString());
         intent.putExtra("tipoB",valorSpinner);
         intent.putExtra("fechaB",etFecha.getText().toString());
