@@ -124,22 +124,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         super.onResume();
 
       presenter.Actulizarlista(items,adaptador,this.nombre,this.tipo,this.fecha);
-      /*  Bundle datos = this.getIntent().getExtras();
-        if(datos!=null) {*/
-                /* String nombreAnimal = datos.getString("nombreB", "");
-                 String tipo = datos.getString("tipoB", "");
-                 String fecha = datos.getString("fechaB", "");
-                ArrayList<String> argumentos = new ArrayList<>();
-                argumentos.add(nombreAnimal);
-                argumentos.add(tipo);
-                argumentos.add(fecha);*/
-                //presenter.ActulizarlistaCriterios(items, adaptador, argumentos);
-                //datos.putBoolean("eBuscqueda",false);
-       // }
-
-
-
-
 
     }
 
@@ -174,7 +158,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                 return  true;
 
             case R.id.sobreAplicacion:
-
                 presenter.onClickAbout();
                 return  true;
             default:
@@ -307,18 +290,12 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
         } else {
 
-            // Y tratamos el resultado en función de si se lanzó para rellenar el
-            // nombre o el apellido.
             switch (requestCode) {
                 case BUSCAR:
-                    ArrayList<String> argumentos = new ArrayList<>();
                     String nombreAnimal = data.getExtras().getString("nombreB", "");
                     String tipo = data.getExtras().getString("tipoB", "");
                     String fecha = data.getExtras().getString("fechaB", "");
-                    argumentos.add(nombreAnimal);
-                    argumentos.add(tipo);
-                    argumentos.add(fecha);
-                    Log.d("nombre",nombreAnimal);
+                    
                      this.nombre = nombreAnimal;
                      this.fecha = fecha;
                      this.tipo = tipo;

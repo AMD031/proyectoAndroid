@@ -339,7 +339,9 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
                boolean fechafoto = animalDatos.setFechaFoto(etFecha.getText().toString());
                boolean adorable = animalDatos.setAdorable(valorSwitch);
                boolean tipo = animalDatos.setTipo(valorSpinner);
+
                animalDatos.setImagen(Image.base64(foto));
+
                if (nombre && especie && lugarfoto && fechafoto && adorable && tipo) {
                    valido = true;
                }

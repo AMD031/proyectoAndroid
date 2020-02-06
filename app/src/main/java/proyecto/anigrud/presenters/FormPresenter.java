@@ -31,9 +31,11 @@ public class FormPresenter implements FormInterface.Presenter  {
     @Override
     public void onClickSave(Animal animal,boolean valido){
         if( valido ){
-            model.addNewAnimal(animal);
-            view.existoGuardado();
-            view.finalizaViewAnimal();
+           if( model.addNewAnimal(animal)){
+               view.existoGuardado();
+               view.finalizaViewAnimal();
+           }
+
        }else{
          view.errorGuardado();
        }
@@ -81,8 +83,10 @@ public class FormPresenter implements FormInterface.Presenter  {
 
     @Override
     public void clicSiElimnar(Integer id) {
-        model.eliminarAnimal(id);
-        view.lanzarEliminado();
+        if(model.eliminarAnimal(id)>=1){
+            view.lanzarEliminado();
+        }
+
     }
 
     @Override
@@ -105,9 +109,11 @@ public class FormPresenter implements FormInterface.Presenter  {
     @Override
     public void updateAnimal(Animal animalDatos, boolean valido) {
         if( valido ){
-            model.guardarCambios(animalDatos);
-            view.existoGuardado();
-            view.finalizaViewAnimal();
+           if(model.guardarCambios(animalDatos)>=1){
+               view.existoGuardado();
+               view.finalizaViewAnimal();
+           }
+
         }else {
             view.errorGuardado();
 

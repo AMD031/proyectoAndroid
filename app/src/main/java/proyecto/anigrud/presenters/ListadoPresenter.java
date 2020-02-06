@@ -61,7 +61,8 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
     }
 
     @Override
-    public void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador,String nombreAnimal, String tipo,String fecha ) {
+    public void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador,
+                               String nombreAnimal, String tipo,String fecha ) {
 
         items.clear();
         items.addAll(modelo.obtenerAnimalporCriterio(nombreAnimal,tipo,fecha));

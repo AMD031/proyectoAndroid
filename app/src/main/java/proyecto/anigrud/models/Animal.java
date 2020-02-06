@@ -56,11 +56,11 @@ public class Animal {
         return  valido;
     }
     public void setImagen(String imagen) {
-        if(imagen==null || imagen.isEmpty() || imagen.equals("") ){
-            this.imagen = imagenDefecto;
+        if(imagen==null || imagen.isEmpty() || imagen.equals("")  ){
+           this.imagen = imagenDefecto;
         }else {
             this.imagen =imagen;
-        }
+       }
     }
     public boolean setEspecie(String especie) {
         boolean valido = false;
@@ -113,8 +113,11 @@ public class Animal {
         this.id = id;
     }
     public String getImagen() {
-        return imagen;
+
+        return this.imagen;
     }
+
+
     public String getEspecie() {
         return especie;
     }

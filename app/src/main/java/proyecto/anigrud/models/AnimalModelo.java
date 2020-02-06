@@ -14,6 +14,7 @@ import java.util.List;
 
 import proyecto.anigrud.Utilidades.Util;
 import proyecto.anigrud.views.AniCRUD;
+import proyecto.anigrud.views.AnimalAdapter;
 import proyecto.anigrud.views.MyApplication;
 
 public class AnimalModelo extends SQLiteOpenHelper {
@@ -190,7 +191,10 @@ public class AnimalModelo extends SQLiteOpenHelper {
         values.put("fechafoto", animal.getFechaFoto());
         values.put("adorable",animal.getAdorable() );
         values.put("tipo", animal.getTipo());
-        values.put("foto", animal.getImagen());
+        if(!animal.getImagen().equals(Animal.getImagenDefecto())){
+            values.put("foto", animal.getImagen());
+        }
+
         db.insertOrThrow(TABLE_NAME, null, values);
     }
 
@@ -234,7 +238,10 @@ public class AnimalModelo extends SQLiteOpenHelper {
             values.put("fechafoto", animal.getFechaFoto());
             values.put("adorable",animal.getAdorable() );
             values.put("tipo", animal.getTipo());
-            values.put("foto", animal.getImagen());
+            if(!animal.getImagen().equals(Animal.getImagenDefecto())){
+                values.put("foto", animal.getImagen());
+            }
+
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_NAME, null, values);
