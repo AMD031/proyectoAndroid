@@ -109,8 +109,13 @@ public class Animal {
     public Integer getId() {
         return id;
     }
-    public void setId(Integer id) {
-        this.id = id;
+    public boolean setId(Integer id) {
+        boolean valido = false;
+       if(id>0){
+           this.id = id;
+           valido = true;
+       }
+       return valido;
     }
     public String getImagen() {
 

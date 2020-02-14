@@ -4,6 +4,8 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Validar {
 
@@ -18,6 +20,19 @@ public class Validar {
         }
         return true;
     }
+
+    public static boolean contineNumero(String s){
+        boolean continene = false;
+        Pattern  p= Pattern.compile("[1-9]+");
+        Matcher m=p.matcher(s);
+        if(m.find()){
+            continene = true;
+        }
+        return continene;
+    }
+
+
+
 
     public static boolean ceroUno(Integer n){
         boolean valido = false;
