@@ -30,7 +30,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    public static synchronized AnimalModelo getInstance() {
+  public static synchronized AnimalModelo getInstance() {
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
         // See this article for more information: http://bit.ly/6LRzfx
@@ -54,7 +54,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
 
 
-     private Cursor getAllData(){
+    public Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT id,nombreAnimal,especie,foto FROM "+TABLE_NAME,null);
         return  res;
@@ -180,7 +180,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
                  ")";
 
         db.execSQL(CREATE_TABLE_ANIMAL);
-        agregarPorDefecto(new Animal("leon",Foto.fotoleon,"felino","africa","13/1/2020","Mamífero",1),db);
+       /* agregarPorDefecto(new Animal("leon",Foto.fotoleon,"felino","africa","13/1/2020","Mamífero",1),db);
         agregarPorDefecto(new Animal("tigre",Foto.fotoTigre,"felino","india","8/1/2020","Mamífero",1),db);
         agregarPorDefecto(new Animal("perro",Foto.fotoperro,"canido","mi casa","10/1/2020","Mamífero",0),db);
         agregarPorDefecto(new Animal("leon",Foto.fotoleon,"desconocido","africa","13/1/2020","Desconocido",0),db);
@@ -193,7 +193,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
         agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2018","Mamífero",1),db);
         agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2020","Mamífero",0),db);
         agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2020","Mamífero",1),db);
-        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2015","Mamífero",1),db);
+        agregarPorDefecto(new Animal("leon",null,"felino","africa","13/1/2015","Mamífero",1),db);*/
     }
 
 
@@ -225,19 +225,20 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
     public int guardarCambios(Animal animal) {
         SQLiteDatabase baseDeDatos = this.getWritableDatabase();
-
         ContentValues valoresParaActualizar = new ContentValues();
         valoresParaActualizar.put("nombreAnimal", animal.getNombreAnimal());
         valoresParaActualizar.put("especie", animal.getEspecie());
         valoresParaActualizar.put("lugarfoto", animal.getLugarFoto());
         valoresParaActualizar.put("fechafoto", animal.getFechaFoto());
-        valoresParaActualizar.put("adorable",animal.getAdorable() );
+        valoresParaActualizar.put("adorable", animal.getAdorable());
         valoresParaActualizar.put("tipo", animal.getTipo());
         valoresParaActualizar.put("foto", animal.getImagen());
         String campoParaActualizar = "id = ?";
         String[] argumentosParaActualizar = {String.valueOf(animal.getId())};
-        return baseDeDatos.update(TABLE_NAME, valoresParaActualizar, campoParaActualizar, argumentosParaActualizar);
+       return baseDeDatos.update(TABLE_NAME, valoresParaActualizar, campoParaActualizar, argumentosParaActualizar);
+
     }
+
 
     public boolean addNewAnimal(Animal animal) {
 
