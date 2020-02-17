@@ -49,7 +49,7 @@ public class Animal {
 
     public boolean setNombreAnimal(String nombreAnimal) {
       boolean valido = false;
-       if(Validar.comprobarString(nombreAnimal)){
+       if(Validar.comprobarString(nombreAnimal) && !Validar.contineNumero(nombreAnimal)){
            this.nombreAnimal = nombreAnimal;
            valido = true;
        }
@@ -62,9 +62,9 @@ public class Animal {
             this.imagen =imagen;
        }
     }
-    public boolean setEspecie(String especie) {
+    public boolean setEspecie(String especie ) {
         boolean valido = false;
-      if( Validar.comprobarString(especie)){
+      if( Validar.comprobarString(especie) &&  !Validar.contineNumero(especie)){
           this.especie = especie ;
           valido = true;
       }
@@ -72,7 +72,7 @@ public class Animal {
     }
     public boolean setLugarFoto(String lugarFoto) {
         boolean valido = false;
-        if(Validar.comprobarString(lugarFoto)){
+        if(Validar.comprobarString(lugarFoto) && !Validar.contineNumero(lugarFoto)){
             LugarFoto = lugarFoto;
             valido = true;
         }
@@ -88,7 +88,7 @@ public class Animal {
     }
     public boolean setTipo(String tipo) {
         boolean valido = false;
-        if(Validar.comprobarString(tipo)){
+        if(Validar.comprobarString(tipo) && !Validar.contineNumero(tipo)){
             this.tipo = tipo;
             valido = true;
         }

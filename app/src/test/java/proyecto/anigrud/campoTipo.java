@@ -33,4 +33,13 @@ public class campoTipo {
     }
 
 
+    @Test
+    public void noNumeroTipo(){
+        assertEquals(false,  a.setTipo("ave2"));
+        assertEquals(true,  a.setTipo("ave"));
+        assertEquals("ave", a.getTipo());
+    }
+
+
+
 }

@@ -40,6 +40,20 @@ public class AnimalModelo extends SQLiteOpenHelper {
         return sInstance;
     }
 
+    //para las pruebas
+    public static synchronized AnimalModelo getInstance(Context context) {
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (sInstance == null) {
+            sInstance = new AnimalModelo(MyApplication.getContext());
+        }
+        return sInstance;
+    }
+
+
+
+
      private Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT id,nombreAnimal,especie,foto FROM "+TABLE_NAME,null);
