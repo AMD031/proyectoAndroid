@@ -46,7 +46,7 @@ public class AnimalModelo extends SQLiteOpenHelper {
         // don't accidentally leak an Activity's context.
         // See this article for more information: http://bit.ly/6LRzfx
         if (sInstance == null) {
-            sInstance = new AnimalModelo(MyApplication.getContext());
+            sInstance = new AnimalModelo(context);
         }
         return sInstance;
     }
