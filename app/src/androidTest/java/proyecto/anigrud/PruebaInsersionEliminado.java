@@ -28,7 +28,7 @@ public class PruebaInsersionEliminado {
 
 
     @Test
-    public void crudDB() {
+    public void InsercionEliminar() {
         this.animal = new Animal();
         animal.setId(1);
         animal.setEspecie("fjkljkl");
@@ -45,6 +45,18 @@ public class PruebaInsersionEliminado {
         assertEquals(1, repositorio.getAllData().getCount());
         assertEquals(1,repositorio.eliminarAnimal(1));
     }
+
+
+    @Test
+    public void PruebaEliminadoNoExiste() {
+        assertEquals(0, repositorio.getAllData().getCount());
+        assertEquals(0,repositorio.eliminarAnimal(330));
+    }
+
+
+
+
+
 
     @After
     public void tearDown() {

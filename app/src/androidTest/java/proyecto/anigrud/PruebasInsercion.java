@@ -13,7 +13,6 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.Before;
-import static androidx.test.InstrumentationRegistry.getTargetContext;
 import static org.junit.Assert.assertEquals;
 
 
@@ -63,6 +62,27 @@ public class PruebasInsercion {
         assertEquals(true, repositorio.addNewAnimal(animal2));
         assertEquals(2, repositorio.getAllData().getCount());
     }
+
+    @Test
+    public void InsercionAnimalIncorrecto() {
+        this.animal = new Animal();
+        animal.setId(1);
+        animal.setEspecie("fjkljkl");
+        animal.setNombreAnimal("fsdkljlksd");
+        animal.setEspecie("ksdjflksjk");
+        animal.setLugarFoto("kfdsjkl");
+        animal.setFechaFoto("1/13/2001");
+        animal.setAdorable(4);
+        animal.setTipo("ave");
+        //animal.setImagen(null);
+
+
+
+        assertEquals(false, repositorio.addNewAnimal(animal));
+        assertEquals(0, repositorio.getAllData().getCount());
+
+    }
+
 
 
 

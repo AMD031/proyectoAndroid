@@ -244,30 +244,43 @@ public class AnimalModelo extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
+        boolean valido = true;
      try {
             // The user might already exist in the database (i.e. the same user created multiple posts).
             ContentValues values = new ContentValues();
-            values.put("nombreAnimal", animal.getNombreAnimal());
-            values.put("especie", animal.getEspecie());
-            values.put("lugarfoto", animal.getLugarFoto());
-            values.put("fechafoto", animal.getFechaFoto());
-            values.put("adorable",animal.getAdorable() );
-            values.put("tipo", animal.getTipo());
-            if(!animal.getImagen().equals(Animal.getImagenDefecto())){
-                values.put("foto", animal.getImagen());
-            }
+            if(
+                    animal !=null &&
+                    animal.getNombreAnimal() !=null &&
+                    animal.getEspecie() !=null &&
+                    animal.getLugarFoto() !=null &&
+                    animal.getFechaFoto() !=null &&
+                    animal.getAdorable() !=null &&
+                    animal.getTipo() !=null
+            ){
 
+                values.put("nombreAnimal", animal.getNombreAnimal());
+                values.put("especie", animal.getEspecie());
+                values.put("lugarfoto", animal.getLugarFoto());
+                values.put("fechafoto", animal.getFechaFoto());
+                values.put("adorable",animal.getAdorable() );
+                values.put("tipo", animal.getTipo());
+                if(!animal.getImagen().equals(Animal.getImagenDefecto())){
+                    values.put("foto", animal.getImagen());
+                }
+            }else{
+               valido = false;
+            }
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_NAME, null, values);
             db.setTransactionSuccessful();
         } catch (Exception e) {
             Log.d("AnimalDB", "Error while trying to add post to database");
-            return  false;
+            valido =  false;
         } finally {
             db.endTransaction();
             db.close();
-            return true;
+            return valido;
         }
 
     }

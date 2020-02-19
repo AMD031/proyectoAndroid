@@ -52,7 +52,7 @@ public class PruebasActualizar {
         assertEquals(true,animal.setFechaFoto("1/1/2005"));
         assertEquals(true,animal.setAdorable(0));
         assertEquals(true,animal.setTipo("XXX"));
-        animal.setImagen(null);
+
         assertEquals(1,repositorio.guardarCambios(animal));
         assertEquals("elefante",repositorio.obtenerAnimal(1).getNombreAnimal());
         assertEquals("elefantido",repositorio.obtenerAnimal(1).getEspecie());
@@ -60,9 +60,35 @@ public class PruebasActualizar {
         assertEquals("1/1/2005",repositorio.obtenerAnimal(1).getFechaFoto());
         assertEquals(new Integer(0), repositorio.obtenerAnimal(1).getAdorable());
         assertEquals("XXX",repositorio.obtenerAnimal(1).getTipo());
-
-
     }
+
+
+    @Test
+    public void ActualizarAnimalEliminado() {
+        this.animal = new Animal();
+        animal.setId(1);
+        animal.setNombreAnimal("leon");
+        animal.setEspecie("felino");
+        animal.setLugarFoto("patio");
+        animal.setFechaFoto("1/1/2001");
+        animal.setAdorable(1);
+        animal.setTipo("Mamifero");
+        animal.setImagen(null);
+        assertEquals(true, repositorio.addNewAnimal(animal));
+        assertEquals(1, repositorio.eliminarAnimal(1));
+        assertEquals(true,animal.setNombreAnimal("elefante"));
+        assertEquals(true,animal.setEspecie("elefantido"));
+        assertEquals(true,animal.setLugarFoto("africa"));
+        assertEquals(true,animal.setFechaFoto("1/1/2005"));
+        assertEquals(true,animal.setAdorable(0));
+        assertEquals(true,animal.setTipo("XXX"));
+        assertEquals(0,repositorio.guardarCambios(animal));
+    }
+
+
+
+
+
 
 
 
