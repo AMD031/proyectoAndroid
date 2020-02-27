@@ -15,23 +15,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import proyecto.anigrud.R;
 import proyecto.anigrud.interfaces.ListadoInterface;
 import proyecto.anigrud.models.Animal;
-import proyecto.anigrud.models.AnimalModelo;
 import proyecto.anigrud.presenters.ListadoPresenter;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View {
@@ -150,10 +144,11 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
                 presenter.onClicckSearch();
                 return true;
-            case R.id.ordenar:
-               //showHelp();
+            case R.id.ayuda:
+                presenter.mostrasAyuda();
                 return true;
             case R.id.Configuracion:
+
 
                 return  true;
 
@@ -305,6 +300,16 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         }
 
     }
+
+
+    public void lanzarAyuda(){
+        Intent intent = new Intent(this , AyudaActivity.class );
+        intent.putExtra("ayuda","listado");
+        startActivity(intent);
+    }
+
+
+
 
 
 

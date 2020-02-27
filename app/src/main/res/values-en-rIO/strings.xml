@@ -49,4 +49,6 @@
     <string name="existoGuardado">The animal has been saved successfully.</string>
     <string name="resultadosEncontrados">Results found</string>
     <string name="imagenSelecion">Select an image</string>
+    <string name="Ayuda">Help</string>
+    <string name="title_activity_ayuda">Help</string>
 </resources>

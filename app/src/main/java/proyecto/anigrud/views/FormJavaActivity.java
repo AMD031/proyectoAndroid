@@ -21,6 +21,8 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -561,4 +563,40 @@ public class FormJavaActivity extends AppCompatActivity implements FormInterface
             valorSwitch =0;
         }
     }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.mayuda, menu);
+
+        // add this
+        menu.add(Menu.NONE, 0, Menu.NONE, "custom")
+                .setActionView(R.layout.activity_listado)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        return true;
+    }
+
+
+
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.ayuda:
+                presenter.mostrasAyuda();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void lanzarAyuda(){
+        Intent intent = new Intent(this , AyudaActivity.class );
+        intent.putExtra("ayuda","formulario");
+        startActivity(intent);
+    }
+
 }

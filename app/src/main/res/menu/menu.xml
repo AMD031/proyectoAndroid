@@ -5,8 +5,8 @@
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/buscar" />
-    <item android:id="@+id/ordenar"
-        android:title="@string/Ordenar"
+    <item android:id="@+id/ayuda"
+        android:title="@string/Ayuda"
         android:orderInCategory="101"
         app:showAsAction="never" />
 

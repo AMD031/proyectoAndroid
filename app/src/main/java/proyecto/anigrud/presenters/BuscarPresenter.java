@@ -33,5 +33,10 @@ public class BuscarPresenter implements BuscarInterface.Presenter {
         return tipos;
     }
 
+    @Override
+    public void mostrasAyuda() {
+        view.lanzarAyuda();
+    }
+
 
 }

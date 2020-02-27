@@ -71,6 +71,11 @@ public class ListadoPresenter implements ListadoInterface.Presenter{
 
     }
 
+    @Override
+    public void mostrasAyuda() {
+        view.lanzarAyuda();
+    }
+
     /*@Override
     public void ActulizarlistaCriterios(ArrayList<Animal> items, AnimalAdapter adaptador, ArrayList<String> argumentos) {
         items.clear();

@@ -24,6 +24,8 @@ public interface FormInterface {
         void existoGuardado();
         void ocultarMostarbtnEliminar(boolean mostar);
         void recuperDatosAnimal(Animal animal);
+
+        void lanzarAyuda();
     }
 
     public interface Presenter
@@ -43,6 +45,8 @@ public interface FormInterface {
          void borrarTipo(int indice);
          void agregarTipo(String m_text);
          void borrarArrayTipos();
+
+         void mostrasAyuda();
      }
 
 

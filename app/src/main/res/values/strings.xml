@@ -48,4 +48,6 @@
     <string name="existoGuardado">El animal se ha guardado con existo.</string>
     <string name="resultadosEncontrados">Resultados encontrados</string>
     <string name="imagenSelecion">Seleccione una imagen</string>
+    <string name="title_activity_ayuda">Ayuda</string>
+    <string name="Ayuda">Ayuda</string>
 </resources>

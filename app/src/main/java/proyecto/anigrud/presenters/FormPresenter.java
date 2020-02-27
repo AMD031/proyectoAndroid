@@ -141,6 +141,11 @@ public class FormPresenter implements FormInterface.Presenter  {
         model.borrarTipos();
     }
 
+    @Override
+    public void mostrasAyuda() {
+        view.lanzarAyuda();
+    }
+
 
     @Override
     public void checkDate(String fecha, TextView tv) {

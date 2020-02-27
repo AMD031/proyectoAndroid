@@ -16,6 +16,7 @@ public interface ListadoInterface {
       void finalizaLista();
 
 
+        void lanzarAyuda();
     }
 
     public interface Presenter
@@ -29,6 +30,8 @@ public interface ListadoInterface {
         ArrayList<Animal> getAllAnimal();
         void repintarRecycler(AnimalAdapter animalAdapter);
         void Actulizarlista(ArrayList<Animal> items, AnimalAdapter adaptador,String nombreAnimal, String tipo,String fecha);
+
+        void mostrasAyuda();
 
         //void ActulizarlistaCriterios(ArrayList<Animal> items, AnimalAdapter adaptador, ArrayList<String> argumentos);
     }

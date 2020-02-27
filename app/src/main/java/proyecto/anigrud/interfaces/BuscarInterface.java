@@ -9,6 +9,7 @@ public interface BuscarInterface {
     public interface View{
         void lanzarGuardado();
         void errorFecha(boolean error, TextView tv);
+        void lanzarAyuda();
     }
 
     public interface Presenter
@@ -17,6 +18,8 @@ public interface BuscarInterface {
         void checkDate(String fecha, TextView tv);
 
         ArrayList <String> ObtenerTipos();
+
+        void mostrasAyuda();
     }
 
 
