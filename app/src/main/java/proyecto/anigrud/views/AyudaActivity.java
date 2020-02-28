@@ -2,6 +2,9 @@ package proyecto.anigrud.views;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebResourceError;
@@ -15,8 +18,10 @@ import androidx.appcompat.widget.Toolbar;
 
 
 import proyecto.anigrud.R;
+import proyecto.anigrud.interfaces.AyudaInterface;
+import proyecto.anigrud.presenters.AyudaPresenter;
 
-public class AyudaActivity extends AppCompatActivity {
+public class AyudaActivity extends AppCompatActivity implements AyudaInterface.View {
     private WebView mWebview ;
     private String ayuda;
     @Override
@@ -30,7 +35,15 @@ public class AyudaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         this.ayuda = getIntent().getStringExtra("ayuda");
         Log.i("buscar", ayuda);
-        mWebview  = new WebView(this);
+
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Si hay conexión a Internet en este momento
+
+       mWebview  = new WebView(this);
 
         mWebview.getSettings().setJavaScriptEnabled(true); // enable javascript
 
@@ -50,13 +63,26 @@ public class AyudaActivity extends AppCompatActivity {
             }
         });
 
-        mWebview .loadUrl("http://www.google.com");
-        setContentView(mWebview );
+
+       switch (this.ayuda){
+            case "listado":
+                mWebview .loadUrl("https://amd031.github.io/ayudaAniCrud/ayudas/ayudalistado.html");
+                setContentView(mWebview );
+                break;
+            case "buscar":
+                mWebview .loadUrl("https://amd031.github.io/ayudaAniCrud/ayudas/ayudabuscar.html");
+                setContentView(mWebview );
+                break;
+            case "formulario":
+                mWebview .loadUrl("https://amd031.github.io/ayudaAniCrud/ayudas/ayudaformulario.html");
+                setContentView(mWebview );
+                break;
+        }
 
 
-
-
-
+        } else {
+            AyudaPresenter.ErrorConexion();
+        }
 
     }
 
@@ -67,6 +93,11 @@ public class AyudaActivity extends AppCompatActivity {
     }
 
 
-
-
+    @Override
+    public void mostrarErrorConexion() {
+        Toast toast1 =
+                Toast.makeText(getApplicationContext(),
+                        "Fallo de conexión", Toast.LENGTH_SHORT);
+        toast1.show();
+    }
 }
